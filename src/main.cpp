@@ -10,7 +10,7 @@ bool ICPApp::OnInit() {
     wxFrame *frame = wxXmlResource::Get()->LoadFrame(this->GetTopWindow(), "MainFrame");
     if (frame != NULL) {
     	// Process some things
-    	sign_panel->AddEvents(frame);
+    	sign_panel->Init(frame);
     	// Show it
         frame->Show(true);
     }
@@ -19,4 +19,8 @@ bool ICPApp::OnInit() {
 
 ICPApp::ICPApp () {
 	sign_panel = new SignPanelClass();
+}
+
+ICPApp::~ICPApp () {
+	free(sign_panel);
 }

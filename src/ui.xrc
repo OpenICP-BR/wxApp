@@ -38,19 +38,18 @@
 											</object>
 										</object>
 										<object class="sizeritem">
-											<option>1</option>
-											<flag>wxALIGN_CENTER_VERTICAL|wxEXPAND</flag>
+											<option>10</option>
+											<flag>wxEXPAND</flag>
 											<border>5</border>
 											<object class="wxBoxSizer">
 												<orient>wxHORIZONTAL</orient>
 												<object class="sizeritem">
-													<option>0</option>
+													<option>10</option>
 													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
 													<border>5</border>
-													<object class="wxStaticText" name="lblFileChosenToSign">
-														<hidden>1</hidden>
-														<label>meu-arquivo.txt</label>
-														<wrap>-1</wrap>
+													<object class="wxTextCtrl" name="inpFileToSign">
+														<style>wxTE_READONLY</style>
+														<value></value>
 													</object>
 												</object>
 												<object class="sizeritem">
@@ -74,7 +73,7 @@
 											</object>
 										</object>
 										<object class="sizeritem">
-											<option>1</option>
+											<option>10</option>
 											<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
 											<border>5</border>
 											<object class="wxChoice" name="choSignAs">
@@ -92,7 +91,7 @@
 											</object>
 										</object>
 										<object class="sizeritem">
-											<option>1</option>
+											<option>10</option>
 											<flag>wxEXPAND</flag>
 											<border>5</border>
 											<object class="wxBoxSizer">
@@ -243,188 +242,5 @@
 				</object>
 			</object>
 		</object>
-	</object>
-	<object class="wxWizard" name="MyWizard1">
-		<style>wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX|wxRESIZE_BORDER</style>
-		<title>Instalação de certificado digital</title>
-		<centered>1</centered>
-		<object class="wxWizardPageSimple" name="wizNewCertFind">
-			<object class="wxBoxSizer">
-				<orient>wxVERTICAL</orient>
-				<object class="spacer">
-					<option>1</option>
-					<flag>wxEXPAND</flag>
-					<border>5</border>
-					<size>0,0</size>
-				</object>
-				<object class="sizeritem">
-					<option>0</option>
-					<flag>wxALL</flag>
-					<border>5</border>
-					<object class="wxStaticText" name="m_staticText6">
-						<label>Arquivo com o certificado A1 (.p12):</label>
-						<wrap>-1</wrap>
-					</object>
-				</object>
-				<object class="sizeritem">
-					<option>0</option>
-					<flag>wxALL|wxEXPAND</flag>
-					<border>5</border>
-					<object class="wxFilePickerCtrl" name="m_filePicker4">
-						<value></value>
-						<message>Certificado tipo A1</message>
-						<wildcard>*.p12</wildcard>
-						<style>wxFLP_DEFAULT_STYLE</style>
-					</object>
-				</object>
-				<object class="spacer">
-					<option>1</option>
-					<flag>wxEXPAND</flag>
-					<border>5</border>
-					<size>0,0</size>
-				</object>
-			</object>
-		</object>
-		<object class="wxWizardPageSimple" name="wizNewCertPassword">
-			<object class="wxBoxSizer">
-				<orient>wxVERTICAL</orient>
-				<object class="sizeritem">
-					<option>1</option>
-					<flag>wxEXPAND</flag>
-					<border>5</border>
-					<object class="wxStaticBoxSizer">
-						<orient>wxVERTICAL</orient>
-						<label>Informações do Certificado</label>
-						<object class="sizeritem">
-							<option>1</option>
-							<flag>wxEXPAND</flag>
-							<border>5</border>
-							<object class="wxGridSizer">
-								<rows>0</rows>
-								<cols>2</cols>
-								<vgap>0</vgap>
-								<hgap>0</hgap>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText8">
-										<label>Nome:</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText9">
-										<label>MyLabel</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText16">
-										<label>Email:</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText11">
-										<label>MyLabel</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText10">
-										<label>CPF:</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText13">
-										<label>MyLabel</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText14">
-										<label>Emissor:</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL</flag>
-									<border>5</border>
-									<object class="wxStaticText" name="m_staticText17">
-										<label>MyLabel</label>
-										<wrap>-1</wrap>
-									</object>
-								</object>
-							</object>
-						</object>
-					</object>
-				</object>
-				<object class="sizeritem">
-					<option>1</option>
-					<flag>wxEXPAND</flag>
-					<border>5</border>
-					<object class="wxGridSizer">
-						<rows>1</rows>
-						<cols>0</cols>
-						<vgap>0</vgap>
-						<hgap>0</hgap>
-						<object class="sizeritem">
-							<option>0</option>
-							<flag>wxALL</flag>
-							<border>5</border>
-							<object class="wxStaticText" name="m_staticText7">
-								<label>Senha do certificado:</label>
-								<wrap>-1</wrap>
-							</object>
-						</object>
-						<object class="sizeritem">
-							<option>1</option>
-							<flag>wxEXPAND</flag>
-							<border>5</border>
-							<object class="wxBoxSizer">
-								<orient>wxVERTICAL</orient>
-								<object class="sizeritem">
-									<option>0</option>
-									<flag>wxALL|wxEXPAND</flag>
-									<border>5</border>
-									<object class="wxTextCtrl" name="m_textCtrl1">
-										<style>wxTE_PASSWORD</style>
-										<value></value>
-									</object>
-								</object>
-							</object>
-						</object>
-					</object>
-				</object>
-				<object class="spacer">
-					<option>1</option>
-					<flag>wxEXPAND</flag>
-					<border>5</border>
-					<size>0,0</size>
-				</object>
-			</object>
-		</object>
-		<object class="wxWizardPageSimple" name="wizNewCertEnd" />
 	</object>
 </resource>

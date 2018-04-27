@@ -9,4 +9,5 @@ protected:
 public:
     virtual bool OnInit();
     ICPApp();
+    ~ICPApp();
 };
