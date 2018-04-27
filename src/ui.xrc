@@ -39,13 +39,29 @@
 										</object>
 										<object class="sizeritem">
 											<option>1</option>
-											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<flag>wxALIGN_CENTER_VERTICAL|wxEXPAND</flag>
 											<border>5</border>
-											<object class="wxFilePickerCtrl" name="fpFileToSign">
-												<value></value>
-												<message>Qual arquvio assinar?</message>
-												<wildcard>*.*</wildcard>
-												<style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="lblFileChosenToSign">
+														<hidden>1</hidden>
+														<label>meu-arquivo.txt</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>5</border>
+													<object class="wxButton" name="btnFileToSign">
+														<label>Escolher</label>
+														<default>0</default>
+													</object>
+												</object>
 											</object>
 										</object>
 										<object class="sizeritem">
@@ -59,7 +75,7 @@
 										</object>
 										<object class="sizeritem">
 											<option>1</option>
-											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
 											<border>5</border>
 											<object class="wxChoice" name="choSignAs">
 												<selection>0</selection>
@@ -68,7 +84,7 @@
 										</object>
 										<object class="sizeritem">
 											<option>0</option>
-											<flag>wxALIGN_TOP|wxALL</flag>
+											<flag>wxALL</flag>
 											<border>5</border>
 											<object class="wxStaticText" name="lblSignatureType">
 												<label>Assinatura e conteúdo:</label>
@@ -76,27 +92,29 @@
 											</object>
 										</object>
 										<object class="sizeritem">
-											<option>0</option>
-											<flag>wxALIGN_TOP|wxALL</flag>
-											<border>5</border>
-											<object class="wxRadioButton" name="rbtnSignTwoFile">
-												<label>Em arquivos diferentes (.p7s)</label>
-												<value>0</value>
-											</object>
-										</object>
-										<object class="spacer">
 											<option>1</option>
 											<flag>wxEXPAND</flag>
 											<border>5</border>
-											<size>0,0</size>
-										</object>
-										<object class="sizeritem">
-											<option>0</option>
-											<flag>wxALIGN_TOP|wxALL</flag>
-											<border>5</border>
-											<object class="wxRadioButton" name="rbtnSignOneFile">
-												<label>No mesmo arquivo (.p7m)</label>
-												<value>0</value>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxRadioButton" name="m_radioBtn5">
+														<label>Em arquivos diferentes (.p7s)</label>
+														<value>0</value>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxRadioButton" name="m_radioBtn6">
+														<label>No mesmo arquivo (.p7m)</label>
+														<value>0</value>
+													</object>
+												</object>
 											</object>
 										</object>
 									</object>
@@ -123,18 +141,6 @@
 								<cols>2</cols>
 								<vgap>0</vgap>
 								<hgap>0</hgap>
-								<object class="spacer">
-									<option>1</option>
-									<flag>wxEXPAND</flag>
-									<border>5</border>
-									<size>0,0</size>
-								</object>
-								<object class="spacer">
-									<option>1</option>
-									<flag>wxEXPAND</flag>
-									<border>5</border>
-									<size>0,0</size>
-								</object>
 								<object class="sizeritem">
 									<option>0</option>
 									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
@@ -146,20 +152,20 @@
 								</object>
 								<object class="sizeritem">
 									<option>0</option>
-									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
 									<border>5</border>
 									<object class="wxFilePickerCtrl" name="fpSignatureFile">
 										<value></value>
 										<message>Arquivo de assiantura</message>
 										<wildcard>*.p7m,*.p7s</wildcard>
-										<style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
+										<style>wxFLP_DEFAULT_STYLE</style>
 									</object>
 								</object>
 								<object class="sizeritem">
 									<option>0</option>
 									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
 									<border>5</border>
-									<object class="wxStaticText" name="lblMainFile">
+									<object class="wxStaticText" name="m_staticText5">
 										<hidden>1</hidden>
 										<label>Arquivo de conteúdo:</label>
 										<wrap>-1</wrap>
@@ -169,7 +175,7 @@
 									<option>0</option>
 									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
 									<border>5</border>
-									<object class="wxFilePickerCtrl" name="fpMainFile">
+									<object class="wxFilePickerCtrl" name="m_filePicker3">
 										<value></value>
 										<message>Conteúdo assinado</message>
 										<wildcard>*.*</wildcard>
@@ -203,7 +209,7 @@
 									<option>0</option>
 									<flag>wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL|wxTOP</flag>
 									<border>5</border>
-									<object class="wxButton" name="btnInstallFirstCert">
+									<object class="wxButton" name="btnFirstCert">
 										<label>Instalar certificado</label>
 										<default>1</default>
 									</object>
@@ -237,5 +243,188 @@
 				</object>
 			</object>
 		</object>
+	</object>
+	<object class="wxWizard" name="MyWizard1">
+		<style>wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxMINIMIZE_BOX|wxRESIZE_BORDER</style>
+		<title>Instalação de certificado digital</title>
+		<centered>1</centered>
+		<object class="wxWizardPageSimple" name="wizNewCertFind">
+			<object class="wxBoxSizer">
+				<orient>wxVERTICAL</orient>
+				<object class="spacer">
+					<option>1</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<size>0,0</size>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALL</flag>
+					<border>5</border>
+					<object class="wxStaticText" name="m_staticText6">
+						<label>Arquivo com o certificado A1 (.p12):</label>
+						<wrap>-1</wrap>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>0</option>
+					<flag>wxALL|wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxFilePickerCtrl" name="m_filePicker4">
+						<value></value>
+						<message>Certificado tipo A1</message>
+						<wildcard>*.p12</wildcard>
+						<style>wxFLP_DEFAULT_STYLE</style>
+					</object>
+				</object>
+				<object class="spacer">
+					<option>1</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<size>0,0</size>
+				</object>
+			</object>
+		</object>
+		<object class="wxWizardPageSimple" name="wizNewCertPassword">
+			<object class="wxBoxSizer">
+				<orient>wxVERTICAL</orient>
+				<object class="sizeritem">
+					<option>1</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxStaticBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<label>Informações do Certificado</label>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxEXPAND</flag>
+							<border>5</border>
+							<object class="wxGridSizer">
+								<rows>0</rows>
+								<cols>2</cols>
+								<vgap>0</vgap>
+								<hgap>0</hgap>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText8">
+										<label>Nome:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText9">
+										<label>MyLabel</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText16">
+										<label>Email:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText11">
+										<label>MyLabel</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText10">
+										<label>CPF:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText13">
+										<label>MyLabel</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText14">
+										<label>Emissor:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText17">
+										<label>MyLabel</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+				<object class="sizeritem">
+					<option>1</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<object class="wxGridSizer">
+						<rows>1</rows>
+						<cols>0</cols>
+						<vgap>0</vgap>
+						<hgap>0</hgap>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALL</flag>
+							<border>5</border>
+							<object class="wxStaticText" name="m_staticText7">
+								<label>Senha do certificado:</label>
+								<wrap>-1</wrap>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxEXPAND</flag>
+							<border>5</border>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL|wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxTextCtrl" name="m_textCtrl1">
+										<style>wxTE_PASSWORD</style>
+										<value></value>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+				<object class="spacer">
+					<option>1</option>
+					<flag>wxEXPAND</flag>
+					<border>5</border>
+					<size>0,0</size>
+				</object>
+			</object>
+		</object>
+		<object class="wxWizardPageSimple" name="wizNewCertEnd" />
 	</object>
 </resource>

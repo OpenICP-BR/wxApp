@@ -6,9 +6,17 @@ bool ICPApp::OnInit() {
     wxXmlResource::Get()->InitAllHandlers();
     wxXmlResource::Get()->Load("src/ui.xrc");
 
+    // Get out frame
     wxFrame *frame = wxXmlResource::Get()->LoadFrame(this->GetTopWindow(), "MainFrame");
     if (frame != NULL) {
+    	// Process some things
+    	sign_panel->AddEvents(frame);
+    	// Show it
         frame->Show(true);
     }
     return true;
+}
+
+ICPApp::ICPApp () {
+	sign_panel = new SignPanelClass();
 }

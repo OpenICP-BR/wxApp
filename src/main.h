@@ -1,11 +1,12 @@
-#include <wx/wxprec.h>
-#ifndef WX_PRECOMP
-    #include <wx/wx.h>
-#endif
+#pragma once
 
-#include "wx/xrc/xmlres.h"
+#include "common.h"
+#include "sign_panel.h"
 
 class ICPApp: public wxApp {
+protected:
+	SignPanelClass *sign_panel;
 public:
     virtual bool OnInit();
+    ICPApp();
 };

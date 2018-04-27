@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Apr 26 2018)
+// C++ code generated with wxFormBuilder (version Jan 25 2018)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -13,137 +13,146 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 {
 	this->SetSizeHints( wxSize( -1,-1 ), wxSize( -1,-1 ) );
 	
-	wxBoxSizer* sizerMain;
-	sizerMain = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer1;
+	bSizer1 = new wxBoxSizer( wxVERTICAL );
 	
-	nbMain = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0|wxHSCROLL|wxVSCROLL );
-	panelSign = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxHSCROLL|wxTAB_TRAVERSAL|wxVSCROLL );
-	wxBoxSizer* sizerSign1;
-	sizerSign1 = new wxBoxSizer( wxVERTICAL );
+	nbMain = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	panelSign = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer6;
+	bSizer6 = new wxBoxSizer( wxVERTICAL );
 	
-	wxGridSizer* sizerSign2;
-	sizerSign2 = new wxGridSizer( 0, 2, 0, 0 );
+	wxGridSizer* gSizer_SignPanel;
+	gSizer_SignPanel = new wxGridSizer( 0, 2, 0, 0 );
 	
 	lblFileToSign = new wxStaticText( panelSign, wxID_ANY, wxT("Arquivo(s) para assinar:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblFileToSign->Wrap( -1 );
-	sizerSign2->Add( lblFileToSign, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer_SignPanel->Add( lblFileToSign, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	fpFileToSign = new wxFilePickerCtrl( panelSign, wxID_ANY, wxEmptyString, wxT("Qual arquvio assinar?"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
-	sizerSign2->Add( fpFileToSign, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	wxBoxSizer* bSizer8;
+	bSizer8 = new wxBoxSizer( wxHORIZONTAL );
+	
+	lblFileChosenToSign = new wxStaticText( panelSign, wxID_ANY, wxT("meu-arquivo.txt"), wxDefaultPosition, wxDefaultSize, 0 );
+	lblFileChosenToSign->Wrap( -1 );
+	lblFileChosenToSign->Hide();
+	
+	bSizer8->Add( lblFileChosenToSign, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	btnFileToSign = new wxButton( panelSign, wxID_ANY, wxT("Escolher"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer8->Add( btnFileToSign, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	
+	gSizer_SignPanel->Add( bSizer8, 1, wxALIGN_CENTER_VERTICAL|wxEXPAND, 5 );
 	
 	lblSignAs = new wxStaticText( panelSign, wxID_ANY, wxT("Assinar como:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignAs->Wrap( -1 );
-	sizerSign2->Add( lblSignAs, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer_SignPanel->Add( lblSignAs, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	wxArrayString choSignAsChoices;
 	choSignAs = new wxChoice( panelSign, wxID_ANY, wxDefaultPosition, wxDefaultSize, choSignAsChoices, 0 );
 	choSignAs->SetSelection( 0 );
-	sizerSign2->Add( choSignAs, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer_SignPanel->Add( choSignAs, 1, wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND, 5 );
 	
 	lblSignatureType = new wxStaticText( panelSign, wxID_ANY, wxT("Assinatura e conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignatureType->Wrap( -1 );
-	sizerSign2->Add( lblSignatureType, 0, wxALL, 5 );
+	gSizer_SignPanel->Add( lblSignatureType, 0, wxALL, 5 );
 	
-	rbtnSignTwoFile = new wxRadioButton( panelSign, wxID_ANY, wxT("Em arquivos diferentes (.p7s)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign2->Add( rbtnSignTwoFile, 0, wxALL, 5 );
+	wxBoxSizer* bSizer10;
+	bSizer10 = new wxBoxSizer( wxVERTICAL );
+	
+	m_radioBtn5 = new wxRadioButton( panelSign, wxID_ANY, wxT("Em arquivos diferentes (.p7s)"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer10->Add( m_radioBtn5, 0, wxALL, 5 );
+	
+	m_radioBtn6 = new wxRadioButton( panelSign, wxID_ANY, wxT("No mesmo arquivo (.p7m)"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer10->Add( m_radioBtn6, 0, wxALL, 5 );
 	
 	
-	sizerSign2->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	rbtnSignOneFile = new wxRadioButton( panelSign, wxID_ANY, wxT("No mesmo arquivo (.p7m)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign2->Add( rbtnSignOneFile, 0, wxALL, 5 );
+	gSizer_SignPanel->Add( bSizer10, 1, wxEXPAND, 5 );
 	
 	
-	sizerSign1->Add( sizerSign2, 1, wxEXPAND, 5 );
+	bSizer6->Add( gSizer_SignPanel, 1, wxEXPAND, 5 );
 	
 	btnSign = new wxButton( panelSign, wxID_ANY, wxT("Assinar"), wxDefaultPosition, wxDefaultSize, 0 );
 	btnSign->SetDefault(); 
-	sizerSign1->Add( btnSign, 0, wxALIGN_CENTER|wxALL, 5 );
+	bSizer6->Add( btnSign, 0, wxALIGN_CENTER|wxALL, 5 );
 	
 	
-	panelSign->SetSizer( sizerSign1 );
+	panelSign->SetSizer( bSizer6 );
 	panelSign->Layout();
-	sizerSign1->Fit( panelSign );
+	bSizer6->Fit( panelSign );
 	nbMain->AddPage( panelSign, wxT("Assinar"), false );
 	panelVerify = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxGridSizer* sizerVerify;
-	sizerVerify = new wxGridSizer( 0, 2, 0, 0 );
+	wxGridSizer* gSizer7;
+	gSizer7 = new wxGridSizer( 0, 2, 0, 0 );
 	
 	lblSignatureFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de assinatura (.p7m ou .p7s):"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignatureFile->Wrap( -1 );
-	sizerVerify->Add( lblSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer7->Add( lblSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	fpSignatureFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Arquivo de assiantura"), wxT("*.p7m,*.p7s"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
-	sizerVerify->Add( fpSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	fpSignatureFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Arquivo de assiantura"), wxT("*.p7m,*.p7s"), wxDefaultPosition, wxDefaultSize, wxFLP_DEFAULT_STYLE );
+	gSizer7->Add( fpSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND, 5 );
 	
-	lblMainFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
-	lblMainFile->Wrap( -1 );
-	lblMainFile->Hide();
+	m_staticText5 = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText5->Wrap( -1 );
+	m_staticText5->Hide();
 	
-	sizerVerify->Add( lblMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	gSizer7->Add( m_staticText5, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	fpMainFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Conteúdo assinado"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
-	fpMainFile->Hide();
+	m_filePicker3 = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Conteúdo assinado"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
+	m_filePicker3->Hide();
 	
-	sizerVerify->Add( fpMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	
-	sizerVerify->Add( 0, 0, 1, wxEXPAND, 5 );
+	gSizer7->Add( m_filePicker3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	
-	panelVerify->SetSizer( sizerVerify );
+	gSizer7->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	
+	panelVerify->SetSizer( gSizer7 );
 	panelVerify->Layout();
-	sizerVerify->Fit( panelVerify );
+	gSizer7->Fit( panelVerify );
 	nbMain->AddPage( panelVerify, wxT("Verificar"), false );
 	panelFirstCert = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* sizerCerts;
-	sizerCerts = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer5;
+	bSizer5 = new wxBoxSizer( wxVERTICAL );
 	
 	
-	sizerCerts->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizer5->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	btnInstallFirstCert = new wxButton( panelFirstCert, wxID_ANY, wxT("Instalar certificado"), wxDefaultPosition, wxDefaultSize, 0 );
-	btnInstallFirstCert->SetDefault(); 
-	sizerCerts->Add( btnInstallFirstCert, 0, wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL|wxTOP, 5 );
+	btnFirstCert = new wxButton( panelFirstCert, wxID_ANY, wxT("Instalar certificado"), wxDefaultPosition, wxDefaultSize, 0 );
+	btnFirstCert->SetDefault(); 
+	bSizer5->Add( btnFirstCert, 0, wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL|wxTOP, 5 );
 	
 	linkGetCertificate = new wxHyperlinkCtrl( panelFirstCert, wxID_ANY, wxT("Onde consigo um?"), wxT("http://www.iti.gov.br/certificado-digital/58-certificado-digital/87-como-obter"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE );
-	sizerCerts->Add( linkGetCertificate, 0, wxALIGN_CENTER|wxALL, 5 );
+	bSizer5->Add( linkGetCertificate, 0, wxALIGN_CENTER|wxALL, 5 );
 	
 	
-	sizerCerts->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizer5->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	
-	panelFirstCert->SetSizer( sizerCerts );
+	panelFirstCert->SetSizer( bSizer5 );
 	panelFirstCert->Layout();
-	sizerCerts->Fit( panelFirstCert );
+	bSizer5->Fit( panelFirstCert );
 	nbMain->AddPage( panelFirstCert, wxT("Certificados Digitais"), false );
 	panelHelp = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	nbMain->AddPage( panelHelp, wxT("Ajuda"), false );
 	
-	sizerMain->Add( nbMain, 1, wxALL|wxEXPAND, 5 );
+	bSizer1->Add( nbMain, 1, wxALL|wxEXPAND, 5 );
 	
 	
-	this->SetSizer( sizerMain );
+	this->SetSizer( bSizer1 );
 	this->Layout();
-	sizerMain->Fit( this );
+	bSizer1->Fit( this );
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	btnFileToSign->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::SignPanel_OpenFileDialog ), NULL, this );
 }
 
 MainFrame::~MainFrame()
 {
-}
-
-MyFrame2::MyFrame2( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
-{
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	// Disconnect Events
+	btnFileToSign->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::SignPanel_OpenFileDialog ), NULL, this );
 	
-	
-	this->Centre( wxBOTH );
-}
-
-MyFrame2::~MyFrame2()
-{
 }
 
 MyWizard1::MyWizard1( wxWindow* parent, wxWindowID id, const wxString& title, const wxBitmap& bitmap, const wxPoint& pos, long style ) 
