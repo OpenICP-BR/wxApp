@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="MainFrame">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<title>OpenICPBr</title>
+		<centered>1</centered>
+		<aui_managed>0</aui_managed>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxNotebook" name="nbMain">
+					<style>wxHSCROLL|wxVSCROLL</style>
+					<object class="notebookpage">
+						<label>Assinar</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="panelSign">
+							<style>wxHSCROLL|wxTAB_TRAVERSAL|wxVSCROLL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<object class="wxGridSizer">
+										<rows>0</rows>
+										<cols>2</cols>
+										<vgap>0</vgap>
+										<hgap>0</hgap>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="lblFileToSign">
+												<label>Arquivo(s) para assinar:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>5</border>
+											<object class="wxFilePickerCtrl" name="fpFileToSign">
+												<value></value>
+												<message>Qual arquvio assinar?</message>
+												<wildcard>*.*</wildcard>
+												<style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="lblSignAs">
+												<label>Assinar como:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>5</border>
+											<object class="wxChoice" name="choSignAs">
+												<selection>0</selection>
+												<content />
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_TOP|wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticText" name="lblSignatureType">
+												<label>Assinatura e conteúdo:</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_TOP|wxALL</flag>
+											<border>5</border>
+											<object class="wxRadioButton" name="rbtnSignTwoFile">
+												<label>Em arquivos diferentes (.p7s)</label>
+												<value>0</value>
+											</object>
+										</object>
+										<object class="spacer">
+											<option>1</option>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<size>0,0</size>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_TOP|wxALL</flag>
+											<border>5</border>
+											<object class="wxRadioButton" name="rbtnSignOneFile">
+												<label>No mesmo arquivo (.p7m)</label>
+												<value>0</value>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER|wxALL</flag>
+									<border>5</border>
+									<object class="wxButton" name="btnSign">
+										<label>Assinar</label>
+										<default>1</default>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Verificar</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="panelVerify">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxGridSizer">
+								<rows>0</rows>
+								<cols>2</cols>
+								<vgap>0</vgap>
+								<hgap>0</hgap>
+								<object class="spacer">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<size>0,0</size>
+								</object>
+								<object class="spacer">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<size>0,0</size>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="lblSignatureFile">
+										<label>Arquivo de assinatura (.p7m ou .p7s):</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>5</border>
+									<object class="wxFilePickerCtrl" name="fpSignatureFile">
+										<value></value>
+										<message>Arquivo de assiantura</message>
+										<wildcard>*.p7m,*.p7s</wildcard>
+										<style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="lblMainFile">
+										<hidden>1</hidden>
+										<label>Arquivo de conteúdo:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>5</border>
+									<object class="wxFilePickerCtrl" name="fpMainFile">
+										<value></value>
+										<message>Conteúdo assinado</message>
+										<wildcard>*.*</wildcard>
+										<style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
+										<hidden>1</hidden>
+									</object>
+								</object>
+								<object class="spacer">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<size>0,0</size>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Certificados Digitais</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="panelFirstCert">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="spacer">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<size>0,0</size>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL|wxALL|wxTOP</flag>
+									<border>5</border>
+									<object class="wxButton" name="btnInstallFirstCert">
+										<label>Instalar certificado</label>
+										<default>1</default>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER|wxALL</flag>
+									<border>5</border>
+									<object class="wxHyperlinkCtrl" name="linkGetCertificate">
+										<label>Onde consigo um?</label>
+										<url>http://www.iti.gov.br/certificado-digital/58-certificado-digital/87-como-obter</url>
+										<style>wxHL_DEFAULT_STYLE</style>
+									</object>
+								</object>
+								<object class="spacer">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>5</border>
+									<size>0,0</size>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Ajuda</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="panelHelp">
+							<style>wxTAB_TRAVERSAL</style>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>
