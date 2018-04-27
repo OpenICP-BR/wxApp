@@ -39,7 +39,7 @@ class MainFrame : public wxFrame
 		wxStaticText* lblSignAs;
 		wxChoice* choSignAs;
 		wxStaticText* lblSignatureType;
-		wxRadioButton* rbtnSignTwoFile;
+		wxRadioButton* rbtnSignTwoFiles;
 		wxRadioButton* rbtnSignOneFile;
 		wxButton* btnSign;
 		wxPanel* panelVerify;

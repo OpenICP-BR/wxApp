@@ -16,8 +16,8 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	wxBoxSizer* sizerMain;
 	sizerMain = new wxBoxSizer( wxVERTICAL );
 	
-	m_notebook1 = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
-	panelSign = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxTAB_TRAVERSAL );
+	nbMain = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0|wxHSCROLL|wxVSCROLL );
+	panelSign = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), wxHSCROLL|wxTAB_TRAVERSAL|wxVSCROLL );
 	wxBoxSizer* sizerSign1;
 	sizerSign1 = new wxBoxSizer( wxVERTICAL );
 	
@@ -44,17 +44,14 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	lblSignatureType->Wrap( -1 );
 	sizerSign2->Add( lblSignatureType, 0, wxALL, 5 );
 	
-	wxBoxSizer* sizerSign3;
-	sizerSign3 = new wxBoxSizer( wxVERTICAL );
-	
 	rbtnSignTwoFile = new wxRadioButton( panelSign, wxID_ANY, wxT("Em arquivos diferentes (.p7s)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign3->Add( rbtnSignTwoFile, 0, wxALL, 5 );
+	sizerSign2->Add( rbtnSignTwoFile, 0, wxALL, 5 );
+	
+	
+	sizerSign2->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	rbtnSignOneFile = new wxRadioButton( panelSign, wxID_ANY, wxT("No mesmo arquivo (.p7m)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign3->Add( rbtnSignOneFile, 0, wxALL, 5 );
-	
-	
-	sizerSign2->Add( sizerSign3, 1, wxEXPAND, 5 );
+	sizerSign2->Add( rbtnSignOneFile, 0, wxALL, 5 );
 	
 	
 	sizerSign1->Add( sizerSign2, 1, wxEXPAND, 5 );
@@ -67,25 +64,25 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	panelSign->SetSizer( sizerSign1 );
 	panelSign->Layout();
 	sizerSign1->Fit( panelSign );
-	m_notebook1->AddPage( panelSign, wxT("Assinar"), false );
-	panel_Verify = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	nbMain->AddPage( panelSign, wxT("Assinar"), false );
+	panelVerify = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxGridSizer* sizerVerify;
 	sizerVerify = new wxGridSizer( 0, 2, 0, 0 );
 	
-	lblSignatureFile = new wxStaticText( panel_Verify, wxID_ANY, wxT("Arquivo de assinatura (.p7m ou .p7s):"), wxDefaultPosition, wxDefaultSize, 0 );
+	lblSignatureFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de assinatura (.p7m ou .p7s):"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignatureFile->Wrap( -1 );
 	sizerVerify->Add( lblSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	fpSignatureFile = new wxFilePickerCtrl( panel_Verify, wxID_ANY, wxEmptyString, wxT("Arquivo de assiantura"), wxT("*.p7m,*.p7s"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
+	fpSignatureFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Arquivo de assiantura"), wxT("*.p7m,*.p7s"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
 	sizerVerify->Add( fpSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	lblMainFile = new wxStaticText( panel_Verify, wxID_ANY, wxT("Arquivo de conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
+	lblMainFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblMainFile->Wrap( -1 );
 	lblMainFile->Hide();
 	
 	sizerVerify->Add( lblMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	fpMainFile = new wxFilePickerCtrl( panel_Verify, wxID_ANY, wxEmptyString, wxT("Conteúdo assinado"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
+	fpMainFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Conteúdo assinado"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
 	fpMainFile->Hide();
 	
 	sizerVerify->Add( fpMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
@@ -94,11 +91,11 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	sizerVerify->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	
-	panel_Verify->SetSizer( sizerVerify );
-	panel_Verify->Layout();
-	sizerVerify->Fit( panel_Verify );
-	m_notebook1->AddPage( panel_Verify, wxT("Verificar"), false );
-	panelFirstCert = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	panelVerify->SetSizer( sizerVerify );
+	panelVerify->Layout();
+	sizerVerify->Fit( panelVerify );
+	nbMain->AddPage( panelVerify, wxT("Verificar"), false );
+	panelFirstCert = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* sizerCerts;
 	sizerCerts = new wxBoxSizer( wxVERTICAL );
 	
@@ -119,11 +116,11 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	panelFirstCert->SetSizer( sizerCerts );
 	panelFirstCert->Layout();
 	sizerCerts->Fit( panelFirstCert );
-	m_notebook1->AddPage( panelFirstCert, wxT("Certificados Digitais"), false );
-	panelHelp = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook1->AddPage( panelHelp, wxT("Ajuda"), false );
+	nbMain->AddPage( panelFirstCert, wxT("Certificados Digitais"), false );
+	panelHelp = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	nbMain->AddPage( panelHelp, wxT("Ajuda"), false );
 	
-	sizerMain->Add( m_notebook1, 1, wxALL|wxEXPAND, 5 );
+	sizerMain->Add( nbMain, 1, wxALL|wxEXPAND, 5 );
 	
 	
 	this->SetSizer( sizerMain );
@@ -134,6 +131,18 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 }
 
 MainFrame::~MainFrame()
+{
+}
+
+MyFrame2::MyFrame2( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	
+	this->Centre( wxBOTH );
+}
+
+MyFrame2::~MyFrame2()
 {
 }
 

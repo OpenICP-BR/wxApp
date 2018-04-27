@@ -45,7 +45,7 @@ class MainFrame : public wxFrame
 	private:
 	
 	protected:
-		wxNotebook* m_notebook1;
+		wxNotebook* nbMain;
 		wxPanel* panelSign;
 		wxStaticText* lblFileToSign;
 		wxFilePickerCtrl* fpFileToSign;
@@ -55,7 +55,7 @@ class MainFrame : public wxFrame
 		wxRadioButton* rbtnSignTwoFile;
 		wxRadioButton* rbtnSignOneFile;
 		wxButton* btnSign;
-		wxPanel* panel_Verify;
+		wxPanel* panelVerify;
 		wxStaticText* lblSignatureFile;
 		wxFilePickerCtrl* fpSignatureFile;
 		wxStaticText* lblMainFile;
@@ -70,6 +70,23 @@ class MainFrame : public wxFrame
 		MainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("OpenICPBr"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		
 		~MainFrame();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class MyFrame2
+///////////////////////////////////////////////////////////////////////////////
+class MyFrame2 : public wxFrame 
+{
+	private:
+	
+	protected:
+	
+	public:
+		
+		MyFrame2( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 500,300 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
+		~MyFrame2();
 	
 };
 

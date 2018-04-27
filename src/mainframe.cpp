@@ -34,25 +34,18 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	
 	lblSignatureType = new wxStaticText( panelSign, wxID_ANY, wxT("Assinatura e conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignatureType->Wrap( -1 );
-	sizerSign2->Add( lblSignatureType, 0, wxALL, 5 );
+	sizerSign2->Add( lblSignatureType, 0, wxALL|wxALIGN_TOP, 5 );
 	
-	wxBoxSizer* sizerSign3;
-	sizerSign3 = new wxBoxSizer( wxVERTICAL );
-	
-	rbtnSignTwoFile = new wxRadioButton( panelSign, wxID_ANY, wxT("Em arquivos diferentes (.p7s) (recomendado)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign3->Add( rbtnSignTwoFile, 0, wxALL, 5 );
-	
+	rbtnSignTwoFiles = new wxRadioButton( panelSign, wxID_ANY, wxT("Em arquivos diferentes (.p7s) (recomendado)"), wxDefaultPosition, wxDefaultSize, 0 );
 	rbtnSignOneFile = new wxRadioButton( panelSign, wxID_ANY, wxT("No mesmo arquivo (.p7m)"), wxDefaultPosition, wxDefaultSize, 0 );
-	sizerSign3->Add( rbtnSignOneFile, 0, wxALL, 5 );
-	
-	
-	sizerSign2->Add( sizerSign3, 1, wxEXPAND, 5 );
-	
-	
+
+	sizerSign2->Add( rbtnSignTwoFiles, 0, wxEXPAND|wxALIGN_TOP, 5 );
+	sizerSign2->Add( 0, 0, 1, wxEXPAND, 5 );
+	sizerSign2->Add( rbtnSignOneFile, 0, wxEXPAND|wxALIGN_TOP, 5 );
 	sizerSign1->Add( sizerSign2, 1, wxEXPAND, 5 );
 	
 	btnSign = new wxButton( panelSign, wxID_ANY, wxT("Assinar"), wxDefaultPosition, wxDefaultSize, 0 );
-	btnSign->SetDefault(); 
+	btnSign->SetDefault();
 	sizerSign1->Add( btnSign, 0, wxALIGN_CENTER|wxALL, 5 );
 	
 	
@@ -63,31 +56,25 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	nbMain->AddPage( panelSign, wxT("Assinar"), false );
 
 	// Verify panel
-
 	panelVerify = new wxPanel( nbMain, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxGridSizer* sizerVerify;
 	sizerVerify = new wxGridSizer( 0, 2, 0, 0 );
 	
+	// Signature file
 	lblSignatureFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de assinatura (.p7m ou .p7s):"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblSignatureFile->Wrap( -1 );
 	sizerVerify->Add( lblSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
 	fpSignatureFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Arquivo de assiantura"), wxT("*.p7m,*.p7s"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
 	sizerVerify->Add( fpSignatureFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
+	// Main file
 	lblMainFile = new wxStaticText( panelVerify, wxID_ANY, wxT("Arquivo de conteúdo:"), wxDefaultPosition, wxDefaultSize, 0 );
 	lblMainFile->Wrap( -1 );
 	lblMainFile->Hide();
-	
 	sizerVerify->Add( lblMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	fpMainFile = new wxFilePickerCtrl( panelVerify, wxID_ANY, wxEmptyString, wxT("Conteúdo assinado"), wxT("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN );
 	fpMainFile->Hide();
-	
 	sizerVerify->Add( fpMainFile, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	
-	
-	sizerVerify->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	
 	panelVerify->SetSizer( sizerVerify );
