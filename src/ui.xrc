@@ -12,12 +12,11 @@
 				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<object class="wxNotebook" name="nbMain">
-					<style>wxHSCROLL|wxVSCROLL</style>
 					<object class="notebookpage">
 						<label>Assinar</label>
 						<selected>0</selected>
 						<object class="wxPanel" name="panelSign">
-							<style>wxHSCROLL|wxTAB_TRAVERSAL|wxVSCROLL</style>
+							<style>wxTAB_TRAVERSAL</style>
 							<object class="wxBoxSizer">
 								<orient>wxVERTICAL</orient>
 								<object class="sizeritem">
