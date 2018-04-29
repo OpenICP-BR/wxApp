@@ -34,7 +34,15 @@ void CertsPanelClass::OpenAddCertDialog(wxCommandEvent& WXUNUSED(event)) {
 //https://stackoverflow.com/questions/6371775/how-to-load-a-pkcs12-file-in-openssl-programmatically?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 void CertsPanelClass::OnWizPageChanging(wxWizardEvent& event) {
-	std::cout << "Changing to: " << event.GetPage()->GetName() << std::endl;
+	wxString p_name = event.GetPage()->GetName();
+	std::cout << "Changing from: " << p_name << std::endl;
+	bool ok = true;
+	if (p_name == "wpAddCertLoc") {
+		ok = LoadCert(fpCertFile->GetPath());
+	}
+	if (!ok) {
+	 	event.Veto();
+	}
 }
 
 void CertsPanelClass::PreExit() {

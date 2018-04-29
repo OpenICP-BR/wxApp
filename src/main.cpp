@@ -1,8 +1,16 @@
 #include "main.h"
+#include <openssl/conf.h>
+#include <openssl/evp.h>
+#include <openssl/err.h>
 
 wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
+	// Start OpenSSL
+	ERR_load_crypto_strings();
+	OpenSSL_add_all_algorithms();
+	OPENSSL_config(NULL);
+
     wxXmlResource::Get()->InitAllHandlers();
     wxXmlResource::Get()->Load("src/ui.xrc");
 
@@ -28,6 +36,10 @@ ICPApp::ICPApp () {
 void ICPApp::PreExit () {
 	printf("ICPApp::PreExit\n");
 	certs_panel->PreExit();
+	// Disable OpenSSL
+	EVP_cleanup();
+	CRYPTO_cleanup_all_ex_data();
+	ERR_free_strings();
 }
 
 void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
