@@ -16,9 +16,7 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
         &CertsPanelClass::OpenAddCertDialog, this);
 	btnFirstCert->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
         &CertsPanelClass::OpenAddCertDialog, this);
-	wizAddCert->Bind(wxEVT_WIZARD_PAGE_CHANGED,
-		&CertsPanelClass::OnWizPageChanged, this);
-	wizAddCert->Bind(wxEVT_WIZARD_PAGE_CHANGED,
+	wizAddCert->Bind(wxEVT_WIZARD_PAGE_CHANGING,
 		&CertsPanelClass::OnWizPageChanging, this);
 }
 
@@ -33,9 +31,7 @@ void CertsPanelClass::OpenAddCertDialog(wxCommandEvent& WXUNUSED(event)) {
 	}
 }
 
-void CertsPanelClass::OnWizPageChanged(wxWizardEvent& event) {
-	std::cout << "Changed to: " << event.GetPage()->GetName() << std::endl;
-}
+//https://stackoverflow.com/questions/6371775/how-to-load-a-pkcs12-file-in-openssl-programmatically?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 void CertsPanelClass::OnWizPageChanging(wxWizardEvent& event) {
 	std::cout << "Changing to: " << event.GetPage()->GetName() << std::endl;

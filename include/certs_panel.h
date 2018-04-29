@@ -14,7 +14,6 @@ public:
 	void Init(wxFrame *frame);
 	void PreExit();
 	void OpenAddCertDialog(wxCommandEvent& event);
-	void OnWizPageChanged(wxWizardEvent& event);
 	void OnWizPageChanging(wxWizardEvent& event);
 	~CertsPanelClass();
 };
