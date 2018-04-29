@@ -5,7 +5,7 @@ class CertsPanelClass {
 protected:
 	wxFrame *frame;
 	wxWizard *wizAddCert;
-	wxWizardPage *wpAddCert1;
+	wxWizardPage *wpAddCertLoc;
 	wxButton *btnFirstCert, *btnAddCert;
 public:
 	void Init(wxFrame *frame);

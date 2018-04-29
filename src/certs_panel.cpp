@@ -5,7 +5,7 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
 
 	// Get some stuff
 	wizAddCert = (wxWizard*) wxXmlResource::Get()->LoadObject(NULL, "wizAddCert", "wxWizard");
-	wpAddCert1 = XRCCTRL(*wizAddCert, "wpAddCert1", wxWizardPage);
+	wpAddCertLoc = XRCCTRL(*wizAddCert, "wpAddCertLoc", wxWizardPage);
 	btnAddCert = XRCCTRL(*frame, "btnAddCert", wxButton);
 	btnFirstCert = XRCCTRL(*frame, "btnFirstCert", wxButton);
 
@@ -19,9 +19,9 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
 void CertsPanelClass::OpenAddCertDialog(wxCommandEvent& WXUNUSED(event)) {
 	// Yes, this code is weird, but simply running RunWizard will fail if the page has not changed due to an assert at the begining of said method.
 	if (wizAddCert->GetCurrentPage() == NULL) {
-		wizAddCert->RunWizard(wpAddCert1);
-	} else if (wizAddCert->GetCurrentPage()->GetName() != wpAddCert1->GetName()) {
-		wizAddCert->RunWizard(wpAddCert1);
+		wizAddCert->RunWizard(wpAddCertLoc);
+	} else if (wizAddCert->GetCurrentPage()->GetName() != wpAddCertLoc->GetName()) {
+		wizAddCert->RunWizard(wpAddCertLoc);
 	} else {
 		wizAddCert->Show();
 	}

@@ -295,17 +295,17 @@
     <title>Instalação de certificado digital</title>
     <centered>1</centered>
     <style>wxDEFAULT_DIALOG_STYLE|wxCAPTION|wxRESIZE_BORDER|wxMINIMIZE_BOX</style>
-    <object class="wxWizardPageSimple" name="wpAddCert1">
+    <object class="wxWizardPageSimple" name="wpAddCertLoc">
       <style/>
       <object class="wxFlexGridSizer">
         <cols>1</cols>
         <rows>0</rows>
         <vgap>0</vgap>
         <hgap>0</hgap>
-        <growablecols/>
+        <growablecols>0</growablecols>
         <growablerows/>
         <object class="sizeritem">
-          <flag>wxALL</flag>
+          <flag>wxALL|wxEXPAND</flag>
           <border>5</border>
           <object class="wxStaticText" name="lblCertFile">
             <label>Arquivo com o certificado A1 (.p12):</label>
@@ -322,8 +322,19 @@
             <value/>
           </object>
         </object>
+      </object>
+    </object>
+    <object class="wxWizardPageSimple" name="wpAddCertPass">
+      <style/>
+      <object class="wxFlexGridSizer">
+        <cols>1</cols>
+        <rows>0</rows>
+        <vgap>0</vgap>
+        <hgap>0</hgap>
+        <growablecols>0</growablecols>
+        <growablerows/>
         <object class="sizeritem">
-          <flag>wxALL</flag>
+          <flag>wxALL|wxEXPAND</flag>
           <border>5</border>
           <option>1</option>
           <object class="wxStaticText" name="lblCertPass">
@@ -338,104 +349,94 @@
             <style>wxTE_PASSWORD</style>
           </object>
         </object>
-        <object class="sizeritem" name="sbSizer2">
+      </object>
+    </object>
+    <object class="wxWizardPageSimple" name="wpAddCertInfo">
+      <size>500,300</size>
+      <style>wxTAB_TRAVERSAL</style>
+      <object class="wxStaticBoxSizer" name="sbSizer2">
+        <sizeritem>
+          <object class="spacer"/>
+        </sizeritem>
+        <orient>wxVERTICAL</orient>
+        <label>Informações do Certificado</label>
+        <object class="sizeritem" name="flexGridSizer48">
           <flag>wxEXPAND</flag>
           <border>5</border>
           <option>1</option>
-          <object class="wxStaticBoxSizer" name="sbSizer2">
-            <sizeritem>
-              <object class="spacer"/>
-            </sizeritem>
-            <orient>wxVERTICAL</orient>
-            <label>Informações do Certificado</label>
-            <object class="sizeritem" name="gSizer4">
-              <flag>wxEXPAND</flag>
+          <object class="wxFlexGridSizer">
+            <cols>2</cols>
+            <rows>0</rows>
+            <vgap>0</vgap>
+            <hgap>0</hgap>
+            <growablecols>1</growablecols>
+            <growablerows/>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
               <border>5</border>
-              <option>1</option>
-              <object class="wxGridSizer">
-                <cols>2</cols>
-                <rows>0</rows>
-                <vgap>0</vgap>
-                <hgap>0</hgap>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="lblCertName">
-                    <label>Nome:</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="outCertName">
-                    <label>Nome Sobrenome</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="lblCertEmail">
-                    <label>Email:</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="outCertEmail">
-                    <label>a@b.com</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="lblCertCPF">
-                    <label>CPF/CNPJ:</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="outCertCPF">
-                    <label>000.000.000-00</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="lblCertAC">
-                    <label>Emissor:</label>
-                    <style/>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL</flag>
-                  <border>5</border>
-                  <object class="wxStaticText" name="outCertAC">
-                    <label>AC Xyz</label>
-                    <style/>
-                  </object>
-                </object>
+              <object class="wxStaticText" name="lblCertName">
+                <label>Nome:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertName">
+                <label>Nome Sobrenome</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="lblCertEmail">
+                <label>Email:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertEmail">
+                <label>a@b.com</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="lblCertCPF">
+                <label>CPF/CNPJ:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertCPF">
+                <label>000.000.000-00</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="lblCertAC">
+                <label>Emissor:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertAC">
+                <label>AC Xyz</label>
+                <style/>
               </object>
             </object>
           </object>
         </object>
-      </object>
-    </object>
-    <object class="wxWizardPageSimple" name="wpAddCert2">
-      <style/>
-      <object class="wxFlexGridSizer">
-        <cols>1</cols>
-        <rows>0</rows>
-        <vgap>0</vgap>
-        <hgap>0</hgap>
-        <growablecols/>
-        <growablerows/>
       </object>
     </object>
   </object>
