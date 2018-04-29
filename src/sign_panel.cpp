@@ -1,4 +1,5 @@
 #include "sign_panel.h"
+#include <sstream>
 
 void SignPanelClass::Init(wxFrame *the_frame) {
 	frame = the_frame;

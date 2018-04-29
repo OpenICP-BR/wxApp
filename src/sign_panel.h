@@ -1,6 +1,4 @@
 #include "common.h"
-#include <wx/event.h>
-#include <sstream>
 
 class SignPanelClass {
 protected:

@@ -11,6 +11,7 @@ bool ICPApp::OnInit() {
     if (frame != NULL) {
     	// Process some things
     	sign_panel->Init(frame);
+    	certs_panel->Init(frame);
     	// Show it
         frame->Show(true);
     }
@@ -19,8 +20,10 @@ bool ICPApp::OnInit() {
 
 ICPApp::ICPApp () {
 	sign_panel = new SignPanelClass();
+	certs_panel = new CertsPanelClass();
 }
 
 ICPApp::~ICPApp () {
 	free(sign_panel);
+	free(certs_panel);
 }
