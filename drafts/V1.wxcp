@@ -64,7 +64,7 @@
 				}, {
 					"type":	"string",
 					"m_label":	"Class Name:",
-					"m_value":	"forward_declare"
+					"m_value":	""
 				}, {
 					"type":	"string",
 					"m_label":	"Include File:",
@@ -211,7 +211,7 @@
 								}, {
 									"type":	"string",
 									"m_label":	"Class Name:",
-									"m_value":	"forward_declare"
+									"m_value":	""
 								}, {
 									"type":	"string",
 									"m_label":	"Include File:",
@@ -277,7 +277,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -432,7 +432,7 @@
 																}, {
 																	"type":	"string",
 																	"m_label":	"Class Name:",
-																	"m_value":	"forward_declare"
+																	"m_value":	""
 																}, {
 																	"type":	"string",
 																	"m_label":	"Include File:",
@@ -534,7 +534,7 @@
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Class Name:",
-																			"m_value":	"forward_declare"
+																			"m_value":	""
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Include File:",
@@ -621,7 +621,7 @@
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Class Name:",
-																			"m_value":	"forward_declare"
+																			"m_value":	""
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Include File:",
@@ -710,7 +710,7 @@
 																}, {
 																	"type":	"string",
 																	"m_label":	"Class Name:",
-																	"m_value":	"forward_declare"
+																	"m_value":	""
 																}, {
 																	"type":	"string",
 																	"m_label":	"Include File:",
@@ -785,7 +785,7 @@
 																}, {
 																	"type":	"string",
 																	"m_label":	"Class Name:",
-																	"m_value":	"forward_declare"
+																	"m_value":	""
 																}, {
 																	"type":	"string",
 																	"m_label":	"Include File:",
@@ -860,7 +860,7 @@
 																}, {
 																	"type":	"string",
 																	"m_label":	"Class Name:",
-																	"m_value":	"forward_declare"
+																	"m_value":	""
 																}, {
 																	"type":	"string",
 																	"m_label":	"Include File:",
@@ -962,7 +962,7 @@
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Class Name:",
-																			"m_value":	"forward_declare"
+																			"m_value":	""
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Include File:",
@@ -1037,7 +1037,7 @@
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Class Name:",
-																			"m_value":	"forward_declare"
+																			"m_value":	""
 																		}, {
 																			"type":	"string",
 																			"m_label":	"Include File:",
@@ -1114,7 +1114,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1204,7 +1204,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -1332,7 +1332,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1407,7 +1407,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1486,7 +1486,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1561,7 +1561,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1661,7 +1661,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -1789,7 +1789,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1877,7 +1877,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -1985,7 +1985,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -2317,7 +2317,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -2399,7 +2399,7 @@
 				}, {
 					"type":	"string",
 					"m_label":	"Class Name:",
-					"m_value":	"forward_declare"
+					"m_value":	""
 				}, {
 					"type":	"string",
 					"m_label":	"Include File:",
@@ -2486,7 +2486,7 @@
 						}, {
 							"type":	"string",
 							"m_label":	"Name:",
-							"m_value":	"wizAddCertPage1"
+							"m_value":	"wpAddCert1"
 						}, {
 							"type":	"multi-string",
 							"m_label":	"Tooltip:",
@@ -2518,7 +2518,7 @@
 						}, {
 							"type":	"string",
 							"m_label":	"Class Name:",
-							"m_value":	"forward_declare"
+							"m_value":	""
 						}, {
 							"type":	"string",
 							"m_label":	"Include File:",
@@ -2634,7 +2634,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -2709,7 +2709,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -2730,25 +2730,6 @@
 											"type":	"string",
 											"m_label":	"Wildcard:",
 											"m_value":	"*.p12"
-										}],
-									"m_events":	[],
-									"m_children":	[]
-								}, {
-									"m_type":	4454,
-									"proportion":	1,
-									"border":	5,
-									"gbSpan":	",",
-									"gbPosition":	",",
-									"m_styles":	[],
-									"m_sizerFlags":	["wxEXPAND"],
-									"m_properties":	[{
-											"type":	"string",
-											"m_label":	"Name:",
-											"m_value":	"Spacer169"
-										}, {
-											"type":	"string",
-											"m_label":	"Size:",
-											"m_value":	"0,0"
 										}],
 									"m_events":	[],
 									"m_children":	[]
@@ -2807,7 +2788,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -2882,7 +2863,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Class Name:",
-											"m_value":	"forward_declare"
+											"m_value":	""
 										}, {
 											"type":	"string",
 											"m_label":	"Include File:",
@@ -3006,7 +2987,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Name:",
-															"m_value":	"m_staticText8"
+															"m_value":	"lblCertName"
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Tooltip:",
@@ -3038,7 +3019,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3113,7 +3094,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3156,7 +3137,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Name:",
-															"m_value":	"m_staticText16"
+															"m_value":	"lblCertEmail"
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Tooltip:",
@@ -3188,7 +3169,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3263,7 +3244,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3306,7 +3287,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Name:",
-															"m_value":	"m_staticText10"
+															"m_value":	"lblCertCPF"
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Tooltip:",
@@ -3338,7 +3319,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3413,7 +3394,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3456,7 +3437,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Name:",
-															"m_value":	"m_staticText14"
+															"m_value":	"lblCertAC"
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Tooltip:",
@@ -3488,7 +3469,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3563,7 +3544,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Class Name:",
-															"m_value":	"forward_declare"
+															"m_value":	""
 														}, {
 															"type":	"string",
 															"m_label":	"Include File:",
@@ -3610,7 +3591,7 @@
 						}, {
 							"type":	"string",
 							"m_label":	"Name:",
-							"m_value":	"wizAddCertPage2"
+							"m_value":	"wpAddCert2"
 						}, {
 							"type":	"multi-string",
 							"m_label":	"Tooltip:",
@@ -3642,7 +3623,7 @@
 						}, {
 							"type":	"string",
 							"m_label":	"Class Name:",
-							"m_value":	"forward_declare"
+							"m_value":	""
 						}, {
 							"type":	"string",
 							"m_label":	"Include File:",

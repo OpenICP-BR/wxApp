@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resource xmlns="http://www.wxwidgets.org/wxxrc">
-  <object class="wxFrame" name="MainFrame" subclass="forward_declare">
+  <object class="wxFrame" name="MainFrame">
     <title>OpenICPBr</title>
     <centered>1</centered>
     <style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
@@ -10,12 +10,12 @@
         <flag>wxALL|wxEXPAND</flag>
         <border>5</border>
         <option>1</option>
-        <object class="wxNotebook" name="nbMain" subclass="forward_declare">
+        <object class="wxNotebook" name="nbMain">
           <style/>
           <object class="notebookpage">
             <label>Assinar</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelSign" subclass="forward_declare">
+            <object class="wxPanel" name="panelSign">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxBoxSizer">
                 <orient>wxVERTICAL</orient>
@@ -33,7 +33,7 @@
                     <object class="sizeritem">
                       <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
-                      <object class="wxStaticText" name="lblFileToSign" subclass="forward_declare">
+                      <object class="wxStaticText" name="lblFileToSign">
                         <label>Arquivo(s) para assinar:</label>
                         <style/>
                       </object>
@@ -48,14 +48,14 @@
                           <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                           <border>5</border>
                           <option>10</option>
-                          <object class="wxTextCtrl" name="inpFileToSign" subclass="forward_declare">
+                          <object class="wxTextCtrl" name="inpFileToSign">
                             <style>wxTE_READONLY</style>
                           </object>
                         </object>
                         <object class="sizeritem">
                           <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                           <border>5</border>
-                          <object class="wxButton" name="btnFileToSign" subclass="forward_declare">
+                          <object class="wxButton" name="btnFileToSign">
                             <label>Escolher</label>
                             <style/>
                             <bitmapposition>wxLEFT</bitmapposition>
@@ -67,7 +67,7 @@
                     <object class="sizeritem">
                       <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
-                      <object class="wxStaticText" name="lblSignAs" subclass="forward_declare">
+                      <object class="wxStaticText" name="lblSignAs">
                         <label>Assinar como:</label>
                         <style/>
                       </object>
@@ -76,7 +76,7 @@
                       <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
                       <option>10</option>
-                      <object class="wxChoice" name="choSignAs" subclass="forward_declare">
+                      <object class="wxChoice" name="choSignAs">
                         <style/>
                         <content/>
                         <selection>0</selection>
@@ -85,7 +85,7 @@
                     <object class="sizeritem">
                       <flag>wxALL</flag>
                       <border>5</border>
-                      <object class="wxStaticText" name="lblSignatureType" subclass="forward_declare">
+                      <object class="wxStaticText" name="lblSignatureType">
                         <label>Assinatura e conteúdo:</label>
                         <style/>
                       </object>
@@ -99,7 +99,7 @@
                         <object class="sizeritem">
                           <flag>wxALL</flag>
                           <border>5</border>
-                          <object class="wxRadioButton" name="m_radioBtn5" subclass="forward_declare">
+                          <object class="wxRadioButton" name="m_radioBtn5">
                             <style/>
                             <label>Em arquivos diferentes (.p7s)</label>
                             <value>0</value>
@@ -108,7 +108,7 @@
                         <object class="sizeritem">
                           <flag>wxALL</flag>
                           <border>5</border>
-                          <object class="wxRadioButton" name="m_radioBtn6" subclass="forward_declare">
+                          <object class="wxRadioButton" name="m_radioBtn6">
                             <style/>
                             <label>No mesmo arquivo (.p7m)</label>
                             <value>0</value>
@@ -121,7 +121,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER</flag>
                   <border>5</border>
-                  <object class="wxButton" name="btnSign" subclass="forward_declare">
+                  <object class="wxButton" name="btnSign">
                     <label>Assinar</label>
                     <style/>
                     <bitmapposition>wxLEFT</bitmapposition>
@@ -134,7 +134,7 @@
           <object class="notebookpage">
             <label>Verificar</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelVerify" subclass="forward_declare">
+            <object class="wxPanel" name="panelVerify">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxFlexGridSizer">
                 <cols>2</cols>
@@ -146,7 +146,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="lblSignatureFile" subclass="forward_declare">
+                  <object class="wxStaticText" name="lblSignatureFile">
                     <label>Arquivo de assinatura (.p7m ou .p7s):</label>
                     <style/>
                   </object>
@@ -154,7 +154,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxFilePickerCtrl" name="fpSignatureFile" subclass="forward_declare">
+                  <object class="wxFilePickerCtrl" name="fpSignatureFile">
                     <style>wxFLP_DEFAULT_STYLE</style>
                     <message>Arquivo de assiantura</message>
                     <wildcard>*.p7m,*.p7s</wildcard>
@@ -164,7 +164,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="m_staticText5" subclass="forward_declare">
+                  <object class="wxStaticText" name="m_staticText5">
                     <label>Arquivo de conteúdo:</label>
                     <style/>
                     <hidden>1</hidden>
@@ -173,7 +173,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxFilePickerCtrl" name="m_filePicker3" subclass="forward_declare">
+                  <object class="wxFilePickerCtrl" name="m_filePicker3">
                     <style>wxFLP_FILE_MUST_EXIST|wxFLP_OPEN</style>
                     <hidden>1</hidden>
                     <message>Conteúdo assinado</message>
@@ -192,7 +192,7 @@
           <object class="notebookpage">
             <label>Certificados Digitais</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelFirstCert" subclass="forward_declare">
+            <object class="wxPanel" name="panelFirstCert">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxBoxSizer">
                 <orient>wxVERTICAL</orient>
@@ -204,7 +204,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxButton" name="btnFirstCert" subclass="forward_declare">
+                  <object class="wxButton" name="btnFirstCert">
                     <label>Adicionar certificado</label>
                     <style/>
                     <bitmapposition>wxLEFT</bitmapposition>
@@ -214,7 +214,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxALIGN_CENTER</flag>
                   <border>5</border>
-                  <object class="wxHyperlinkCtrl" name="linkGetCertificate" subclass="forward_declare">
+                  <object class="wxHyperlinkCtrl" name="linkGetCertificate">
                     <style>wxHL_DEFAULT_STYLE</style>
                     <label>Onde consigo um?</label>
                     <url>http://www.iti.gov.br/certificado-digital/58-certificado-digital/87-como-obter</url>
@@ -231,7 +231,7 @@
           <object class="notebookpage">
             <label>Certificados Digitais</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelCerts" subclass="forward_declare">
+            <object class="wxPanel" name="panelCerts">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxFlexGridSizer">
                 <cols>2</cols>
@@ -283,7 +283,7 @@
           <object class="notebookpage">
             <label>Ajuda</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelHelp" subclass="forward_declare">
+            <object class="wxPanel" name="panelHelp">
               <style>wxTAB_TRAVERSAL</style>
             </object>
           </object>
@@ -291,11 +291,11 @@
       </object>
     </object>
   </object>
-  <object class="wxWizard" name="wizAddCert" subclass="forward_declare">
+  <object class="wxWizard" name="wizAddCert">
     <title>Instalação de certificado digital</title>
     <centered>1</centered>
     <style>wxDEFAULT_DIALOG_STYLE|wxCAPTION|wxRESIZE_BORDER|wxMINIMIZE_BOX</style>
-    <object class="wxWizardPageSimple" name="wizAddCertPage1">
+    <object class="wxWizardPageSimple" name="wpAddCert1">
       <style/>
       <object class="wxFlexGridSizer">
         <cols>1</cols>
@@ -307,7 +307,7 @@
         <object class="sizeritem">
           <flag>wxALL</flag>
           <border>5</border>
-          <object class="wxStaticText" name="lblCertFile" subclass="forward_declare">
+          <object class="wxStaticText" name="lblCertFile">
             <label>Arquivo com o certificado A1 (.p12):</label>
             <style/>
           </object>
@@ -315,23 +315,18 @@
         <object class="sizeritem">
           <flag>wxALL|wxEXPAND</flag>
           <border>5</border>
-          <object class="wxFilePickerCtrl" name="fpCertFile" subclass="forward_declare">
+          <object class="wxFilePickerCtrl" name="fpCertFile">
             <style>wxFLP_DEFAULT_STYLE</style>
             <message>Certificado tipo A1</message>
             <wildcard>*.p12</wildcard>
             <value/>
           </object>
         </object>
-        <object class="spacer" name="Spacer169">
-          <flag>wxEXPAND</flag>
-          <border>5</border>
-          <option>1</option>
-        </object>
         <object class="sizeritem">
           <flag>wxALL</flag>
           <border>5</border>
           <option>1</option>
-          <object class="wxStaticText" name="lblCertPass" subclass="forward_declare">
+          <object class="wxStaticText" name="lblCertPass">
             <label>Senha do certificado:</label>
             <style/>
           </object>
@@ -339,7 +334,7 @@
         <object class="sizeritem">
           <flag>wxALL|wxEXPAND</flag>
           <border>5</border>
-          <object class="wxTextCtrl" name="inpCertPass" subclass="forward_declare">
+          <object class="wxTextCtrl" name="inpCertPass">
             <style>wxTE_PASSWORD</style>
           </object>
         </object>
@@ -365,7 +360,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="m_staticText8" subclass="forward_declare">
+                  <object class="wxStaticText" name="lblCertName">
                     <label>Nome:</label>
                     <style/>
                   </object>
@@ -373,7 +368,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="outCertName" subclass="forward_declare">
+                  <object class="wxStaticText" name="outCertName">
                     <label>Nome Sobrenome</label>
                     <style/>
                   </object>
@@ -381,7 +376,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="m_staticText16" subclass="forward_declare">
+                  <object class="wxStaticText" name="lblCertEmail">
                     <label>Email:</label>
                     <style/>
                   </object>
@@ -389,7 +384,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="outCertEmail" subclass="forward_declare">
+                  <object class="wxStaticText" name="outCertEmail">
                     <label>a@b.com</label>
                     <style/>
                   </object>
@@ -397,7 +392,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="m_staticText10" subclass="forward_declare">
+                  <object class="wxStaticText" name="lblCertCPF">
                     <label>CPF/CNPJ:</label>
                     <style/>
                   </object>
@@ -405,7 +400,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="outCertCPF" subclass="forward_declare">
+                  <object class="wxStaticText" name="outCertCPF">
                     <label>000.000.000-00</label>
                     <style/>
                   </object>
@@ -413,7 +408,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="m_staticText14" subclass="forward_declare">
+                  <object class="wxStaticText" name="lblCertAC">
                     <label>Emissor:</label>
                     <style/>
                   </object>
@@ -421,7 +416,7 @@
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="outCertAC" subclass="forward_declare">
+                  <object class="wxStaticText" name="outCertAC">
                     <label>AC Xyz</label>
                     <style/>
                   </object>
@@ -432,7 +427,7 @@
         </object>
       </object>
     </object>
-    <object class="wxWizardPageSimple" name="wizAddCertPage2">
+    <object class="wxWizardPageSimple" name="wpAddCert2">
       <style/>
       <object class="wxFlexGridSizer">
         <cols>1</cols>
