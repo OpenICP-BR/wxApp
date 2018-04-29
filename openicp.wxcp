@@ -2646,7 +2646,7 @@
 										}, {
 											"type":	"multi-string",
 											"m_label":	"Label:",
-											"m_value":	"Arquivo com o certificado A1 (.p12):"
+											"m_value":	"Arquivo com o certificado A1 (.p12 ou .pfx):"
 										}, {
 											"type":	"string",
 											"m_label":	"Wrap:",
@@ -2729,7 +2729,7 @@
 										}, {
 											"type":	"string",
 											"m_label":	"Wildcard:",
-											"m_value":	"*.p12"
+											"m_value":	"*.p12,*.pfx"
 										}],
 									"m_events":	[],
 									"m_children":	[]
