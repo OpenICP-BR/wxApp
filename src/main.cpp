@@ -12,7 +12,7 @@ bool ICPApp::OnInit() {
 	OPENSSL_config(NULL);
 
     wxXmlResource::Get()->InitAllHandlers();
-    wxXmlResource::Get()->Load("src/ui.xrc");
+    wxXmlResource::Get()->Load("ui.xrc");
 
     // Get window and frame
     theWindow = this->GetTopWindow();
