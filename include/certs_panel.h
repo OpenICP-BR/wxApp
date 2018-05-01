@@ -1,7 +1,7 @@
 #include "common.h"
+#include "pkcs12_class.h"
 #include <wx/wizard.h>
 #include <wx/filepicker.h>
-#include <openssl/pkcs12.h>
 
 class CertsPanelClass {
 protected:
@@ -11,10 +11,8 @@ protected:
 	wxButton *btnFirstCert, *btnAddCert;
 	wxFilePickerCtrl *fpCertFile;
 	wxTextCtrl *inpCertPass;
-	PKCS12 *new_p12;
-	X509 *new_cert;
-	STACK_OF(X509) *new_ca = NULL;
-	EVP_PKEY *new_key_pair;
+	PKCS12Class new_cert;
+	bool hack_disable_wiz_evt;
 public:
 	void Init(wxFrame *frame);
 	void PreExit();
@@ -22,5 +20,6 @@ public:
 	void OnWizPageChanging(wxWizardEvent& event);
 	bool LoadCert(wxString cert_path);
 	bool UnlockCert(wxString pass);
+	bool ShowCertInfo();
 	~CertsPanelClass();
 };
