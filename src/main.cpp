@@ -8,11 +8,6 @@
 wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
-	// Start OpenSSL
-	ERR_load_crypto_strings();
-	OpenSSL_add_all_algorithms();
-	OPENSSL_config(NULL);
-
 	// Load UI
 	cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
 	wxXmlResource::Get()->InitAllHandlers();
@@ -40,10 +35,6 @@ ICPApp::ICPApp () {
 void ICPApp::PreExit () {
 	printf("ICPApp::PreExit\n");
 	certs_panel->PreExit();
-	// Disable OpenSSL
-	EVP_cleanup();
-	CRYPTO_cleanup_all_ex_data();
-	ERR_free_strings();
 }
 
 void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
