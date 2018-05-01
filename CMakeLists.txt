@@ -12,7 +12,7 @@ if (APPLE)
 endif()
 
 # Get OpenSSL
-find_package(openssl 1.0.0 REQUIRED)
+find_package(OpenSSL 1.0.0 REQUIRED)
 if (OPENSSL_FOUND)
     include_directories(${OPENSSL_INCLUDE_DIR})
     message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
