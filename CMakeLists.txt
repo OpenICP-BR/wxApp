@@ -2,21 +2,25 @@ cmake_minimum_required(VERSION 3.10)
 project(openicpbr)
 
 # Set some basic variables
-set(CMAKE_MODULE_PATH cmake/modules/)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow")
-set(BUNDLE_EXTENSION ".app")
+
+# macOS stuff
+if (APPLE)
+	set(BUNDLE_EXTENSION ".app")
+endif()
 
 # Get OpenSSL
-find_package(openssl REQUIRED)
+find_package(openssl 1.0.0 REQUIRED)
 if (OPENSSL_FOUND)
     include_directories(${OPENSSL_INCLUDE_DIR})
-    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+    message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
+    if (NOT (${OPENSSL_VERSION_MAJOR} EQUAL 1 AND ${OPENSSL_VERSION_MINOR} EQUAL 0))
+    	message(FATAL_ERROR "Required OpenSSL version 1.0, got ${OPENSSL_VERSION}")
+    endif ()
 else()
-	if (APPLE)
-		message(STATUS "On macOS, use: cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl .")
-	endif()
-	message(FATAL "OpenSSL was not found")
+	message(FATAL_ERROR "OpenSSL 1.0 was not found")
 endif()
 
 # Get wxWidgets
