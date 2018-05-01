@@ -16,7 +16,6 @@ int PKCS12Class::LoadFromFile(wxString cert_path) {
 		return 1;
 	}
 	p12 = d2i_PKCS12_fp(fptr, NULL);
-	printf("p12 = %p\n", p12);
 	fclose(fptr);
 	if (p12 == NULL) {
 		cout << "PKCS12Class::LoadFromFile - Failed to decode file " << cert_path << endl;
@@ -125,6 +124,10 @@ int PKCS12Class::Unlock(wxString pass) {
 
 	BIO_free(bmem);
 	return OK;
+}
+
+bool PKCS12Class::IsValid () {
+	return false;
 }
 
 PKCS12Class::~PKCS12Class () {

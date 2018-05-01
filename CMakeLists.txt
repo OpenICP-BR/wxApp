@@ -3,7 +3,7 @@ project(openicpbr)
 
 # Set some basic variables
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow")
 
 # macOS stuff
@@ -42,5 +42,5 @@ file(COPY src/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
 add_custom_target(run
     COMMAND openicp
     DEPENDS openicp
-    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR/bin}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )

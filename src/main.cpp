@@ -1,4 +1,6 @@
 #include "main.h"
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
 #include <openssl/conf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
@@ -11,8 +13,10 @@ bool ICPApp::OnInit() {
 	OpenSSL_add_all_algorithms();
 	OPENSSL_config(NULL);
 
-    wxXmlResource::Get()->InitAllHandlers();
-    wxXmlResource::Get()->Load("ui.xrc");
+	// Load UI
+	cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
+	wxXmlResource::Get()->InitAllHandlers();
+    wxXmlResource::Get()->Load(wxGetCwd()+"/ui.xrc");
 
     // Get window and frame
     theWindow = this->GetTopWindow();

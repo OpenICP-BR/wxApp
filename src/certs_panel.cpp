@@ -117,5 +117,6 @@ bool CertsPanelClass::UnlockCert(wxString pass) {
 }
 
 bool CertsPanelClass::ShowCertInfo() {
+	wxMessageBox(wxT("Não implementado"), wxT("Erro"), wxICON_ERROR|wxOK);
 	return false;
 }
