@@ -107,16 +107,15 @@ int PKCS12Class::Unlock(wxString pass) {
 	issuer.email = wxString(buf);
 	cout << "PKCS12Class::Unlock: read issuer" << endl;
 
-	// Fix CPF
 	pos = subject.common_name.Find(":");
 	subject.common_name = subject.common_name.BeforeLast(':', &subject.doc_id);
 	if (subject.doc_id.Len() == 11) {
+		// Fix CPF
 		wxString fmt, id = subject.doc_id;
 		fmt = id.SubString(0, 2) + '.' + id.SubString(3, 5) + '.' + id.SubString(6, 8) + '-' + id.SubString(9, 10);
 		subject.doc_id = fmt;
-	}
-	// Fix CNPJ
-	if (subject.doc_id.Len() == 14) {
+	} else if (subject.doc_id.Len() == 14) {
+		// Fix CNPJ
 		wxString fmt, id = subject.doc_id;
 		fmt = id.SubString(0, 1) + '.' + id.SubString(2, 4) + '.' + id.SubString(5, 7) + '/' + id.SubString(8, 11) + '-' + id.SubString(12, 13);
 		subject.doc_id = fmt;
