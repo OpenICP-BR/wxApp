@@ -4,6 +4,7 @@
 #include <openssl/conf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
+#include "cert_class.h"
 
 wxIMPLEMENT_APP(ICPApp);
 
@@ -12,6 +13,10 @@ bool ICPApp::OnInit() {
 	ERR_load_crypto_strings();
 	OpenSSL_add_all_algorithms();
 	OPENSSL_config(NULL);
+
+	// Load basic config
+	CertClass ca;
+	ca.LoadPEMFile("ICP-Brasil.crt");
 
 	// Load UI
 	cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;

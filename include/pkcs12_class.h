@@ -1,14 +1,8 @@
-#include "common.h"
+#pragma once
 #include <ctime>
 #include <openssl/pkcs12.h>
-
-struct CertSubIssInfo {
-	wxString country, state, locality;
-	wxString organization, organization_unit;
-	wxString common_name, email;
-	wxString doc_id;
-	wxString one_line;
-};
+#include "common.h"
+#include "cert_class.h"
 
 class PKCS12Class {
 protected:

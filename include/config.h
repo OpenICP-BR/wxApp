@@ -1,14 +1,11 @@
+#pragma once
 #include "common.h"
-
-class ConfigCertClass {
-public:
-	wxString name, email, cpf;
-};
+#include "cert_class.h"
 
 class ConfigClass {
 public:
-	std::map<wxString, ConfigCertClass> certificates;
-
+	std::map<wxString, CertClass> user_certs;
+	std::map<wxString, CertClass> cert_authorities;
 };
 
 //wxStandardPaths::GetUserDataDir

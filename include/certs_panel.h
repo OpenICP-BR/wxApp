@@ -1,3 +1,4 @@
+#pragma once
 #include "common.h"
 #include "pkcs12_class.h"
 #include <wx/wizard.h>
