@@ -6,7 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow")
+set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 
 # macOS stuff
 if (APPLE)
@@ -34,7 +34,7 @@ file(GLOB SOURCES "src/*.cpp")
 include_directories(include)
 add_executable(openicp ${SOURCES})
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})
-target_link_libraries(openicp crypto)
+target_link_libraries(openicp ${OPENSSL_CRYPTO_LIBRARIES})
 set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 
 # Add non-code install_files

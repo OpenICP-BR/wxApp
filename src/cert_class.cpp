@@ -68,6 +68,10 @@ bool CertClass::LoadPEMFile(const char path[]) {
 	printf("Loading file: %s\n", path);
 	FILE *fp;
 	fp = fopen(path, "r");
+	if (fp == NULL) {
+		printf("Certificate not found: %s\n", path);
+		return false;
+	}
 	cert = PEM_read_X509(fp, NULL, NULL, NULL);
 	if (cert == NULL) {
 		printf("Failed to load certificate: %s\n", path);
