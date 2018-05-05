@@ -40,6 +40,25 @@ set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 # Add non-code install_files
 file(COPY src/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
 
+# Test stuff
+find_package(GTest)
+if (GTEST_FOUND)
+    enable_testing()
+    include_directories(${COMMON_INCLUDES})
+    file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
+    add_custom_target(build_and_test ${CMAKE_CTEST_COMMAND})
+    add_custom_target(build_and_test_verbose ${CMAKE_CTEST_COMMAND} -V)
+    foreach(_test_file ${TEST_SRC_FILES})
+        get_filename_component(_test_name ${_test_file} NAME_WE)
+        add_executable(${_test_name} ${_test_file})
+        target_link_libraries(${_test_name} gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
+        add_test(${_test_name} bin/${_test_name})
+        set_tests_properties(${_test_name} PROPERTIES TIMEOUT 5)
+        add_dependencies(build_and_test ${_test_name})
+        add_dependencies(build_and_test_verbose ${_test_name})
+    endforeach()
+endif()
+
 # Add `make run`
 add_custom_target(run
     COMMAND openicp
