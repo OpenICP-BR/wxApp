@@ -9,32 +9,45 @@ EntityInfoClass::~EntityInfoClass() {
 wxString EntityInfoClass::Country () {
 	return country;
 }
+
 wxString EntityInfoClass::State () {
 	return state;
 }
+
 wxString EntityInfoClass::Locality () {
 	return locality;
 }
+
 wxString EntityInfoClass::Organization () {
 	return organization;
 }
+
 wxString EntityInfoClass::OrganizationUnit () {
 	return organization_unit;
 }
+
 wxString EntityInfoClass::CommonName () {
 	return common_name;
 }
+
 wxString EntityInfoClass::Email () {
 	return email;
 }
+
 wxString EntityInfoClass::DocID () {
 	return doc_id;
 }
-wxString EntityInfoClass::Oneline () {
+
+wxString EntityInfoClass::OneLine () {
 	return one_line;
 }
+
 wxString EntityInfoClass::HashString () {
 	return hash_string;
+}
+
+unsigned long EntityInfoClass::Hash () {
+	return hash;
 }
 
 bool EntityInfoClass::FromCert (X509 *cert, ENTITY_ENUM entity_type) {
@@ -55,22 +68,39 @@ bool EntityInfoClass::FromCert (X509 *cert, ENTITY_ENUM entity_type) {
 	// Read and convert
 	sprintf(buf, "%08lx", hash);
 	hash_string = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_oneline(xname, buf, 999);
 	one_line = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_countryName, buf, 999);
 	country = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_stateOrProvinceName, buf, 999);
 	state = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_localityName, buf, 999);
 	locality = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_organizationName, buf, 999);
 	organization = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_organizationalUnitName, buf, 999);
 	organization_unit = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_commonName, buf, 999);
 	common_name = wxString(buf);
+
+	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_pkcs9_emailAddress, buf, 999);
 	email = wxString(buf);
+
 
 	// Add doc id
 	int pos = common_name.Find(":");
@@ -88,7 +118,7 @@ bool EntityInfoClass::FromCert (X509 *cert, ENTITY_ENUM entity_type) {
 			doc_id = fmt;
 		}
 	} else {
-		doc_id = wxT("---não consta---");
+		doc_id = wxString::FromUTF8("---n\xC3\xA3o consta---");
 	}
 
 	return true;

@@ -26,7 +26,7 @@ public:
 	wxString CommonName();
 	wxString Email();
 	wxString DocID();
-	wxString Oneline();
+	wxString OneLine();
 	wxString HashString();
 	unsigned long Hash();
 	bool FromCert(X509 *cert, ENTITY_ENUM entity_type);

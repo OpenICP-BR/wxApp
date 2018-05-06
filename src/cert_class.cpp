@@ -1,9 +1,18 @@
+#include <time.h>
 #include "cert_class.h"
 
 CertClass::CertClass() {
 }
 
 CertClass::~CertClass() {
+}
+
+wxString CertClass::NotBeforeString() {
+	return not_before_str;
+}
+
+wxString CertClass::NotAfterString() {
+	return not_after_str;
 }
 
 bool CertClass::LoadPEMFile(const char path[]) {
@@ -21,7 +30,7 @@ bool CertClass::LoadPEMFile(const char path[]) {
 		return false;
 	}
 
-	return parseCert();
+	return LoadCert(cert);
 }
 
 bool CertClass::LoadPEMString(const char data[]) {
@@ -35,9 +44,41 @@ bool CertClass::LoadPEMString(const char data[]) {
 	}
 	BIO_free(bmem);
 	
-	return parseCert();
+	return LoadCert(cert);
 }
 
-bool CertClass::parseCert() {
-	return false;
+time_t asn_time2time_t(ASN1_TIME *asn_time) {
+	int days, seconds;
+	ASN1_TIME *ref;
+	ref = ASN1_TIME_set(NULL, 0);
+	ASN1_TIME_diff(&days, &seconds, ref, asn_time);
+	return (long int) days*24*3600 + (long int) seconds;
+}
+
+wxString time_t2iso8601(time_t the_time) {
+	char buf[999];
+	struct tm* tm_info;
+	tm_info = gmtime(&the_time);
+	strftime(buf, 26, "%Y-%m-%d %H:%M:%S+00:00", tm_info);
+	return wxString(buf);
+}
+
+bool CertClass::LoadCert(X509 *new_cert) {
+	bool ok = true;
+
+	ok &= Subject.FromCert(new_cert, ENTITY_SUBJECT);
+	ok &= Issuer.FromCert(new_cert, ENTITY_ISSUER);
+
+	// Get dates
+	ASN1_TIME *asn_not_before, *asn_not_after;
+	asn_not_before = X509_get_notBefore(new_cert);
+	asn_not_after = X509_get_notAfter(new_cert);
+	
+	not_before = asn_time2time_t(asn_not_before);
+	not_after = asn_time2time_t(asn_not_after);
+
+	not_before_str = time_t2iso8601(not_before);
+	not_after_str = time_t2iso8601(not_after);
+
+	return ok;
 }
