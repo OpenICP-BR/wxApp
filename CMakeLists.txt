@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(openicpbr)
+project(openicpbr CXX)
 
 # Set some basic variables
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
@@ -7,6 +7,7 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
+set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 
 # macOS stuff
 if (APPLE)
@@ -29,13 +30,19 @@ endif()
 find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
 include(${wxWidgets_USE_FILE})
 
-# Configure our desired binary 
 file(GLOB SOURCES "src/*.cpp")
-include_directories(include)
-add_executable(openicp ${SOURCES})
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+include_directories(${COMMON_INCLUDES})
+add_library(openicp_no_main_lib STATIC ${SOURCES})
+
+# Configure our desired binary
+add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+target_link_libraries(openicp openicp_no_main_lib)
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})
 target_link_libraries(openicp ${OPENSSL_CRYPTO_LIBRARIES})
 set_target_properties(openicp PROPERTIES BUNDLE TRUE)
+
+# This will help with testing
 
 # Add non-code install_files
 file(COPY src/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
@@ -46,12 +53,12 @@ if (GTEST_FOUND)
     enable_testing()
     include_directories(${COMMON_INCLUDES})
     file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
-    add_custom_target(build_and_test ${CMAKE_CTEST_COMMAND})
+    add_custom_target(build_and_test ${CMAKE_CTEST_COMMAND} --output-on-failure)
     add_custom_target(build_and_test_verbose ${CMAKE_CTEST_COMMAND} -V)
     foreach(_test_file ${TEST_SRC_FILES})
         get_filename_component(_test_name ${_test_file} NAME_WE)
         add_executable(${_test_name} ${_test_file})
-        target_link_libraries(${_test_name} gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
+        target_link_libraries(${_test_name} gtest gtest_main openicp_no_main_lib ${CMAKE_THREAD_LIBS_INIT} ${wxWidgets_LIBRARIES} ${OPENSSL_CRYPTO_LIBRARIES})
         add_test(${_test_name} bin/${_test_name})
         set_tests_properties(${_test_name} PROPERTIES TIMEOUT 5)
         add_dependencies(build_and_test ${_test_name})
