@@ -4,6 +4,14 @@
 #include <openssl/x509.h>
 #include <openssl/pkcs12.h>
 
+EntityInfoClass PKCS12Class::Subject() {
+	return cert.Subject;
+}
+
+EntityInfoClass PKCS12Class::Issuer() {
+	return cert.Issuer;
+}
+
 int PKCS12Class::LoadFromFile(wxString cert_path) {
 	FILE *fptr;
 	const char *c_path;

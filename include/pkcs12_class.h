@@ -14,7 +14,8 @@ protected:
 public:
 	time_t not_before_t, not_after_t;
 	wxString not_before_str, not_after_str;
-	EntityInfoClass Subject, Issuer;
+	EntityInfoClass Subject();
+	EntityInfoClass Issuer();
 	int LoadFromFile(wxString path);
 	int Unlock(wxString pass);
 	bool IsValid();

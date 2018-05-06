@@ -67,39 +67,39 @@ bool EntityInfoClass::FromCert (X509 *cert, ENTITY_ENUM entity_type) {
 
 	// Read and convert
 	sprintf(buf, "%08lx", hash);
-	hash_string = wxString(buf);
+	hash_string = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_oneline(xname, buf, 999);
-	one_line = wxString(buf);
+	one_line = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_countryName, buf, 999);
-	country = wxString(buf);
+	country = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_stateOrProvinceName, buf, 999);
-	state = wxString(buf);
+	state = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_localityName, buf, 999);
-	locality = wxString(buf);
+	locality = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_organizationName, buf, 999);
-	organization = wxString(buf);
+	organization = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_organizationalUnitName, buf, 999);
-	organization_unit = wxString(buf);
+	organization_unit = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_commonName, buf, 999);
-	common_name = wxString(buf);
+	common_name = wxString::FromUTF8(buf);
 
 	buf[0] = '\0';
 	X509_NAME_get_text_by_NID(xname, NID_pkcs9_emailAddress, buf, 999);
-	email = wxString(buf);
+	email = wxString::FromUTF8(buf);
 
 
 	// Add doc id

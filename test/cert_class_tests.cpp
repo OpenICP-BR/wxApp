@@ -12,7 +12,7 @@ TEST(cert_class_test, load_and_parse_pem_1) {
     EXPECT_EQ(cert.Subject.Locality(), wxString("Ilha"));
     EXPECT_EQ(cert.Subject.Organization(), wxString("FakePKI"));
     EXPECT_EQ(cert.Subject.OrganizationUnit(), wxString(""));
-    EXPECT_EQ(cert.Subject.CommonName(), wxString("Ciclano Ciclanóide"));
+    EXPECT_EQ(cert.Subject.CommonName(), wxString::FromUTF8("Ciclano Ciclan\xC3\xB3ide"));
     EXPECT_EQ(cert.Subject.DocID(), wxString::FromUTF8("---n\xC3\xA3o consta---"));
     EXPECT_EQ(cert.Subject.Email(), wxString("ciclano@example.com"));
     EXPECT_EQ(cert.Subject.OneLine(), wxString("/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=Ciclano Ciclan\\xC3\\xB3ide/emailAddress=ciclano@example.com"));

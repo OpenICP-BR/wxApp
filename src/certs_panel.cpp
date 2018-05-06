@@ -95,10 +95,10 @@ bool CertsPanelClass::UnlockCert(wxString pass) {
 	int err_code = new_cert.Unlock(pass);
 	if (err_code == OK) {
 		cout << "Updating cert info" << endl;
-		XRCCTRL(*wizAddCert, "outCertName", wxStaticText)->SetLabel(new_cert.Subject.CommonName());
-		XRCCTRL(*wizAddCert, "outCertEmail", wxStaticText)->SetLabel(new_cert.Subject.Email());
-		XRCCTRL(*wizAddCert, "outCertCPF", wxStaticText)->SetLabel(new_cert.Subject.DocID());
-		XRCCTRL(*wizAddCert, "outCertAC", wxStaticText)->SetLabel(new_cert.Issuer.CommonName());
+		XRCCTRL(*wizAddCert, "outCertName", wxStaticText)->SetLabel(new_cert.Subject().CommonName());
+		XRCCTRL(*wizAddCert, "outCertEmail", wxStaticText)->SetLabel(new_cert.Subject().Email());
+		XRCCTRL(*wizAddCert, "outCertCPF", wxStaticText)->SetLabel(new_cert.Subject().DocID());
+		XRCCTRL(*wizAddCert, "outCertAC", wxStaticText)->SetLabel(new_cert.Issuer().CommonName());
 		return true;
 	} else if (err_code == 1) {
 		wxMessageBox(wxT("Arquivo .p12 não foi carregado"), wxT("Erro"), wxICON_ERROR|wxOK);
