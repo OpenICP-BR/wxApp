@@ -66,8 +66,8 @@ int PKCS12Class::Unlock(wxString pass) {
 	cout << "PKCS12Class::Unlock: read dates" << endl;
 
 	// Read subject and issuer
-	read_x509_subject(subject, cert);
-	read_x509_issuer(issuer, cert);
+	Subject.FromCert(cert, ENTITY_SUBJECT);
+	Issuer.FromCert(cert, ENTITY_ISSUER);
 
 	BIO_free(bmem);
 	return OK;
