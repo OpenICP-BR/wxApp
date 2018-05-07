@@ -17,6 +17,8 @@
 #define ICP_ROOT_V5_LINK "a2502f15.0"
 #define FAKE_ICP_ROOT_SHA1 "E9:D2:24:55:45:0B:93:AB:7B:88:E0:83:2A:33:5B:ED:0C:03:36:99"
 
+#define SHA256_RAW_LEN 32
+
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
     #include <wx/wx.h>

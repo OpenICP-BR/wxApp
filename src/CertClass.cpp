@@ -15,6 +15,10 @@ wxString CertClass::NotAfterString() {
 	return not_after_str;
 }
 
+wxString CertClass::FingerPrintSHA256() {
+	return fp_sha_256;
+}
+
 bool CertClass::LoadPEMFile(const char path[]) {
 	printf("Loading file: %s\n", path);
 	FILE *fp;
@@ -79,6 +83,28 @@ bool CertClass::LoadCert(X509 *new_cert) {
 
 	not_before_str = time_t2iso8601(not_before);
 	not_after_str = time_t2iso8601(not_after);
+
+	// Get fingerprint
+	unsigned char buf[SHA256_RAW_LEN];
+	unsigned int len;
+	const EVP_MD *digest = EVP_sha256();
+	int rc = X509_digest(cert, digest, buf, &len);
+	if (rc == 0 || len != SHA256_RAW_LEN) {
+		cout << "Failed to get certificate fingerprint. X509_digest return code: " << rc << " len = " << len << endl;
+		return false;
+	}
+	// Hex encode it
+	char buf_hex[3];
+	fp_sha_256 = "";
+	for (size_t i=0; i < len; i++) {
+		sprintf(buf_hex, "%02X", buf[i]);
+		if (i != 0) {
+			fp_sha_256.Append(":");
+		}
+		fp_sha_256.Append(buf_hex);
+	}
+	cout << fp_sha_256 << endl;
+
 
 	return ok;
 }
