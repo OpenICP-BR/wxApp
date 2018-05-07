@@ -40,6 +40,9 @@ bool ICPApp::OnInit() {
 ICPApp::ICPApp () {
 	sign_panel = new SignPanelClass();
 	certs_panel = new CertsPanelClass();
+	#ifdef USE_FAKE_ICP_ROOT
+	cout << "WARNING: Using FAKE ICP root certificate. DO NOT USE IN PRODUCTION!!!" << endl;
+	#endif
 }
 
 void ICPApp::PreExit () {

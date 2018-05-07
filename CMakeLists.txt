@@ -9,6 +9,8 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 
+add_definitions(-DUSE_FAKE_ICP_ROOT)
+
 # macOS stuff
 if (APPLE)
 	set(BUNDLE_EXTENSION ".app")

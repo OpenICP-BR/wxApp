@@ -4,10 +4,14 @@
 
 class CAStoreClass {
 	std::map<x509_hash, CertClass> CAs;
-	X509_STORE_CTX *ctx;
+	X509_STORE *store;
+protected:
+	bool addCertViaPEM(const char data[]);
 public:
 	CAStoreClass();
 	bool Verify(X509 *cert);
-	bool AddIfValid(X509 *cert);
+	bool AddCA(X509 *cert);
+	bool AddCA_PEM(const char data[]);
+	bool AddAllCAsFromDir(const char path[]);
 	~CAStoreClass();
 };

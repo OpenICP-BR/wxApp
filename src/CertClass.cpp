@@ -1,6 +1,22 @@
 #include <time.h>
 #include "CertClass.h"
 
+X509* PEM2X509(const char data[]) {
+	BIO *bmem;
+	X509 *cert;
+
+	bmem = BIO_new_mem_buf(data, -1);
+	cert = PEM_read_bio_X509(bmem, NULL, NULL, NULL);
+	if (cert == NULL) {
+		printf("Failed to load certificate from PEM: %s\n", data);
+		BIO_free(bmem);
+		return NULL;
+	}
+	BIO_free(bmem);
+	
+	return cert;
+}
+
 CertClass::CertClass() {
 }
 
@@ -37,18 +53,8 @@ bool CertClass::LoadPEMFile(const char path[]) {
 	return LoadCert(cert);
 }
 
-bool CertClass::LoadPEMString(const char data[]) {
-	BIO *bmem;
-	bmem = BIO_new_mem_buf(data, -1);
-	cert = PEM_read_bio_X509(bmem, NULL, NULL, NULL);
-	if (cert == NULL) {
-		printf("Failed to load certificate from PEM: %s\n", data);
-		BIO_free(bmem);
-		return false;
-	}
-	BIO_free(bmem);
-	
-	return LoadCert(cert);
+bool CertClass::LoadPEMString(const char data[]) {	
+	return LoadCert(PEM2X509(data));
 }
 
 time_t asn_time2time_t(ASN1_TIME *asn_time) {
@@ -69,26 +75,20 @@ wxString time_t2iso8601(time_t the_time) {
 
 bool CertClass::LoadCert(X509 *new_cert) {
 	bool ok = true;
+	cert = new_cert;
 
-	ok &= Subject.FromCert(new_cert, ENTITY_SUBJECT);
-	ok &= Issuer.FromCert(new_cert, ENTITY_ISSUER);
+	ok &= Subject.FromCert(cert, ENTITY_SUBJECT);
+	ok &= Issuer.FromCert(cert, ENTITY_ISSUER);
 
 	// Get dates
-	cout << "hi5" << endl;
 	ASN1_TIME *asn_not_before, *asn_not_after;
-	cout << "hi6" << endl;
-	asn_not_before = X509_getm_notBefore(new_cert);
-	cout << "hi7" << endl;
-	asn_not_after = X509_getm_notAfter(new_cert);
-	cout << "hi8" << endl;
+	asn_not_before = X509_getm_notBefore(cert);
+	asn_not_after = X509_getm_notAfter(cert);
 	
 	not_before = asn_time2time_t(asn_not_before);
-	cout << "hi9" << endl;
 	not_after = asn_time2time_t(asn_not_after);
-	cout << "hi10" << endl;
 
 	not_before_str = time_t2iso8601(not_before);
-	cout << "hi11" << endl;
 	not_after_str = time_t2iso8601(not_after);
 
 	// Get fingerprint

@@ -21,3 +21,5 @@ public:
 	EntityInfoClass Subject, Issuer;
 	~CertClass();
 };
+
+X509* PEM2X509(const char data[]);
