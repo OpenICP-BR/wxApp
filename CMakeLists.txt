@@ -64,6 +64,8 @@ if (GTEST_FOUND)
         add_dependencies(build_and_test ${_test_name})
         add_dependencies(build_and_test_verbose ${_test_name})
     endforeach()
+else ()
+    message(STATUS "Could NOT find Google Test, testing will be disabled")
 endif()
 
 # Add `make run`
