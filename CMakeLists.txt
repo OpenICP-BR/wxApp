@@ -12,12 +12,13 @@ set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 # macOS stuff
 if (APPLE)
 	set(BUNDLE_EXTENSION ".app")
+    message(STATUS "Assuming you installed OpenSSL 1.1 via Homebrew")
     set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1")
     set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
 endif()
 
 # Get OpenSSL
-find_package(OpenSSL REQUIRED)
+find_package(OpenSSL 1.1 REQUIRED)
 if (OPENSSL_FOUND)
     include_directories(${OPENSSL_INCLUDE_DIR})
     message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
