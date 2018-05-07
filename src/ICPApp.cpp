@@ -1,4 +1,4 @@
-#include "Main.h"
+#include "ICPApp.h"
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <openssl/conf.h>
@@ -9,14 +9,14 @@
 wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
-	// Start OpenSSL
-	ERR_load_crypto_strings();
-	OpenSSL_add_all_algorithms();
-	OPENSSL_config(NULL);
-
 	// Load basic config
 	CertClass ca;
 	ca.LoadPEMFile("ICP-Brasil.crt");
+
+	// Load OpenSSL
+	OPENSSL_add_all_algorithms_noconf();
+	ERR_load_crypto_strings();
+	OpenSSL_add_all_ciphers();
 
 	// Load UI
 	cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
@@ -54,10 +54,6 @@ void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
 
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
-	// Disable OpenSSL
-	EVP_cleanup();
-	CRYPTO_cleanup_all_ex_data();
-	ERR_free_strings();
 	free(sign_panel);
 	free(certs_panel);
 }

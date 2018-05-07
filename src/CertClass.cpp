@@ -74,14 +74,21 @@ bool CertClass::LoadCert(X509 *new_cert) {
 	ok &= Issuer.FromCert(new_cert, ENTITY_ISSUER);
 
 	// Get dates
+	cout << "hi5" << endl;
 	ASN1_TIME *asn_not_before, *asn_not_after;
-	asn_not_before = X509_get_notBefore(new_cert);
-	asn_not_after = X509_get_notAfter(new_cert);
+	cout << "hi6" << endl;
+	asn_not_before = X509_getm_notBefore(new_cert);
+	cout << "hi7" << endl;
+	asn_not_after = X509_getm_notAfter(new_cert);
+	cout << "hi8" << endl;
 	
 	not_before = asn_time2time_t(asn_not_before);
+	cout << "hi9" << endl;
 	not_after = asn_time2time_t(asn_not_after);
+	cout << "hi10" << endl;
 
 	not_before_str = time_t2iso8601(not_before);
+	cout << "hi11" << endl;
 	not_after_str = time_t2iso8601(not_after);
 
 	// Get fingerprint

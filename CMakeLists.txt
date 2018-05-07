@@ -12,18 +12,20 @@ set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 # macOS stuff
 if (APPLE)
 	set(BUNDLE_EXTENSION ".app")
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1")
+    set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
 endif()
 
 # Get OpenSSL
-find_package(OpenSSL 1.0 REQUIRED)
+find_package(OpenSSL REQUIRED)
 if (OPENSSL_FOUND)
     include_directories(${OPENSSL_INCLUDE_DIR})
     message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
-    if (NOT (${OPENSSL_VERSION_MAJOR} EQUAL 1 AND ${OPENSSL_VERSION_MINOR} EQUAL 0))
-    	message(FATAL_ERROR "Required OpenSSL version 1.0, got ${OPENSSL_VERSION}")
+    if (NOT (${OPENSSL_VERSION_MAJOR} EQUAL 1 AND ${OPENSSL_VERSION_MINOR} EQUAL 1))
+    	message(FATAL_ERROR "Required OpenSSL version 1.1, apparently got ${OPENSSL_VERSION}")
     endif ()
 else()
-	message(FATAL_ERROR "OpenSSL 1.0 was not found")
+	message(FATAL_ERROR "OpenSSL 1.1 was not found")
 endif()
 
 # Get wxWidgets
