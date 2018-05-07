@@ -25,3 +25,5 @@
 
 using std::cout;
 using std::endl;
+
+typedef unsigned long x509_hash;

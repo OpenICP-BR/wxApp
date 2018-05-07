@@ -14,7 +14,7 @@ protected:
 	wxString common_name, email;
 	wxString doc_id;
 	wxString one_line;
-	unsigned long hash;
+	x509_hash hash;
 	wxString hash_string;
 public:
 	EntityInfoClass();
@@ -28,7 +28,7 @@ public:
 	wxString DocID();
 	wxString OneLine();
 	wxString HashString();
-	unsigned long Hash();
+	x509_hash Hash();
 	bool FromCert(X509 *cert, ENTITY_ENUM entity_type);
 	// bool FromCert(X509 **cert, ENTITY_ENUM entity_type);
 	~EntityInfoClass();
