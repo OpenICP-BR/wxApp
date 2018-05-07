@@ -1,4 +1,4 @@
-#include "cert_class.h"
+#include "CertClass.h"
 #include "gtest/gtest.h"
 
 TEST(cert_class_test, load_and_parse_pem_1) {

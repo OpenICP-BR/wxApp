@@ -1,6 +1,6 @@
 #pragma once
 #include <openssl/x509.h>
-#include "common.h"
+#include "Common.h"
 
 enum ENTITY_ENUM {
 	ENTITY_SUBJECT = 1,

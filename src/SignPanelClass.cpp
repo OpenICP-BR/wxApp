@@ -1,4 +1,4 @@
-#include "sign_panel.h"
+#include "SignPanelClass.h"
 #include <sstream>
 
 void SignPanelClass::Init(wxFrame *the_frame) {

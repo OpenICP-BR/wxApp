@@ -1,5 +1,5 @@
 #include <time.h>
-#include "cert_class.h"
+#include "CertClass.h"
 
 CertClass::CertClass() {
 }

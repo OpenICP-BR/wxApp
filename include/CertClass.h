@@ -1,6 +1,6 @@
 #pragma once
-#include "common.h"
-#include "entity_class.h"
+#include "Common.h"
+#include "EntityInfoClass.h"
 #include <openssl/x509.h>
 #include <openssl/pem.h>
 

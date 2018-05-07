@@ -1,6 +1,6 @@
 #pragma once
-#include "common.h"
-#include "cert_class.h"
+#include "Common.h"
+#include "CertClass.h"
 
 class ConfigClass {
 public:

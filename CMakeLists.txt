@@ -31,12 +31,12 @@ find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
 include(${wxWidgets_USE_FILE})
 
 file(GLOB SOURCES "src/*.cpp")
-list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
 add_library(openicp_no_main_lib STATIC ${SOURCES})
 
 # Configure our desired binary
-add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
+add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 target_link_libraries(openicp openicp_no_main_lib)
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})
 target_link_libraries(openicp ${OPENSSL_CRYPTO_LIBRARIES})

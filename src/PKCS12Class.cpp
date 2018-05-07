@@ -1,4 +1,4 @@
-#include "pkcs12_class.h"
+#include "PKCS12Class.h"
 #include <openssl/pem.h>
 #include <openssl/err.h>
 #include <openssl/x509.h>

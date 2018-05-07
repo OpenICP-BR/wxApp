@@ -1,4 +1,4 @@
-#include "certs_panel.h"
+#include "CertsPanelClass.h"
 
 void CertsPanelClass::Init(wxFrame *the_frame) {
 	frame = the_frame;

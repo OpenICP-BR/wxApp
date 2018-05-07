@@ -1,9 +1,8 @@
 #pragma once
 #include <ctime>
 #include <openssl/pkcs12.h>
-#include "common.h"
-#include "entity_class.h"
-#include "cert_class.h"
+#include "Common.h"
+#include "CertClass.h"
 
 class PKCS12Class {
 protected:

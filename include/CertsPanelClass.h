@@ -1,6 +1,6 @@
 #pragma once
-#include "common.h"
-#include "pkcs12_class.h"
+#include "Common.h"
+#include "PKCS12Class.h"
 #include <wx/wizard.h>
 #include <wx/filepicker.h>
 

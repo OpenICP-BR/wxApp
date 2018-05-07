@@ -1,4 +1,4 @@
-#include "entity_class.h"
+#include "EntityInfoClass.h"
 
 EntityInfoClass::EntityInfoClass() {
 }

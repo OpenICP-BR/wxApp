@@ -1,10 +1,10 @@
-#include "main.h"
+#include "Main.h"
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <openssl/conf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
-#include "cert_class.h"
+#include "CertClass.h"
 
 wxIMPLEMENT_APP(ICPApp);
 

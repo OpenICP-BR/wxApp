@@ -1,8 +1,7 @@
 #pragma once
-
-#include "common.h"
-#include "sign_panel.h"
-#include "certs_panel.h"
+#include "Common.h"
+#include "SignPanelClass.h"
+#include "CertsPanelClass.h"
 
 class ICPApp: public wxApp {
 protected:
