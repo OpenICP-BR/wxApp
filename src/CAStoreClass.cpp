@@ -18,17 +18,18 @@ CAStoreClass::CAStoreClass() {
 	}
 
 	// Add root certificates
-	addCertViaPEM(icp_raiz_v1_pem);
-	addCertViaPEM(icp_raiz_v2_pem);
-	addCertViaPEM(icp_raiz_v5_pem);
+	addCA(PEM2X509(icp_raiz_v1_pem));
+	addCA(PEM2X509(icp_raiz_v2_pem));
+	addCA(PEM2X509(icp_raiz_v5_pem));
 	#ifdef USE_FAKE_ICP_ROOT
-	addCertViaPEM(icp_fake_raiz_pem);
+	addCA(PEM2X509(icp_fake_raiz_pem));
 	#endif
 }
 
-bool CAStoreClass::addCertViaPEM(const char data[]) {
-	X509 *cert = PEM2X509(data);
-
+bool CAStoreClass::addCA(X509 *cert) {
+	if (cert == NULL) {
+		return false;
+	}
 	if (X509_STORE_add_cert(store, cert) == 0) {
 		return false;
 	}
@@ -48,11 +49,22 @@ bool CAStoreClass::AddCA_PEM(const char data[]) {
 }
 
 bool CAStoreClass::AddCA(X509 *cert) {
-	// X509_STORE_CTX *ctx = X509_STORE_CTX_new();
-	// if (ctx == NULL) {
-	// 	cout << "Failed to create X509_STORE_CTX" << endl;
-	// 	return false;
-	// }
+	X509_STORE_CTX *ctx = X509_STORE_CTX_new();
+	if (ctx == NULL) {
+		cout << "Failed to create X509_STORE_CTX" << endl;
+		return false;
+	}
+	if (X509_STORE_CTX_init(ctx, store, cert, NULL) != 1) {
+		cout << "Failed to initialize X509_STORE_CTX" << endl;
+		X509_STORE_CTX_free(ctx);
+		return false;
+	}
+	int rc = X509_verify_cert(ctx);
+	X509_STORE_CTX_free(ctx);
+
+	if (rc == 1) {
+		return addCA(cert);
+	}
 	return false;
 }
 

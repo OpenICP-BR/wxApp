@@ -6,7 +6,7 @@ class CAStoreClass {
 	std::map<x509_hash, CertClass> CAs;
 	X509_STORE *store;
 protected:
-	bool addCertViaPEM(const char data[]);
+	bool addCA(X509 *cert);
 public:
 	CAStoreClass();
 	bool Verify(X509 *cert);
