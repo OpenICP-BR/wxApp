@@ -50,6 +50,11 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 
 	dir_as_file.Assign(dir_path);
 	dir_as_file.MakeAbsolute();
+
+	if (!dir_as_file.DirExists()) {
+		return false;
+	}
+
 	wxDir dir(dir_as_file.GetFullPath());
 
 	while (counter != 0) {

@@ -54,11 +54,6 @@ target_link_libraries(openicp ${wxWidgets_LIBRARIES})
 target_link_libraries(openicp ${OPENSSL_CRYPTO_LIBRARIES})
 set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 
-message(STATUS "> " ${OPENSSL_ROOT_DIR} " " ${OPENSSL_CRYPTO_LIBRARIES})
-
-
-# This will help with testing
-
 # Add non-code install_files
 file(COPY src/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
 
