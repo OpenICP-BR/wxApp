@@ -11,6 +11,7 @@ wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
 	// Load basic config
+	CAs.AddAllCAsFromDir("./cas/");
 	Config.Load(CAs);
 
 	// Load OpenSSL
