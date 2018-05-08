@@ -5,7 +5,6 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include "CertClass.h"
-#include "Paths.h"
 
 wxIMPLEMENT_APP(ICPApp);
 
