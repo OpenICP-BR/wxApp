@@ -10,8 +10,7 @@ wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
 	// Load basic config
-	CertClass ca;
-	ca.LoadPEMFile("ICP-Brasil.crt");
+	CAs.AddAllCAsFromDir("certs/");
 
 	// Load OpenSSL
 	OPENSSL_add_all_algorithms_noconf();

@@ -12,6 +12,6 @@ public:
 	bool Verify(X509 *cert);
 	bool AddCA(X509 *cert);
 	bool AddCA_PEM(const char data[]);
-	bool AddAllCAsFromDir(const char path[]);
+	bool AddAllCAsFromDir(wxString dir_path);
 	~CAStoreClass();
 };

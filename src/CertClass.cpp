@@ -17,6 +17,23 @@ X509* PEM2X509(const char data[]) {
 	return cert;
 }
 
+X509* FILE2X509(const char path[]) {
+	FILE *fp;
+	X509 *cert;
+	fp = fopen(path, "r");
+	if (fp == NULL) {
+		printf("Certificate not found: %s\n", path);
+		return NULL;
+	}
+	cert = PEM_read_X509(fp, NULL, NULL, NULL);
+	fclose(fp);
+	if (cert == NULL) {
+		printf("Failed to load certificate: %s\n", path);
+		return NULL;
+	}
+	return cert;
+}
+
 CertClass::CertClass() {
 }
 
@@ -37,20 +54,7 @@ wxString CertClass::FingerPrintSHA256() {
 
 bool CertClass::LoadPEMFile(const char path[]) {
 	printf("Loading file: %s\n", path);
-	FILE *fp;
-	fp = fopen(path, "r");
-	if (fp == NULL) {
-		printf("Certificate not found: %s\n", path);
-		return false;
-	}
-	cert = PEM_read_X509(fp, NULL, NULL, NULL);
-	fclose(fp);
-	if (cert == NULL) {
-		printf("Failed to load certificate: %s\n", path);
-		return false;
-	}
-
-	return LoadCert(cert);
+	return LoadCert(FILE2X509(path));
 }
 
 bool CertClass::LoadPEMString(const char data[]) {	
