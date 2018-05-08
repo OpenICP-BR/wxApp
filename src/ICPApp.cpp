@@ -5,12 +5,13 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include "CertClass.h"
+#include "Paths.h"
 
 wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
 	// Load basic config
-	CAs.AddAllCAsFromDir("certs/");
+	Config.Load(CAs);
 
 	// Load OpenSSL
 	OPENSSL_add_all_algorithms_noconf();

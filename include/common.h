@@ -17,6 +17,7 @@
 #endif
 #include "wx/xrc/xmlres.h"
 
+using std::vector;
 using std::cout;
 using std::endl;
 

@@ -7,7 +7,8 @@ CAStoreClass::CAStoreClass() {
 	// Create X509_STORE_CTX
 	store = X509_STORE_new();
 	if (store == NULL) {
-		cout << "Failed to create X509_STORE_CTX." << endl;
+		wxLogDebug("Failed to create X509_STORE_CTX.");
+		return;
 	}
 
 	// Add root certificates
@@ -32,7 +33,7 @@ bool CAStoreClass::addCA(X509 *cert) {
 
 	xname = X509_get_subject_name(cert);
 	X509_NAME_oneline(xname, buf, 999);
-	printf("Added CA: %s\n", buf);
+	wxLogDebug("Added CA: %s", buf);
 
 	return true;
 }
@@ -54,7 +55,7 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 	while (counter != 0) {
 		counter = 0;
 
-		cout << "New round of looking for certificates in " << dir.GetName() << endl;
+		wxLogDebug("New round of looking for certificates in %s", dir.GetName());
 		bool cont = dir.GetFirst(&filename);
 		while (cont) {
 			if (AddCA(FILE2X509(dir.GetNameWithSep()+filename))) {
@@ -64,7 +65,7 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 			cont = dir.GetNext(&filename);
 		}
 	}
-	cout << "Finished adding " << total_counter << " CAs from: " << dir.GetName() << endl;
+	wxLogDebug("Finished adding %d CAs from: %s", total_counter, dir.GetName());
 	return true;
 }
 
@@ -75,11 +76,11 @@ bool CAStoreClass::AddCA(X509 *cert) {
 	
 	X509_STORE_CTX *ctx = X509_STORE_CTX_new();
 	if (ctx == NULL) {
-		cout << "Failed to create X509_STORE_CTX" << endl;
+		wxLogDebug("Failed to create X509_STORE_CTX");
 		return false;
 	}
 	if (X509_STORE_CTX_init(ctx, store, cert, NULL) != 1) {
-		cout << "Failed to initialize X509_STORE_CTX" << endl;
+		wxLogDebug("Failed to initialize X509_STORE_CTX");
 		X509_STORE_CTX_free(ctx);
 		return false;
 	}
@@ -91,7 +92,7 @@ bool CAStoreClass::AddCA(X509 *cert) {
 	}
 	EntityInfoClass sub;
 	sub.FromCert(cert, ENTITY_SUBJECT);
-	cout << "Invalid CA: " + sub.OneLine()  << endl;
+	wxLogDebug("Invalid CA: %s", sub.OneLine());
 	return false;
 }
 
