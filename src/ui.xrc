@@ -9,6 +9,16 @@
       <object class="sizeritem">
         <flag>wxALL|wxEXPAND</flag>
         <border>5</border>
+        <object class="wxStaticText" name="lblTestVersion">
+          <label>VERSÃO DE TESTES! - SEM VALIDADE LEGAL</label>
+          <style>wxALIGN_CENTRE</style>
+          <bg>wxSYS_COLOUR_INACTIVECAPTIONTEXT</bg>
+          <fg>wxSYS_COLOUR_HIGHLIGHT</fg>
+        </object>
+      </object>
+      <object class="sizeritem">
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
         <option>1</option>
         <object class="wxNotebook" name="nbMain">
           <style/>

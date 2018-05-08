@@ -42,7 +42,8 @@ bool CAStoreClass::AddCA_PEM(const char data[]) {
 }
 
 bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
-	bool has_added = true;
+	int total_counter=0;
+	int counter=-999;
 	wxString filename;
 	wxFileName dir_as_file;
 
@@ -50,16 +51,20 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 	dir_as_file.MakeAbsolute();
 	wxDir dir(dir_as_file.GetFullPath());
 
-	while (has_added) {
-		has_added = false;
+	while (counter != 0) {
+		counter = 0;
 
 		cout << "New round of looking for certificates in " << dir.GetName() << endl;
 		bool cont = dir.GetFirst(&filename);
 		while (cont) {
-			has_added |= AddCA(FILE2X509(dir.GetNameWithSep()+filename));
+			if (AddCA(FILE2X509(dir.GetNameWithSep()+filename))) {
+				counter++;
+				total_counter++;
+			}
 			cont = dir.GetNext(&filename);
 		}
-	} 
+	}
+	cout << "Finished adding " << total_counter << " CAs from: " << dir.GetName() << endl;
 	return true;
 }
 

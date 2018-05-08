@@ -26,6 +26,10 @@ bool ICPApp::OnInit() {
 	theWindow = this->GetTopWindow();
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
 	if (theFrame != NULL) {
+		#ifndef USE_FAKE_ICP_ROOT
+			XRCCTRL(*theFrame, "lblTestVersion", wxStaticText)->Hide();
+		#endif
+
 		// Process some things
 		sign_panel->Init(theFrame);
 		certs_panel->Init(theFrame);
