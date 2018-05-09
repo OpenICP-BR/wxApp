@@ -11,23 +11,12 @@ set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 
-# Get OpenSSL
-if (APPLE)
-	set(BUNDLE_EXTENSION ".app")
-	message(STATUS "Assuming you installed OpenSSL 1.1 via Homebrew")
-	set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1")
-	set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
+message(STATUS "Looking for OpenSSL 1.1 ...")
+find_package(OpenSSLHacky 1.1 REQUIRED)
+if (NOT OPENSSL_FOUND)
+	message(STATUS "Using default find_package for OpenSSL")
 	find_package(OpenSSL 1.1 REQUIRED)
 endif()
-if (UNIX AND NOT APPLE)
-	set(BUNDLE_EXTENSION ".app")
-	message(STATUS "Assuming you installed OpenSSL 1.1 on /usr directly")
-	set(OPENSSL_ROOT_DIR "/usr")
-	set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
-	find_package(OpenSSL 1.1 REQUIRED)
-	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.so")
-endif()
-
 if (OPENSSL_FOUND)
 	include_directories(${OPENSSL_INCLUDE_DIR})
 	message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
@@ -39,7 +28,9 @@ else()
 endif()
 
 # Get wxWidgets
+message(STATUS "Looking for wxWidgets...")
 find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
+message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
 include(${wxWidgets_USE_FILE})
 
 file(GLOB SOURCES "src/*.cpp")
