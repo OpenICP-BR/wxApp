@@ -1,0 +1,9 @@
+# Stage 1: Install OpenSSL and some basic tools
+
+1. Download and install MSYS2.
+2. Run ```pacman -S  mingw64/mingw-w64-x86_64-gcc make cmake perl nasm```.
+3. Run ```wget https://www.openssl.org/source/openssl-1.1.0h.tar.gz```.
+4. Extract and enter the openssl directory.
+5. Run ```export PATH="/c/msys64/mingw64/bin:$PATH"```.
+6. Run ```./Configure --prefix=$PWD/dist no-idea no-mdc2 no-rc5 shared mingw64```.
+7. Run ```make depend && make```.
