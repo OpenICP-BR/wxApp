@@ -8,6 +8,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
+set(OPENSSL_USE_STATIC_LIBS true)
+set(wxWidgets_USE_STATIC true)
 
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 
@@ -36,13 +38,14 @@ include(${wxWidgets_USE_FILE})
 file(GLOB SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
+message(STATUS ${OPENSSL_CRYPTO_LIBRARIES})
 add_library(openicp_no_main_lib STATIC ${SOURCES})
+target_link_libraries(openicp_no_main_lib ${wxWidgets_LIBRARIES})
+target_link_libraries(openicp_no_main_lib ${OPENSSL_CRYPTO_LIBRARIES})
 
 # Configure our desired binary
 add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 target_link_libraries(openicp openicp_no_main_lib)
-target_link_libraries(openicp ${wxWidgets_LIBRARIES})
-target_link_libraries(openicp ${OPENSSL_CRYPTO_LIBRARIES})
 set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 
 # Add non-code install_files

@@ -42,6 +42,7 @@
 # ^^^^^
 #
 # Set ``OPENSSL_ROOT_DIR`` to the root directory of an OpenSSL installation.
+# Set ``OPENSSL_USE_STATIC_LIBS`` to ``TRUE`` to look for static libraries.
 
 function(from_hex HEX DEC)
   string(TOUPPER "${HEX}" HEX)
@@ -74,8 +75,16 @@ function(from_hex HEX DEC)
   set(${DEC} ${_res} PARENT_SCOPE)
 endfunction()
 
+set(OPENSSL_LIB_EXTENSION CMAKE_FIND_LIBRARY_SUFFIXES)
+if(OPENSSL_USE_STATIC_LIBS)
+	if(WIN32)
+		set(OPENSSL_LIB_EXTENSION .lib .a ${CMAKE_FIND_LIBRARY_SUFFIXES})
+	else()
+		set(OPENSSL_LIB_EXTENSION .a )
+	endif()
+endif()
+
 if(MINGW)
-	set(OPENSSL_LIB_EXTENSION ".dll.a")
 	if(NOT DEFINED OPENSSL_ROOT_DIR)
 		if(EXISTS "../openssl-1.1.0h/dist/")
 			set(OPENSSL_ROOT_DIR "../openssl-1.1.0h/dist/")
@@ -92,16 +101,17 @@ if(MINGW)
 		set(OPENSSL_ROOT_DIR ${OPENSSL_ROOT_DIR})
 	endif()
 elseif (APPLE)
-	set(OPENSSL_LIB_EXTENSION ".dylib")
+	if (OPENSSL_USE_STATIC_LIBS)
+		set(OPENSSL_LIB_EXTENSION ".a")
+	endif()
 	message(STATUS "Assuming you installed OpenSSL 1.1 via Homebrew")
 	set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl@1.1")
-	set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
 elseif (UNIX)
-	set(OPENSSL_LIB_EXTENSION ".so")
+	if (OPENSSL_USE_STATIC_LIBS)
+		set(OPENSSL_LIB_EXTENSION ".a")
+	endif()
 	message(STATUS "Assuming you installed OpenSSL 1.1 on /usr directly")
 	set(OPENSSL_ROOT_DIR "/usr")
-	set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR}/include")
-	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.so")
 endif()
 
 # Adjust some directories
@@ -146,6 +156,8 @@ endif ()
 
 set(OPENSSL_SSL_LIBRARY "${OPENSSL_LIBRARIES_DIR}/libssl${OPENSSL_LIB_EXTENSION}")
 set(OPENSSL_CRYPTO_LIBRARY "${OPENSSL_LIBRARIES_DIR}/libcrypto${OPENSSL_LIB_EXTENSION}")
+set(OPENSSL_SSL_LIBRARIES ${OPENSSL_SSL_LIBRARY})
+set(OPENSSL_CRYPTO_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY})
 set(OPENSSL_LIBRARIES ${OPENSSL_SSL_LIBRARY} " " ${OPENSSL_CRYPTO_LIBRARY})
 
 if(DEFINED OPENSSL_VERSION AND EXISTS ${OPENSSL_SSL_LIBRARY} AND EXISTS ${OPENSSL_CRYPTO_LIBRARY})
