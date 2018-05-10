@@ -11,6 +11,7 @@ set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 set(OPENSSL_USE_STATIC_LIBS true)
 set(wxWidgets_USE_STATIC true)
+set(APP_VERSION "0.0.1")
 
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 
@@ -47,7 +48,9 @@ target_link_libraries(openicp_no_main_lib ${OPENSSL_CRYPTO_LIBRARIES})
 # Configure our desired binary
 if (APPLE)
 	set(MACOSX_BUNDLE_BUNDLE_NAME "OpenICP-BR")
+	set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.github.gjvnq.openicp_br")
 	set(MACOSX_BUNDLE_ICON_FILE logo.icns)
+	set(MACOSX_BUNDLE_INFO_PLIST res/Info.plist)
 	set(MACOSX_PACKAGE_LOCATION "${CMAKE_BINARY_DIR}/openicp.app/Contents/")
 	add_executable(openicp MACOSX_BUNDLE ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 else()

@@ -10,6 +10,8 @@
 wxIMPLEMENT_APP(ICPApp);
 
 bool ICPApp::OnInit() {
+	wxString executable_dir = wxStandardPaths::Get().GetExecutablePath().BeforeLast(wxFileName::GetPathSeparator()) + wxFileName::GetPathSeparator();
+
 	// Load basic config
 	CAs.AddAllCAsFromDir("./cas/");
 	CAs.AddAllCAsFromDir("./openicp.app/Contents/Resources/CAs/");
@@ -22,11 +24,12 @@ bool ICPApp::OnInit() {
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
-	if (wxFileExists(wxGetCwd()+"/openicp.app/Contents/Resources/ui.xrc")) {
-		wxXmlResource::Get()->Load(wxGetCwd()+"/openicp.app/Contents/Resources/ui.xrc");
+	wxString ui_path = executable_dir + "../Resources/ui.xrc";
+	if (wxFileExists(ui_path)) {
+		wxXmlResource::Get()->Load(ui_path);
 	} else {
 		cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
-		wxXmlResource::Get()->Load(wxGetCwd()+"/ui.xrc");
+		wxXmlResource::Get()->Load(ui_path);
 	}
 
 	// Get window and frame

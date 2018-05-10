@@ -5,7 +5,7 @@ LIBS=(/usr/lib/libc++.1.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_xrc-3.0.
 for OLD_LIB in "${LIBS[@]}"
 do
 	NEW_LIB=$(basename $OLD_LIB)
-	install_name_tool -change ${OLD_LIB} @executable_path/${NEW_LIB} ${BIN_FILE}
+	install_name_tool -change ${OLD_LIB} @rpath/${NEW_LIB} ${BIN_FILE}
 done
 echo "Final external dylibs for ${BIN_FILE}"
 otool -L ${BIN_FILE} | grep -v @executable_path
