@@ -4,6 +4,7 @@ project(openicpbr CXX)
 # Set some basic variables
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/dist)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
@@ -24,7 +25,7 @@ if (OPENSSL_FOUND)
 	message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
 	if (NOT (${OPENSSL_VERSION_MAJOR} EQUAL 1 AND ${OPENSSL_VERSION_MINOR} EQUAL 1))
 		message(FATAL_ERROR "Required OpenSSL version 1.1, apparently got ${OPENSSL_VERSION}")
-	endif ()
+	endif()
 else()
 	message(FATAL_ERROR "OpenSSL 1.1 was not found")
 endif()
@@ -35,21 +36,54 @@ find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
 include(${wxWidgets_USE_FILE})
 
+# Get sources and set out "library"
 file(GLOB SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
-message(STATUS ${OPENSSL_CRYPTO_LIBRARIES})
 add_library(openicp_no_main_lib STATIC ${SOURCES})
 target_link_libraries(openicp_no_main_lib ${wxWidgets_LIBRARIES})
 target_link_libraries(openicp_no_main_lib ${OPENSSL_CRYPTO_LIBRARIES})
 
 # Configure our desired binary
-add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
+if (APPLE)
+	set(MACOSX_BUNDLE_BUNDLE_NAME "OpenICP-BR")
+	set(MACOSX_BUNDLE_ICON_FILE logo.icns)
+	set(MACOSX_PACKAGE_LOCATION "${CMAKE_BINARY_DIR}/openicp.app/Contents/")
+	add_executable(openicp MACOSX_BUNDLE ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
+else()
+	add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
+endif()
 target_link_libraries(openicp openicp_no_main_lib)
-set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 
 # Add non-code install_files
-file(COPY res/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
+if (APPLE)
+	file(COPY res/logo.icns res/ui.xrc DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources")
+	file(COPY /usr/lib/libc++.1.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_xrc-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_adv-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_core-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu_net-3.0.dylib DESTINATION "${MACOSX_PACKAGE_LOCATION}/MacOS")
+	# Fix all the dylibs
+	add_custom_command(TARGET openicp POST_BUILD
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+		COMMENT "Fixing dylibs for osx bundle")
+	# Allow us to easily generate a .dmg file for distribution
+	add_custom_target(dmg
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/make_dmg.sh
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+	# Add `make run`
+	add_custom_target(run
+		COMMAND "${MACOSX_PACKAGE_LOCATION}/MacOS/openicp"
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
+else()
+	file(COPY res/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
+	# Add `make run`
+	add_custom_target(run
+		COMMAND openicp
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
+endif()
 
 # Test stuff
 find_package(GTest)
@@ -72,9 +106,3 @@ else ()
 	message(STATUS "Could NOT find Google Test, testing will be disabled")
 endif()
 
-# Add `make run`
-add_custom_target(run
-	COMMAND openicp
-	DEPENDS openicp
-	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-)
