@@ -49,7 +49,7 @@ target_link_libraries(openicp openicp_no_main_lib)
 set_target_properties(openicp PROPERTIES BUNDLE TRUE)
 
 # Add non-code install_files
-file(COPY src/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
 
 # Test stuff
 find_package(GTest)
