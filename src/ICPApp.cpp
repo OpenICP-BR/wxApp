@@ -4,6 +4,7 @@
 #include <openssl/conf.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
+#include <wx/filefn.h>
 #include "CertClass.h"
 
 wxIMPLEMENT_APP(ICPApp);
@@ -19,9 +20,13 @@ bool ICPApp::OnInit() {
 	OpenSSL_add_all_ciphers();
 
 	// Load UI
-	cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
 	wxXmlResource::Get()->InitAllHandlers();
-	wxXmlResource::Get()->Load(wxGetCwd()+"/ui.xrc");
+	if (wxFileExists(wxGetCwd()+"/openicp.app/Contents/Resources/ui.xrc")) {
+		wxXmlResource::Get()->Load(wxGetCwd()+"/openicp.app/Contents/Resources/ui.xrc");
+	} else {
+		cout << "Loading: " << wxGetCwd()+"/ui.xrc" << endl;
+		wxXmlResource::Get()->Load(wxGetCwd()+"/ui.xrc");
+	}
 
 	// Get window and frame
 	theWindow = this->GetTopWindow();
