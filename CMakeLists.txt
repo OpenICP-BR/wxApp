@@ -56,9 +56,12 @@ endif()
 target_link_libraries(openicp openicp_no_main_lib)
 
 # Add non-code install_files
+file(GLOB CAS_CERTS "res/icp-chain/*.crt")
 if (APPLE)
 	file(COPY res/logo.icns res/ui.xrc DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources")
 	file(COPY /usr/lib/libc++.1.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_xrc-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_adv-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_core-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu_net-3.0.dylib DESTINATION "${MACOSX_PACKAGE_LOCATION}/MacOS")
+	file(MAKE_DIRECTORY "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
+	file(COPY ${CAS_CERTS} DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	# Fix all the dylibs
 	add_custom_command(TARGET openicp POST_BUILD
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
@@ -77,6 +80,8 @@ if (APPLE)
 	)
 else()
 	file(COPY res/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
+	file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/cas")
+	file(COPY ${CAS_CERTS} DESTINATION "${CMAKE_BINARY_DIR}/cas")
 	# Add `make run`
 	add_custom_target(run
 		COMMAND openicp
