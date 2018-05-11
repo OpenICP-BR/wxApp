@@ -15,29 +15,17 @@ set(APP_VERSION "0.0.1")
 
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 
-message(STATUS "Looking for OpenSSL 1.1 ...")
-find_package(OpenSSLHacky 1.1 REQUIRED)
-if (NOT OPENSSL_FOUND)
-	message(STATUS "Using default find_package for OpenSSL")
-	find_package(OpenSSL 1.1 REQUIRED)
-endif()
-if (OPENSSL_FOUND)
-	include_directories(${OPENSSL_INCLUDE_DIR})
-	message(STATUS "Using OpenSSL ${OPENSSL_VERSION} on ${OPENSSL_INCLUDE_DIR}")
-	if (NOT (${OPENSSL_VERSION_MAJOR} EQUAL 1 AND ${OPENSSL_VERSION_MINOR} EQUAL 1))
-		message(FATAL_ERROR "Required OpenSSL version 1.1, apparently got ${OPENSSL_VERSION}")
-	endif()
-else()
-	message(FATAL_ERROR "OpenSSL 1.1 was not found")
-endif()
+# Get libraries
+set(wxWidgets_ROOT_DIR "wxWidgets-3.0.4/dist/")
+set(OPENSSL_ROOT_DIR "openssl-1.1.0h/dist/")
+set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
+set(wxWidgets_LIBRARIES "${wxWidgets_ROOT_DIR}/lib")
 
-# Get wxWidgets
-message(STATUS "Looking for wxWidgets...")
-find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
-message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
-include(${wxWidgets_USE_FILE})
+# Include includes
+include_directories("${wxWidgets_ROOT_DIR}/include")
+include_directories("${OPENSSL_ROOT_DIR}/include")
 
-# Get sources and set out "library"
+# Set sources and set out "library" (this is to avoid recompilation for testing)
 file(GLOB SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
