@@ -1,5 +1,6 @@
 bin/
 openicp
+openssl-1.1.0h/dist
 
 # Created by https://www.gitignore.io/api/c++,macos,linux,cmake,windows,sublimetext
 
