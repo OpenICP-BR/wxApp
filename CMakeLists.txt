@@ -19,11 +19,13 @@ add_definitions(-DUSE_FAKE_ICP_ROOT)
 set(wxWidgets_ROOT_DIR "wxWidgets-3.0.4/dist/")
 set(OPENSSL_ROOT_DIR "openssl-1.1.0h/dist/")
 set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
-set(wxWidgets_LIBRARIES "${wxWidgets_ROOT_DIR}/lib")
+set(wxWidgets_LIBRARIES "${wxWidgets_ROOT_DIR}/lib/libwx_osx_cocoau_gl-3.0.a")
 
 # Include includes
-include_directories("${wxWidgets_ROOT_DIR}/include")
-include_directories("${OPENSSL_ROOT_DIR}/include")
+include_directories("${wxWidgets_ROOT_DIR}/include/wx-3.0/")
+include_directories("${wxWidgets_ROOT_DIR}/lib/wx/include/osx_cocoa-unicode-static-3.0")
+add_definitions(-D__WXMAC__ -D__WXOSX__ -D__WXOSX_COCOA__)
+include_directories("${OPENSSL_ROOT_DIR}/include/")
 
 # Set sources and set out "library" (this is to avoid recompilation for testing)
 file(GLOB SOURCES "src/*.cpp")

@@ -12,5 +12,5 @@
     1. Enter directory: ```cd wxWidgets-3.0.4```.
     2. Make directory: ```mkdir -p dist/build```.
     3. Enter directory: ```cd dist/build```
-    4. Configure: ```../../configure --enable-unicode --with-opengl --disable-shared --prefix="`pwd`/../" --disable-shared --enable-monolithic --enable-stl```.
+    4. Configure: ```../../configure --prefix="`pwd`/../" --enable-clipboard --enable-controls --enable-dataviewctrl --enable-display --enable-dnd --enable-graphics_ctx --enable-std_string --enable-svg --enable-unicode --enable-webkit --with-expat --with-libjpeg --with-libpng --with-libtiff --with-opengl --with-osx_cocoa --with-zlib --disable-precomp-headers --enable-monolithic --disable-mediactrl --with-macosx-version-min=10.7 --enable-stl --disable-shared",```.
     5. Compile: ```make```. (SUGESTION: use ```-j4```to speed things up if you have multiple processors)

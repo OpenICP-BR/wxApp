@@ -63,7 +63,8 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 		wxLogDebug("New round of looking for certificates in %s", dir.GetName());
 		bool cont = dir.GetFirst(&filename);
 		while (cont) {
-			if (AddCA(FILE2X509(dir.GetNameWithSep()+filename))) {
+			wxString full_path = dir.GetNameWithSep()+filename;
+			if (AddCA(FILE2X509(full_path.mb_str()))) {
 				counter++;
 				total_counter++;
 			}
