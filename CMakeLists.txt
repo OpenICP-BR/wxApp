@@ -9,24 +9,20 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(OPENSSL_USE_STATIC_LIBS true)
-set(wxWidgets_USE_STATIC true)
+set(USE_STATIC_WXWIDGETS false)
 set(APP_VERSION "0.0.1")
 
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 
 # Get libraries
-set(wxWidgets_ROOT_DIR "${CMAKE_SOURCE_DIR}/wxWidgets-3.0.4/dist/")
-set(wxWidgets_LIBRARIES_DIR "${wxWidgets_ROOT_DIR}/lib")
 set(OPENSSL_ROOT_DIR "${CMAKE_SOURCE_DIR}/openssl-1.1.0h/dist/")
 set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
-set(wxWidgets_LIBRARIES "-L${wxWidgets_LIBRARIES_DIR} -framework IOKit -framework Carbon -framework Cocoa -framework AudioToolbox -framework System -framework OpenGL ${wxWidgets_LIBRARIES_DIR}/libwx_osx_cocoau-3.0.a -lpng -lz -ljpeg -ltiff -framework WebKit ${wxWidgets_LIBRARIES_DIR}/libwxregexu-3.0.a -lz -lpthread -liconv")
-
-# Include includes
-include_directories("${wxWidgets_ROOT_DIR}/include/wx-3.0/")
-include_directories("${wxWidgets_ROOT_DIR}/lib/wx/include/osx_cocoa-unicode-static-3.0")
-add_definitions(-D_FILE_OFFSET_BITS=64 -D__WXMAC__ -D__WXOSX__ -D__WXOSX_COCOA__)
 include_directories("${OPENSSL_ROOT_DIR}/include/")
+
+message(STATUS "Looking for wxWidgets...")
+find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
+message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
+include(${wxWidgets_USE_FILE})
 
 # Set sources and set out "library" (this is to avoid recompilation for testing)
 file(GLOB SOURCES "src/*.cpp")
