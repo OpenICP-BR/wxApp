@@ -24,7 +24,7 @@ find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
 include(${wxWidgets_USE_FILE})
 
-# Set sources and set out "library" (this is to avoid recompilation for testing)
+# Set sources and set our "library" (this is to avoid recompilation for testing)
 file(GLOB SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
