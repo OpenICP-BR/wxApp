@@ -49,7 +49,6 @@ target_link_libraries(openicp openicp_no_main_lib)
 file(GLOB CAS_CERTS "res/icp-chain/*.crt")
 if (APPLE)
 	file(COPY res/logo.icns res/ui.xrc DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources")
-	file(COPY /usr/lib/libc++.1.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_xrc-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_adv-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu-3.0.dylib /usr/local/opt/wxmac/lib/libwx_osx_cocoau_core-3.0.dylib /usr/local/opt/wxmac/lib/libwx_baseu_net-3.0.dylib DESTINATION "${MACOSX_PACKAGE_LOCATION}/MacOS")
 	file(MAKE_DIRECTORY "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	file(COPY ${CAS_CERTS} DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	# Fix all the dylibs

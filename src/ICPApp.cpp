@@ -12,6 +12,7 @@ wxIMPLEMENT_APP(ICPApp);
 bool ICPApp::OnInit() {
 	wxString ui_path;
 	wxString executable_dir = wxStandardPaths::Get().GetExecutablePath().BeforeLast(wxFileName::GetPathSeparator()) + wxFileName::GetPathSeparator();
+	wxLogDebug("executable_dir = %s", executable_dir);
 
 	// Load basic config
 	CAs.AddAllCAsFromDir("./cas/");
@@ -25,13 +26,14 @@ bool ICPApp::OnInit() {
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
+	ui_path = executable_dir + "../Resources/ui.xrc";
+	wxLogDebug("wxFileExists(\"%s\") = %d", ui_path, wxFileExists(ui_path));
 	if (wxFileExists(ui_path)) {
-		ui_path = executable_dir + "../Resources/ui.xrc";
-		cout << "Loading: " << ui_path << endl;
+		wxLogDebug("Loading %s", ui_path);
 		wxXmlResource::Get()->Load(ui_path);
 	} else {
 		ui_path = wxGetCwd()+"/ui.xrc";
-		cout << "Loading: " << ui_path << endl;
+		wxLogDebug("Loading %s", ui_path);
 		wxXmlResource::Get()->Load(ui_path);
 	}
 

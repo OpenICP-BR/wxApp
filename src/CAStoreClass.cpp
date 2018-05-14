@@ -48,6 +48,7 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 	wxString filename;
 	wxFileName dir_as_file;
 
+	wxLogDebug("Loading all CAs from %s", dir_path);
 	dir_as_file.Assign(dir_path);
 	dir_as_file.MakeAbsolute();
 
