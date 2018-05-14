@@ -15,9 +15,9 @@ bool ICPApp::OnInit() {
 	wxLogDebug("executable_dir = %s", executable_dir);
 
 	// Load basic config
-	CAs.AddAllCAsFromDir("./cas/");
-	CAs.AddAllCAsFromDir("./openicp.app/Contents/Resources/CAs/");
-	Config.Load(CAs);
+	CAStore.AddAllCAsFromDir("./cas/");
+	CAStore.AddAllCAsFromDir("./openicp.app/Contents/Resources/CAs/");
+	Config.Load(CAStore);
 
 	// Load OpenSSL
 	OPENSSL_add_all_algorithms_noconf();

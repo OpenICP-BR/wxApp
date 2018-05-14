@@ -55,9 +55,5 @@ int PKCS12Class::Unlock(wxString pass) {
 	return OK;
 }
 
-bool PKCS12Class::IsValid () {
-	return false;
-}
-
 PKCS12Class::~PKCS12Class () {
 }

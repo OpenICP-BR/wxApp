@@ -37,6 +37,10 @@ X509* FILE2X509(const char path[]) {
 CertClass::CertClass() {
 }
 
+CertClass::CertClass(X509 *new_cert) {
+	LoadCert(new_cert);
+}
+
 CertClass::~CertClass() {
 }
 
@@ -79,6 +83,10 @@ wxString time_t2iso8601(time_t the_time) {
 
 bool CertClass::LoadCert(X509 *new_cert) {
 	bool ok = true;
+	if (new_cert == NULL) {
+		return false;
+	}
+
 	cert = new_cert;
 
 	ok &= Subject.FromCert(cert, ENTITY_SUBJECT);

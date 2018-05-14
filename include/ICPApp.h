@@ -11,7 +11,6 @@ protected:
 	wxFrame *theFrame;
 	SignPanelClass *sign_panel;
 	CertsPanelClass *certs_panel;
-	CAStoreClass CAs;
 	ConfigClass Config;
 public:
     virtual bool OnInit();

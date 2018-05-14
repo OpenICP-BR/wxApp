@@ -17,6 +17,5 @@ public:
 	EntityInfoClass Issuer();
 	int LoadFromFile(wxString path);
 	int Unlock(wxString pass);
-	bool IsValid();
 	~PKCS12Class();
 };

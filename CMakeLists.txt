@@ -52,14 +52,15 @@ if (APPLE)
 	file(MAKE_DIRECTORY "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	file(COPY ${CAS_CERTS} DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	# Fix all the dylibs
-	add_custom_command(TARGET openicp POST_BUILD
+	add_custom_target(TARGET openicp-release
+		DEPENDS openicp
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		COMMENT "Fixing dylibs for osx bundle")
 	# Allow us to easily generate a .dmg file for distribution
 	add_custom_target(dmg
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/make_dmg.sh
-		DEPENDS openicp
+		DEPENDS openicp-release
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 	# Add `make run`
 	add_custom_target(run

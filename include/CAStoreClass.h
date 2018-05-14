@@ -11,8 +11,11 @@ protected:
 public:
 	CAStoreClass();
 	bool Verify(X509 *cert);
+	bool Verify(X509 *cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert);
 	bool AddCA(X509 *cert);
 	bool AddCA_PEM(const char data[]);
 	bool AddAllCAsFromDir(wxString dir_path);
 	~CAStoreClass();
 };
+
+extern CAStoreClass CAStore;

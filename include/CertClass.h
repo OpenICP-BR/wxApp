@@ -12,6 +12,7 @@ protected:
 	wxString fp_sha_256;
 public:
 	CertClass();
+	CertClass(X509 *new_cert);
 	bool LoadPEMString(const char buf[]);
 	bool LoadPEMFile(const char path[]);
 	bool LoadCert(X509 *new_cert);
