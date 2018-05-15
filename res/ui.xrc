@@ -223,7 +223,7 @@
                         <border>5</border>
                         <option>3</option>
                         <object class="wxListBox" name="listCerts">
-                          <style>wxLB_SORT|wxLB_EXTENDED|wxLB_SINGLE</style>
+                          <style>wxLB_SORT|wxLB_NEEDED_SB|wxLB_EXTENDED|wxLB_SINGLE</style>
                           <content>
                             <item>a</item>
                             <item>b</item>

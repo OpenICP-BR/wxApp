@@ -24,6 +24,8 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
         &CertsPanelClass::OpenAddCertDialog, this);
 	wizAddCert->Bind(wxEVT_WIZARD_PAGE_CHANGING,
 		&CertsPanelClass::OnWizPageChanging, this);
+	listCerts->Bind(wxEVT_LISTBOX,
+		&CertsPanelClass::OnCertsListClick, this);
 }
 
 void CertsPanelClass::updateCerts() {
@@ -38,11 +40,17 @@ void CertsPanelClass::updateCerts() {
 
 	// Fix certs list
 	listCerts->Clear();
-	// wxArrayString l;
-	for (auto &cert : Config.GetUserCerts()) {
-		// l.Add(cert.Subject.CommonName());
-		listCerts->Append(cert.Subject.CommonName());
+	for (auto &pair : Config.GetUserCerts()) {
+		listCerts->Append(pair.first);
 	}
+
+	// Clear some stuff
+	XRCCTRL(*frame, "outCertInfoName", wxStaticText)->SetLabel("");
+	XRCCTRL(*frame, "outCertInfoEmail", wxStaticText)->SetLabel("");
+	XRCCTRL(*frame, "outCertInfoCPF", wxStaticText)->SetLabel("");
+	XRCCTRL(*frame, "outCertInfoAC", wxStaticText)->SetLabel("");
+	XRCCTRL(*frame, "outCertInfoNotBefore", wxStaticText)->SetLabel("");
+	XRCCTRL(*frame, "outCertInfoNotAfter", wxStaticText)->SetLabel("");
 }
 
 void CertsPanelClass::OpenAddCertDialog(wxCommandEvent& WXUNUSED(event)) {
@@ -71,6 +79,22 @@ void CertsPanelClass::PreExit() {
 }
 
 CertsPanelClass::~CertsPanelClass() {
+}
+
+void CertsPanelClass::OnCertsListClick(wxCommandEvent& event) {
+	wxString nice_name = event.GetString();
+	// Avoid acidentally creating empty keys
+	if (Config.GetUserCerts().find(nice_name) == Config.GetUserCerts().end()) {
+		return;
+	}
+	CertClass cert = Config.GetUserCerts()[nice_name];
+
+	XRCCTRL(*frame, "outCertInfoName", wxStaticText)->SetLabel(cert.Subject.CommonName());
+	XRCCTRL(*frame, "outCertInfoEmail", wxStaticText)->SetLabel(cert.Subject.Email());
+	XRCCTRL(*frame, "outCertInfoCPF", wxStaticText)->SetLabel(cert.Subject.DocID());
+	XRCCTRL(*frame, "outCertInfoAC", wxStaticText)->SetLabel(cert.Issuer.CommonName());
+	XRCCTRL(*frame, "outCertInfoNotBefore", wxStaticText)->SetLabel(cert.NotBeforeString());
+	XRCCTRL(*frame, "outCertInfoNotAfter", wxStaticText)->SetLabel(cert.NotAfterString());
 }
 
 void CertsPanelClass::OnWizPageChanging(wxWizardEvent& event) {

@@ -24,8 +24,10 @@ public:
 	void PreExit();
 	void OpenAddCertDialog(wxCommandEvent& event);
 	void OnWizPageChanging(wxWizardEvent& event);
+	void OnCertsListClick(wxCommandEvent& event);
 	bool LoadCert(wxString cert_path);
 	bool UnlockCert(wxString pass);
 	bool ShowCertInfo();
 	~CertsPanelClass();
 };
+

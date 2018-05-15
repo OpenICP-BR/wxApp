@@ -17,8 +17,10 @@
 #endif
 #include "wx/xrc/xmlres.h"
 #include <vector>
+#include <map>
 
 using std::vector;
+using std::map;
 using std::cout;
 using std::endl;
 

@@ -71,7 +71,7 @@ bool PKCS12Class::SaveKeylessCert(wxString dir) {
 bool PKCS12Class::SaveEncryptedP12(wxString dir) {
 	// Get path
 	wxFileName path = dir;
-	path.SetFullName(cert.FingerPrintSHA256_FileFriendly() + ".pkcs12");
+	path.SetFullName(cert.FingerPrintSHA256_FileFriendly() + ".p12");
 	wxLogDebug("Saving pkcs12 to %s", path.GetFullPath());
 
 	// Open file

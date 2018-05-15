@@ -18,6 +18,7 @@ public:
 	bool LoadPEMFile(const char path[]);
 	bool LoadCert(X509 *new_cert);
 	bool SaveCert(wxString dir);
+	wxString NiceName();
 	wxString NotBeforeString();
 	wxString NotAfterString();
 	wxString FingerPrintSHA256_HumanReadable();

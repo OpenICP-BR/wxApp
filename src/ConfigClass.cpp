@@ -66,7 +66,7 @@ void ConfigClass::ReloadCerts() {
 		if (CAStore.Verify(cert)) {
 			total_counter++;
 			wxLogDebug("Added cert for %s on %s", cert.Subject.CommonName(), full_path);
-			user_certs.push_back(cert);
+			user_certs[cert.NiceName()] = cert;
 		} else {
 			wxLogDebug("Invalid cert for %s on %s", cert.Subject.CommonName(), full_path);
 		}
@@ -86,8 +86,8 @@ bool ConfigClass::Save() {
 bool ConfigClass::AddCert(CertClass cert) {
 	bool b = cert.SaveCert(certs_path.GetPathWithSep());
 	if (b) {
-		wxLogDebug("Adding cert for %s to the current certs list.", cert.Subject.CommonName());
-		user_certs.push_back(cert);
+		wxLogDebug("Adding cert for %s to the current certs list.", cert.NiceName());
+		user_certs[cert.NiceName()] = cert;
 	}
 	return b;
 }
@@ -100,7 +100,7 @@ bool ConfigClass::AddPKCS12(PKCS12Class p12) {
 	return p12.SaveEncryptedP12(certs_path.GetPathWithSep());
 }
 
-vector<CertClass> ConfigClass::GetUserCerts() {
+map<wxString, CertClass> &ConfigClass::GetUserCerts() {
 	return user_certs;
 }
 

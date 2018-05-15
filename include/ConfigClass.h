@@ -8,7 +8,7 @@
 class ConfigClass {
 protected:
 	wxFileName config_dir, certs_path, cas_path;
-	vector<CertClass> user_certs;
+	map<wxString, CertClass> user_certs;
 public:
 	ConfigClass();
 	void Init();
@@ -18,7 +18,7 @@ public:
 	bool AddCert(CertClass cert);
 	bool AddCert(PKCS12Class p12);
 	bool AddPKCS12(PKCS12Class p12);
-	vector<CertClass> GetUserCerts();
+	map<wxString, CertClass> &GetUserCerts();
 	PKCS12Class* GetPKCS12(wxString subject_hash, wxString password);
 	~ConfigClass();
 };

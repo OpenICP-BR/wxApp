@@ -44,6 +44,10 @@ CertClass::CertClass(X509 *new_cert) {
 CertClass::~CertClass() {
 }
 
+wxString CertClass::NiceName() {
+	return Subject.CommonName() + ":" + Subject.DocID() + " (" + Issuer.CommonName() + ")";
+}
+
 wxString CertClass::NotBeforeString() {
 	return not_before_str;
 }
@@ -81,7 +85,7 @@ wxString time_t2iso8601(time_t the_time) {
 	char buf[999];
 	struct tm* tm_info;
 	tm_info = gmtime(&the_time);
-	strftime(buf, 26, "%Y-%m-%d %H:%M:%S+00:00", tm_info);
+	strftime(buf, 26, "%d/%m/%Y %H:%M:%S", tm_info);
 	return wxString(buf);
 }
 

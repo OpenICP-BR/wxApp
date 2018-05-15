@@ -1908,7 +1908,7 @@
 																	"border":	5,
 																	"gbSpan":	"1,1",
 																	"gbPosition":	"0,0",
-																	"m_styles":	["wxLB_SORT", "wxLB_EXTENDED", "wxLB_SINGLE"],
+																	"m_styles":	["wxLB_SORT", "wxLB_NEEDED_SB", "wxLB_EXTENDED", "wxLB_SINGLE"],
 																	"m_sizerFlags":	["wxALL", "wxLEFT", "wxRIGHT", "wxTOP", "wxBOTTOM", "wxEXPAND", "wxALIGN_CENTER"],
 																	"m_properties":	[{
 																			"type":	"winid",
