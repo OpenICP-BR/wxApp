@@ -51,6 +51,7 @@ if (APPLE)
 	file(COPY res/logo.icns res/ui.xrc DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources")
 	file(MAKE_DIRECTORY "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	file(COPY ${CAS_CERTS} DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
+	file(COPY "res/test-chain/intermediate-ca.crt" DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
 	# Allow us to easily generate a .dmg file for distribution
 	add_custom_target(dmg
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
