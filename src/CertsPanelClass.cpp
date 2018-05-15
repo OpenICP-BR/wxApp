@@ -11,6 +11,11 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
 	btnFirstCert = XRCCTRL(*frame, "btnFirstCert", wxButton);
 	fpCertFile = XRCCTRL(*wizAddCert, "fpCertFile", wxFilePickerCtrl);
 	inpCertPass = XRCCTRL(*wizAddCert, "inpCertPass", wxTextCtrl);
+	panelCertsFirst = XRCCTRL(*frame, "panelCertsFirst", wxPanel);
+	panelCertsList = XRCCTRL(*frame, "panelCertsList", wxPanel);
+	listCerts = XRCCTRL(*frame, "listCerts", wxListBox);
+
+	updateCerts();
 
 	// Bind events
 	btnAddCert->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
@@ -19,6 +24,25 @@ void CertsPanelClass::Init(wxFrame *the_frame) {
         &CertsPanelClass::OpenAddCertDialog, this);
 	wizAddCert->Bind(wxEVT_WIZARD_PAGE_CHANGING,
 		&CertsPanelClass::OnWizPageChanging, this);
+}
+
+void CertsPanelClass::updateCerts() {
+	// Fix which panel to show
+	if (Config.GetUserCerts().size() == 0) {
+		panelCertsFirst->Show();
+		panelCertsList->Hide();
+	} else {
+		panelCertsFirst->Hide();
+		panelCertsList->Show();
+	}
+
+	// Fix certs list
+	listCerts->Clear();
+	// wxArrayString l;
+	for (auto &cert : Config.GetUserCerts()) {
+		// l.Add(cert.Subject.CommonName());
+		listCerts->Append(cert.Subject.CommonName());
+	}
 }
 
 void CertsPanelClass::OpenAddCertDialog(wxCommandEvent& WXUNUSED(event)) {
@@ -133,6 +157,7 @@ bool CertsPanelClass::ShowCertInfo() {
 		wxMessageBox(wxT("Falha ao salvar certificado."), wxT("Erro"), wxICON_ERROR|wxOK);
 		return false;
 	} else {
+		updateCerts();
 		return true;
 	}
 }

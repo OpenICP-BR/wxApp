@@ -19,6 +19,7 @@ bool ICPApp::OnInit() {
 	CAStore.AddAllCAsFromDir("./cas/");
 	CAStore.AddAllCAsFromDir(executable_dir+"/../Resources/CAs/");
 	CAStore.AddAllCAsFromDir(Config.CAsPath());
+	Config.ReloadCerts();
 
 	// Load OpenSSL
 	OPENSSL_add_all_algorithms_noconf();

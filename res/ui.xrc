@@ -202,89 +202,116 @@
           <object class="notebookpage">
             <label>Certificados Digitais</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelFirstCert">
+            <object class="wxPanel" name="panelCerts">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxBoxSizer">
                 <orient>wxVERTICAL</orient>
-                <object class="spacer" name="Spacer154">
-                  <flag>wxEXPAND</flag>
-                  <border>5</border>
-                  <option>1</option>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
-                  <border>5</border>
-                  <object class="wxButton" name="btnFirstCert">
-                    <label>Adicionar certificado</label>
-                    <style/>
-                    <bitmapposition>wxLEFT</bitmapposition>
-                    <default>1</default>
-                  </object>
-                </object>
-                <object class="sizeritem">
-                  <flag>wxALL|wxALIGN_CENTER</flag>
-                  <border>5</border>
-                  <object class="wxHyperlinkCtrl" name="linkGetCertificate">
-                    <style>wxHL_DEFAULT_STYLE</style>
-                    <label>Onde consigo um?</label>
-                    <url>http://www.iti.gov.br/certificado-digital/58-certificado-digital/87-como-obter</url>
-                  </object>
-                </object>
-                <object class="spacer" name="Spacer157">
-                  <flag>wxEXPAND</flag>
-                  <border>5</border>
-                  <option>1</option>
-                </object>
-              </object>
-            </object>
-          </object>
-          <object class="notebookpage">
-            <label>Certificados Digitais</label>
-            <selected>0</selected>
-            <object class="wxPanel" name="panelCerts">
-              <style>wxTAB_TRAVERSAL</style>
-              <object class="wxFlexGridSizer">
-                <cols>2</cols>
-                <rows>0</rows>
-                <vgap>0</vgap>
-                <hgap>0</hgap>
-                <growablecols/>
-                <growablerows>0</growablerows>
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
-                  <option>1</option>
-                  <object class="wxListBox" name="m_listBox24">
-                    <style>wxLB_SORT|wxLB_SINGLE</style>
-                    <content>
-                      <item>a</item>
-                      <item>b</item>
-                      <item>c</item>
-                      <item>aa</item>
-                    </content>
-                    <selection>-1</selection>
-                  </object>
-                </object>
-                <object class="sizeritem" name="gridSizer29">
-                  <flag>wxALL|wxEXPAND</flag>
-                  <border>5</border>
-                  <option>1</option>
-                  <object class="wxGridSizer">
-                    <cols>2</cols>
-                    <rows>0</rows>
-                    <vgap>0</vgap>
-                    <hgap>0</hgap>
+                  <object class="wxPanel" name="panelCertsList">
+                    <style>wxTAB_TRAVERSAL</style>
+                    <object class="wxBoxSizer">
+                      <orient>wxHORIZONTAL</orient>
+                      <object class="sizeritem" name="boxSizer91">
+                        <flag>wxALL|wxEXPAND</flag>
+                        <border>5</border>
+                        <option>1</option>
+                        <object class="wxBoxSizer">
+                          <orient>wxVERTICAL</orient>
+                          <object class="sizeritem">
+                            <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
+                            <border>5</border>
+                            <object class="wxListBox" name="listCerts">
+                              <style>wxLB_SORT|wxLB_EXTENDED|wxLB_SINGLE</style>
+                              <content>
+                                <item>a</item>
+                                <item>b</item>
+                                <item>c</item>
+                                <item>aa</item>
+                              </content>
+                              <selection>-1</selection>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxButton" name="btnAddCert">
+                              <label>Adicionar Certificado</label>
+                              <style/>
+                              <bitmapposition>wxLEFT</bitmapposition>
+                              <default>0</default>
+                            </object>
+                          </object>
+                        </object>
+                      </object>
+                      <object class="sizeritem" name="gridSizer29">
+                        <flag>wxALL|wxEXPAND</flag>
+                        <border>5</border>
+                        <option>2</option>
+                        <object class="wxGridSizer">
+                          <cols>2</cols>
+                          <rows>0</rows>
+                          <vgap>0</vgap>
+                          <hgap>0</hgap>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="m_staticText93">
+                              <label>Static Text Label</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="m_staticText95">
+                              <label>Static Text Label</label>
+                              <style/>
+                            </object>
+                          </object>
+                        </object>
+                      </object>
+                    </object>
                   </object>
                 </object>
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
-                  <option>1</option>
-                  <object class="wxButton" name="btnAddCert">
-                    <label>Adicionar Certificado</label>
-                    <style/>
-                    <bitmapposition>wxLEFT</bitmapposition>
-                    <default>0</default>
+                  <object class="wxPanel" name="panelCertsFirst">
+                    <style>wxTAB_TRAVERSAL</style>
+                    <object class="wxBoxSizer">
+                      <orient>wxVERTICAL</orient>
+                      <object class="spacer" name="Spacer154">
+                        <flag>wxEXPAND</flag>
+                        <border>5</border>
+                        <option>1</option>
+                      </object>
+                      <object class="sizeritem">
+                        <flag>wxALL|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
+                        <border>5</border>
+                        <object class="wxButton" name="btnFirstCert">
+                          <label>Adicionar certificado</label>
+                          <style/>
+                          <bitmapposition>wxLEFT</bitmapposition>
+                          <default>1</default>
+                        </object>
+                      </object>
+                      <object class="sizeritem">
+                        <flag>wxALL|wxALIGN_CENTER</flag>
+                        <border>5</border>
+                        <object class="wxHyperlinkCtrl" name="linkGetCertificate">
+                          <style>wxHL_DEFAULT_STYLE</style>
+                          <label>Onde consigo um?</label>
+                          <url>http://www.iti.gov.br/certificado-digital/58-certificado-digital/87-como-obter</url>
+                        </object>
+                      </object>
+                      <object class="spacer" name="Spacer157">
+                        <flag>wxEXPAND</flag>
+                        <border>5</border>
+                        <option>1</option>
+                      </object>
+                    </object>
                   </object>
                 </object>
               </object>

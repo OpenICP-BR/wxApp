@@ -67,6 +67,11 @@ bool CAStoreClass::AddAllCAsFromDir(wxString dir_path) {
 		bool cont = dir.GetFirst(&filename);
 		while (cont) {
 			wxString full_path = dir.GetNameWithSep()+filename;
+			if (filename.Right(4) != ".pem" && filename.Right(4) != ".crt") {
+				wxLogDebug("Skiping %s", filename);
+				cont = dir.GetNext(&filename);
+				continue;
+			}
 			if (AddCA(FILE2X509(full_path.mb_str()))) {
 				counter++;
 				total_counter++;
@@ -252,6 +257,7 @@ bool CAStoreClass::Verify(X509 *cert, int &error_int, wxString &error_string, in
 				error_string = "Erro desconhecido :(";
 				break;
 		}
+		wxLogDebug(error_string);
 		return false;
 	}
 }

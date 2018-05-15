@@ -14,10 +14,13 @@ protected:
 	wxButton *btnFirstCert, *btnAddCert;
 	wxFilePickerCtrl *fpCertFile;
 	wxTextCtrl *inpCertPass;
+	wxPanel *panelCertsFirst, *panelCertsList;
+	wxListBox *listCerts;
 	PKCS12Class new_cert;
 	bool hack_disable_wiz_evt;
 public:
 	void Init(wxFrame *frame);
+	void updateCerts();
 	void PreExit();
 	void OpenAddCertDialog(wxCommandEvent& event);
 	void OnWizPageChanging(wxWizardEvent& event);

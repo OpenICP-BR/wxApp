@@ -46,12 +46,13 @@ endif()
 target_link_libraries(openicp openicp_no_main_lib)
 
 # Add non-code install_files
-file(GLOB CAS_CERTS "res/icp-chain/*.crt")
 if (APPLE)
-	file(COPY res/logo.icns res/ui.xrc DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources")
-	file(MAKE_DIRECTORY "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
-	file(COPY ${CAS_CERTS} DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
-	file(COPY "res/test-chain/intermediate-ca.crt" DESTINATION "${MACOSX_PACKAGE_LOCATION}/Resources/CAs")
+	add_custom_command(
+		TARGET openicp
+		POST_BUILD
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_osx.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+	)
 	# Allow us to easily generate a .dmg file for distribution
 	add_custom_target(dmg
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
@@ -60,14 +61,18 @@ if (APPLE)
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 	# Add `make run`
 	add_custom_target(run
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_osx.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
 		COMMAND "${MACOSX_PACKAGE_LOCATION}/MacOS/openicp"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
-else()
-	file(COPY res/ui.xrc DESTINATION ${CMAKE_BINARY_DIR})
-	file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/cas")
-	file(COPY ${CAS_CERTS} DESTINATION "${CMAKE_BINARY_DIR}/cas")
+elseif(UNIX)
+	add_custom_command(
+		TARGET openicp
+		POST_BUILD
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_unix.sh "${CMAKE_BINARY_DIR}"
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+	)
 	# Add `make run`
 	add_custom_target(run
 		COMMAND openicp
