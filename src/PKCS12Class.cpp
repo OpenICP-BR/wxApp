@@ -12,6 +12,10 @@ EntityInfoClass PKCS12Class::Issuer() {
 	return cert.Issuer;
 }
 
+CertClass PKCS12Class::Cert() {
+	return cert;
+}
+
 int PKCS12Class::LoadFromFile(wxString cert_path) {
 	FILE *fptr;
 	const char *c_path;
@@ -33,6 +37,10 @@ int PKCS12Class::LoadFromFile(wxString cert_path) {
 	return OK;
 }
 
+void PKCS12Class::SetPassword(wxString pass) {
+	password = pass;
+}
+
 int PKCS12Class::Unlock(wxString pass) {
 	const char *c_pass = pass.mb_str();
 	int len = pass.Len();
@@ -52,8 +60,50 @@ int PKCS12Class::Unlock(wxString pass) {
 	}
 
 	cert.LoadCert(x509_cert);
+	SetPassword(pass);
 	return OK;
 }
+
+bool PKCS12Class::SaveKeylessCert(wxString dir) {
+	return cert.SaveCert(dir);
+}
+
+bool PKCS12Class::SaveEncryptedP12(wxString dir) {
+	// Get path
+	wxFileName path = dir + "/" + cert.FingerPrintSHA256() + ".pkcs12";
+	wxLogDebug("Saving pkcs12 to %s", path.GetPath());
+
+	// Open file
+	FILE *file = fopen(path.GetPath().c_str(), "w");
+	if (file == NULL) {
+		wxLogDebug("Failed to open file for writing: %s", path.GetPath());
+		return false;
+	}
+
+	// Actually save stuff
+	int bytes = i2d_PKCS12_fp(file, p12);
+	if (bytes <= 0) {
+		wxLogDebug("Failed to write one or more bytes: %s", path.GetPath());
+		return false;
+	}
+
+	// Finish
+	fclose(file);
+	return true;
+}
+
+wxString PKCS12Class::NotBeforeString() {
+	return cert.NotBeforeString();
+}
+
+wxString PKCS12Class::NotAfterString() {
+	return cert.NotAfterString();
+}
+
+wxString PKCS12Class::FingerPrintSHA256() {
+	return cert.FingerPrintSHA256();
+}
+
 
 PKCS12Class::~PKCS12Class () {
 }

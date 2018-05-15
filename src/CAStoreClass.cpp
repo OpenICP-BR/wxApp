@@ -85,6 +85,14 @@ bool CAStoreClass::Verify(X509 *cert) {
 	return Verify(cert, error_int, error_string, error_depth, error_cert);
 }
 
+bool CAStoreClass::Verify(CertClass cert) {
+	return Verify(cert._getX509());
+}
+
+bool CAStoreClass::Verify(CertClass cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert) {
+	return Verify(cert._getX509(), error_int, error_string, error_depth, error_cert);
+}
+
 bool CAStoreClass::Verify(X509 *cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert) {
 	if (cert == NULL) {
 		return false;

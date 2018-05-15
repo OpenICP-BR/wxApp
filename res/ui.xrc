@@ -318,7 +318,7 @@
           <flag>wxALL|wxEXPAND</flag>
           <border>5</border>
           <object class="wxStaticText" name="lblCertFile">
-            <label>Arquivo com o certificado A1 (.p12):</label>
+            <label>Arquivo com o certificado A1 (.p12 ou .pfx):</label>
             <style/>
           </object>
         </object>
@@ -328,7 +328,7 @@
           <object class="wxFilePickerCtrl" name="fpCertFile">
             <style>wxFLP_DEFAULT_STYLE</style>
             <message>Certificado tipo A1</message>
-            <wildcard>*.p12</wildcard>
+            <wildcard>*.p12;*.pfx</wildcard>
             <value/>
           </object>
         </object>
@@ -442,6 +442,38 @@
               <border>5</border>
               <object class="wxStaticText" name="outCertAC">
                 <label>AC Xyz</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="lblCertNotBefore">
+                <label>Válido de:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertNotBefore">
+                <label>01/01/2000</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="lblCertNotAfter">
+                <label>Válido até:</label>
+                <style/>
+              </object>
+            </object>
+            <object class="sizeritem">
+              <flag>wxALL</flag>
+              <border>5</border>
+              <object class="wxStaticText" name="outCertNotAfter">
+                <label>01/01/2001</label>
                 <style/>
               </object>
             </object>

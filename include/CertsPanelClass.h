@@ -1,5 +1,7 @@
 #pragma once
 #include "Common.h"
+#include "ConfigClass.h"
+#include "CAStoreClass.h"
 #include "PKCS12Class.h"
 #include <wx/wizard.h>
 #include <wx/filepicker.h>

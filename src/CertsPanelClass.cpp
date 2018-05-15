@@ -98,7 +98,8 @@ bool CertsPanelClass::UnlockCert(wxString pass) {
 		XRCCTRL(*wizAddCert, "outCertName", wxStaticText)->SetLabel(new_cert.Subject().CommonName());
 		XRCCTRL(*wizAddCert, "outCertEmail", wxStaticText)->SetLabel(new_cert.Subject().Email());
 		XRCCTRL(*wizAddCert, "outCertCPF", wxStaticText)->SetLabel(new_cert.Subject().DocID());
-		XRCCTRL(*wizAddCert, "outCertAC", wxStaticText)->SetLabel(new_cert.Issuer().CommonName());
+		XRCCTRL(*wizAddCert, "outCertNotBefore", wxStaticText)->SetLabel(new_cert.NotBeforeString());
+		XRCCTRL(*wizAddCert, "outCertNotAfter", wxStaticText)->SetLabel(new_cert.NotAfterString());
 		return true;
 	} else if (err_code == 1) {
 		wxMessageBox(wxT("Arquivo .p12 não foi carregado"), wxT("Erro"), wxICON_ERROR|wxOK);
@@ -117,6 +118,20 @@ bool CertsPanelClass::UnlockCert(wxString pass) {
 }
 
 bool CertsPanelClass::ShowCertInfo() {
-	wxMessageBox(wxT("Não implementado"), wxT("Erro"), wxICON_ERROR|wxOK);
-	return false;
+	int error_int, error_depth;
+	wxString error_string;
+	CertClass error_cert;
+
+	if (CAStore.Verify(new_cert.Cert(), error_int, error_string, error_depth, error_cert) == false) {
+		wxString msg = wxT("Certificado inválido. Motivo: ");
+		msg += error_string;
+		wxMessageBox(msg, wxT("Erro"), wxICON_ERROR|wxOK);
+		return false;
+	}
+	if ((Config.AddCert(new_cert) && Config.AddPKCS12(new_cert)) == FALSE) {
+		wxMessageBox(wxT("Falha ao salvar certificado."), wxT("Erro"), wxICON_ERROR|wxOK);
+		return false;
+	} else {
+		return true;
+	}
 }

@@ -127,3 +127,31 @@ bool CertClass::LoadCert(X509 *new_cert) {
 
 	return ok;
 }
+
+bool CertClass::SaveCert(wxString dir) {
+	// Get path
+	wxFileName path = dir + "/" + FingerPrintSHA256() + ".cert.pem";
+	wxLogDebug("Saving cert to %s", path.GetPath());
+
+	// Open file
+	FILE *file = fopen(path.GetPath().c_str(), "w");
+	if (file == NULL) {
+		wxLogDebug("Failed to open file for writing: %s", path.GetPath());
+		return false;
+	}
+
+	// Actually save stuff
+	int bytes = PEM_write_X509(file, cert);
+	if (bytes <= 0) {
+		wxLogDebug("Failed to write one or more bytes: %s", path.GetPath());
+		return false;
+	}
+
+	// Finish
+	fclose(file);
+	return true;
+}
+
+X509* CertClass::_getX509() {
+	return cert;
+}

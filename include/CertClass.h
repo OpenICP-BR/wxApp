@@ -13,9 +13,11 @@ protected:
 public:
 	CertClass();
 	CertClass(X509 *new_cert);
+	X509* _getX509();
 	bool LoadPEMString(const char buf[]);
 	bool LoadPEMFile(const char path[]);
 	bool LoadCert(X509 *new_cert);
+	bool SaveCert(wxString dir);
 	wxString NotBeforeString();
 	wxString NotAfterString();
 	wxString FingerPrintSHA256();
