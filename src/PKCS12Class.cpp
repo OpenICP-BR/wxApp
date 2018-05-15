@@ -70,20 +70,21 @@ bool PKCS12Class::SaveKeylessCert(wxString dir) {
 
 bool PKCS12Class::SaveEncryptedP12(wxString dir) {
 	// Get path
-	wxFileName path = dir + "/" + cert.FingerPrintSHA256() + ".pkcs12";
-	wxLogDebug("Saving pkcs12 to %s", path.GetPath());
+	wxFileName path = dir;
+	path.SetFullName(cert.FingerPrintSHA256_FileFriendly() + ".pkcs12");
+	wxLogDebug("Saving pkcs12 to %s", path.GetFullPath());
 
 	// Open file
-	FILE *file = fopen(path.GetPath().c_str(), "w");
+	FILE *file = fopen(path.GetFullPath().c_str(), "w");
 	if (file == NULL) {
-		wxLogDebug("Failed to open file for writing: %s", path.GetPath());
+		wxLogDebug("Failed to open file for writing: %s", path.GetFullPath());
 		return false;
 	}
 
 	// Actually save stuff
 	int bytes = i2d_PKCS12_fp(file, p12);
 	if (bytes <= 0) {
-		wxLogDebug("Failed to write one or more bytes: %s", path.GetPath());
+		wxLogDebug("Failed to write one or more bytes: %s", path.GetFullPath());
 		return false;
 	}
 
@@ -100,10 +101,13 @@ wxString PKCS12Class::NotAfterString() {
 	return cert.NotAfterString();
 }
 
-wxString PKCS12Class::FingerPrintSHA256() {
-	return cert.FingerPrintSHA256();
+wxString PKCS12Class::FingerPrintSHA256_FileFriendly() {
+	return cert.FingerPrintSHA256_FileFriendly();
 }
 
+wxString PKCS12Class::FingerPrintSHA256_HumanReadable() {
+	return cert.FingerPrintSHA256_HumanReadable();
+}
 
 PKCS12Class::~PKCS12Class () {
 }

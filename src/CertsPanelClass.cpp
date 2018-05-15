@@ -98,6 +98,7 @@ bool CertsPanelClass::UnlockCert(wxString pass) {
 		XRCCTRL(*wizAddCert, "outCertName", wxStaticText)->SetLabel(new_cert.Subject().CommonName());
 		XRCCTRL(*wizAddCert, "outCertEmail", wxStaticText)->SetLabel(new_cert.Subject().Email());
 		XRCCTRL(*wizAddCert, "outCertCPF", wxStaticText)->SetLabel(new_cert.Subject().DocID());
+		XRCCTRL(*wizAddCert, "outCertAC", wxStaticText)->SetLabel(new_cert.Issuer().CommonName());
 		XRCCTRL(*wizAddCert, "outCertNotBefore", wxStaticText)->SetLabel(new_cert.NotBeforeString());
 		XRCCTRL(*wizAddCert, "outCertNotAfter", wxStaticText)->SetLabel(new_cert.NotAfterString());
 		return true;

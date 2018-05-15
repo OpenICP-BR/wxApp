@@ -24,6 +24,7 @@ public:
 	bool SaveEncryptedP12(wxString dir);
 	wxString NotBeforeString();
 	wxString NotAfterString();
-	wxString FingerPrintSHA256();
+	wxString FingerPrintSHA256_HumanReadable();
+	wxString FingerPrintSHA256_FileFriendly();
 	~PKCS12Class();
 };

@@ -9,7 +9,7 @@ protected:
 	X509 *cert;
 	time_t not_before, not_after;
 	wxString not_before_str, not_after_str;
-	wxString fp_sha_256;
+	wxString fp_sha_256_human, fp_sha_256_fs;
 public:
 	CertClass();
 	CertClass(X509 *new_cert);
@@ -20,7 +20,8 @@ public:
 	bool SaveCert(wxString dir);
 	wxString NotBeforeString();
 	wxString NotAfterString();
-	wxString FingerPrintSHA256();
+	wxString FingerPrintSHA256_HumanReadable();
+	wxString FingerPrintSHA256_FileFriendly();
 	EntityInfoClass Subject, Issuer;
 	~CertClass();
 };

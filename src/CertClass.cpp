@@ -52,8 +52,12 @@ wxString CertClass::NotAfterString() {
 	return not_after_str;
 }
 
-wxString CertClass::FingerPrintSHA256() {
-	return fp_sha_256;
+wxString CertClass::FingerPrintSHA256_HumanReadable() {
+	return fp_sha_256_human;
+}
+
+wxString CertClass::FingerPrintSHA256_FileFriendly() {
+	return fp_sha_256_fs;
 }
 
 bool CertClass::LoadPEMFile(const char path[]) {
@@ -114,36 +118,40 @@ bool CertClass::LoadCert(X509 *new_cert) {
 	}
 	// Hex encode it
 	char buf_hex[3];
-	fp_sha_256 = "";
+	fp_sha_256_human = "";
 	for (size_t i=0; i < len; i++) {
 		sprintf(buf_hex, "%02X", buf[i]);
 		if (i != 0) {
-			fp_sha_256.Append(":");
+			fp_sha_256_human.Append(":");
 		}
-		fp_sha_256.Append(buf_hex);
+		fp_sha_256_human.Append(buf_hex);
 	}
-	cout << fp_sha_256 << endl;
-
+	fp_sha_256_fs = "";
+	for (size_t i=0; i < len; i++) {
+		sprintf(buf_hex, "%02x", buf[i]);
+		fp_sha_256_fs.Append(buf_hex);
+	}
 
 	return ok;
 }
 
 bool CertClass::SaveCert(wxString dir) {
 	// Get path
-	wxFileName path = dir + "/" + FingerPrintSHA256() + ".cert.pem";
-	wxLogDebug("Saving cert to %s", path.GetPath());
+	wxFileName path = dir;
+	path.SetFullName(FingerPrintSHA256_FileFriendly() + ".cert.pem");
+	wxLogDebug("Saving cert to %s", path.GetFullPath());
 
 	// Open file
-	FILE *file = fopen(path.GetPath().c_str(), "w");
+	FILE *file = fopen(path.GetFullPath().c_str(), "w");
 	if (file == NULL) {
-		wxLogDebug("Failed to open file for writing: %s", path.GetPath());
+		wxLogDebug("Failed to open file for writing: %s", path.GetFullPath());
 		return false;
 	}
 
 	// Actually save stuff
 	int bytes = PEM_write_X509(file, cert);
 	if (bytes <= 0) {
-		wxLogDebug("Failed to write one or more bytes: %s", path.GetPath());
+		wxLogDebug("Failed to write one or more bytes: %s", path.GetFullPath());
 		return false;
 	}
 
