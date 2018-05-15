@@ -211,65 +211,145 @@
                   <border>5</border>
                   <object class="wxPanel" name="panelCertsList">
                     <style>wxTAB_TRAVERSAL</style>
-                    <object class="wxBoxSizer">
-                      <orient>wxHORIZONTAL</orient>
-                      <object class="sizeritem" name="boxSizer91">
-                        <flag>wxALL|wxEXPAND</flag>
+                    <object class="wxFlexGridSizer">
+                      <cols>2</cols>
+                      <rows>0</rows>
+                      <vgap>0</vgap>
+                      <hgap>0</hgap>
+                      <growablecols/>
+                      <growablerows/>
+                      <object class="sizeritem">
+                        <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
                         <border>5</border>
-                        <option>1</option>
-                        <object class="wxBoxSizer">
-                          <orient>wxVERTICAL</orient>
-                          <object class="sizeritem">
-                            <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
-                            <border>5</border>
-                            <object class="wxListBox" name="listCerts">
-                              <style>wxLB_SORT|wxLB_EXTENDED|wxLB_SINGLE</style>
-                              <content>
-                                <item>a</item>
-                                <item>b</item>
-                                <item>c</item>
-                                <item>aa</item>
-                              </content>
-                              <selection>-1</selection>
-                            </object>
-                          </object>
-                          <object class="sizeritem">
-                            <flag>wxALL</flag>
-                            <border>5</border>
-                            <object class="wxButton" name="btnAddCert">
-                              <label>Adicionar Certificado</label>
-                              <style/>
-                              <bitmapposition>wxLEFT</bitmapposition>
-                              <default>0</default>
-                            </object>
-                          </object>
+                        <option>3</option>
+                        <object class="wxListBox" name="listCerts">
+                          <style>wxLB_SORT|wxLB_EXTENDED|wxLB_SINGLE</style>
+                          <content>
+                            <item>a</item>
+                            <item>b</item>
+                            <item>c</item>
+                            <item>aa</item>
+                          </content>
+                          <selection>-1</selection>
                         </object>
                       </object>
-                      <object class="sizeritem" name="gridSizer29">
-                        <flag>wxALL|wxEXPAND</flag>
+                      <object class="sizeritem" name="flexGridSizer481">
+                        <flag>wxEXPAND</flag>
                         <border>5</border>
                         <option>2</option>
-                        <object class="wxGridSizer">
+                        <object class="wxFlexGridSizer">
                           <cols>2</cols>
                           <rows>0</rows>
                           <vgap>0</vgap>
                           <hgap>0</hgap>
+                          <growablecols>1</growablecols>
+                          <growablerows/>
                           <object class="sizeritem">
                             <flag>wxALL</flag>
                             <border>5</border>
-                            <object class="wxStaticText" name="m_staticText93">
-                              <label>Static Text Label</label>
+                            <object class="wxStaticText" name="lblCertInfoName">
+                              <label>Nome:</label>
                               <style/>
                             </object>
                           </object>
                           <object class="sizeritem">
                             <flag>wxALL</flag>
                             <border>5</border>
-                            <object class="wxStaticText" name="m_staticText95">
-                              <label>Static Text Label</label>
+                            <object class="wxStaticText" name="outCertInfoName">
+                              <label>Nome Sobrenome</label>
                               <style/>
                             </object>
                           </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="lblCertInfoEmail">
+                              <label>Email:</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="outCertInfoEmail">
+                              <label>a@b.com</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="lblCertInfoCPF">
+                              <label>CPF/CNPJ:</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="outCertInfoCPF">
+                              <label>000.000.000-00</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="lblCertInfoAC">
+                              <label>Emissor:</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="outCertInfoAC">
+                              <label>AC Xyz</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="lblCertInfoNotBefore">
+                              <label>Válido de:</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="outCertInfoNotBefore">
+                              <label>01/01/2000</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="lblCertInfoNotAfter">
+                              <label>Válido até:</label>
+                              <style/>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL</flag>
+                            <border>5</border>
+                            <object class="wxStaticText" name="outCertInfoNotAfter">
+                              <label>01/01/2001</label>
+                              <style/>
+                            </object>
+                          </object>
+                        </object>
+                      </object>
+                      <object class="sizeritem">
+                        <flag>wxALL|wxALIGN_CENTER</flag>
+                        <border>5</border>
+                        <object class="wxButton" name="btnAddCert">
+                          <label>Adicionar Certificado</label>
+                          <style/>
+                          <bitmapposition>wxLEFT</bitmapposition>
+                          <default>0</default>
                         </object>
                       </object>
                     </object>
@@ -280,6 +360,7 @@
                   <border>5</border>
                   <object class="wxPanel" name="panelCertsFirst">
                     <style>wxTAB_TRAVERSAL</style>
+                    <hidden>1</hidden>
                     <object class="wxBoxSizer">
                       <orient>wxVERTICAL</orient>
                       <object class="spacer" name="Spacer154">
