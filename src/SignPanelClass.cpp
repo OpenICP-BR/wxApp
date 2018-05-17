@@ -11,15 +11,38 @@ void SignPanelClass::Init(wxFrame *the_frame) {
 	// Get some stuff
 	btnFileToSign = XRCCTRL(*frame, "btnFileToSign", wxButton);
 	inpFileToSign = XRCCTRL(*frame, "inpFileToSign", wxTextCtrl);
+	choSignAs = XRCCTRL(*frame, "choSignAs", wxChoice);
 
 	// Bind events
 	btnFileToSign->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
         &SignPanelClass::OpenFileDialog, this);
+	choSignAs->Bind(wxEVT_CHOICE,
+		&SignPanelClass::OnSignAsClick, this);
+
+	updateCerts();
+}
+
+void SignPanelClass::updateCerts() {
+	// Fix certs list
+	if (last_n_certs != Config.GetUserCerts().size()) {
+		last_n_certs = Config.GetUserCerts().size();
+		choSignAs->Clear();
+		for (auto &pair : Config.GetUserCerts()) {
+			choSignAs->Append(pair.first);
+		}
+	}
+}
+
+void SignPanelClass::OnSignAsClick(wxCommandEvent& WXUNUSED(event)) {
+	updateCerts();
 }
 
 void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 	int n;
 	wxArrayString filenames;
+
+	// Just a little hack
+	updateCerts();
 
 	// Show file dialog
 	file_dialog->ShowModal();

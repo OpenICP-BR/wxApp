@@ -210,6 +210,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
+                  <option>1</option>
                   <object class="wxPanel" name="panelCertsList">
                     <style>wxTAB_TRAVERSAL</style>
                     <object class="wxBoxSizer">
@@ -361,6 +362,7 @@
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
+                  <option>1</option>
                   <object class="wxPanel" name="panelCertsFirst">
                     <style>wxTAB_TRAVERSAL</style>
                     <hidden>1</hidden>
