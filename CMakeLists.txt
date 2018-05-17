@@ -11,8 +11,15 @@ set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 set(USE_STATIC_WXWIDGETS false)
 set(APP_VERSION "0.0.1")
-
 add_definitions(-DUSE_FAKE_ICP_ROOT)
+set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")
+if (APPLE)
+	set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/osx/")
+elseif(MINGW OR WIN32)
+	set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/win/")
+elseif(UNIX)
+	set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/linux/")
+endif()
 
 # Get libraries
 set(OPENSSL_ROOT_DIR "${CMAKE_SOURCE_DIR}/openssl-1.1.0h/dist/")
@@ -50,18 +57,20 @@ if (APPLE)
 	add_custom_command(
 		TARGET openicp
 		POST_BUILD
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_osx.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 	)
 	# Allow us to easily generate a .dmg file for distribution
 	add_custom_target(dmg
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/fix_osx_dylibs.sh
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/make_dmg.sh
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
+		COMMAND ${TOOL_DIR}/fix_dylibs.sh
+		COMMAND ${TOOL_DIR}/make_dmg.sh
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 	# Add `make run`
 	add_custom_target(run
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_osx.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
 		COMMAND "${MACOSX_PACKAGE_LOCATION}/MacOS/openicp"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -70,12 +79,14 @@ elseif(UNIX)
 	add_custom_command(
 		TARGET openicp
 		POST_BUILD
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/copy_res_unix.sh "${CMAKE_BINARY_DIR}"
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 	)
 	# Add `make run`
 	add_custom_target(run
-		COMMAND openicp
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND "${CMAKE_BINARY_DIR}/openicp"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
