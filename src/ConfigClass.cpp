@@ -11,10 +11,17 @@ void ConfigClass::Init() {
 	config_dir = wxStandardPaths::Get().GetUserDataDir();
 	config_dir.SetFullName("");
 	config_dir.MakeAbsolute();
-
 	if (!config_dir.DirExists()) {
 		config_dir.Mkdir();
 	}
+	
+	#if __linux__
+	config_dir.AppendDir(".config");
+	if (!config_dir.DirExists()) {
+		config_dir.Mkdir();
+	}
+	#endif //__linux__
+
 	config_dir.AppendDir("OpenICP");
 	if (!config_dir.DirExists()) {
 		config_dir.Mkdir();

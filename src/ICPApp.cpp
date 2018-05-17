@@ -16,7 +16,7 @@ bool ICPApp::OnInit() {
 
 	// Load basic config
 	Config.Init();
-	CAStore.AddAllCAsFromDir("./cas/");
+	CAStore.AddAllCAsFromDir("./res/CAs/");
 	CAStore.AddAllCAsFromDir(executable_dir+"/../Resources/CAs/");
 	CAStore.AddAllCAsFromDir(Config.CAsPath());
 	Config.ReloadCerts();
