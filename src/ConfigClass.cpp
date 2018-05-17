@@ -104,7 +104,7 @@ map<wxString, CertClass> &ConfigClass::GetUserCerts() {
 	return user_certs;
 }
 
-PKCS12Class* ConfigClass::GetPKCS12(wxString subject_hash, wxString password) {
+PKCS12Class* ConfigClass::GetPKCS12(wxString WXUNUSED(subject_hash), wxString WXUNUSED(password)) {
 	return NULL;
 }
 
