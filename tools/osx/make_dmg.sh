@@ -1,5 +1,8 @@
 #!/bin/bash
 
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 BIN_DIR=bin/
 DMG_DIR="${BIN_DIR}/dmg/"
 DMG_NAME="OpenICP-BR"
@@ -14,4 +17,4 @@ ln -s /Applications "${DMG_DIR}/Aplicativos"
 cp -r "${BIN_DIR}/openicp.app/"* "${DMG_DIR}/OpenICP-BR.app"
 hdiutil create -fs HFS+ -srcfolder "${DMG_DIR}" -volname "${DMG_NAME}" "${DMG_FILE}"
 rm "${DMG_DIR}/Aplicativos"
-echo "Created DMG file on ${DMG_FILE}"
+echo -e "${GREEN}Created DMG file on ${NC}"
