@@ -34,7 +34,7 @@ bool ICPApp::OnInit() {
 		wxLogDebug("Loading %s", ui_path);
 		wxXmlResource::Get()->Load(ui_path);
 	} else {
-		ui_path = wxGetCwd()+"/ui.xrc";
+		ui_path = wxGetCwd()+"/res/ui.xrc";
 		wxLogDebug("Loading %s", ui_path);
 		wxXmlResource::Get()->Load(ui_path);
 	}
