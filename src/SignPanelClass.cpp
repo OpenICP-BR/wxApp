@@ -16,8 +16,8 @@ void SignPanelClass::Init(wxFrame *the_frame) {
 	// Bind events
 	btnFileToSign->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
         &SignPanelClass::OpenFileDialog, this);
-	choSignAs->Bind(wxEVT_CHOICE,
-		&SignPanelClass::OnSignAsClick, this);
+	XRCCTRL(*frame, "nbMain", wxNotebook)->Bind(wxEVT_NOTEBOOK_PAGE_CHANGED,
+		&SignPanelClass::OnPageChanged, this);
 
 	updateCerts();
 }
@@ -33,16 +33,13 @@ void SignPanelClass::updateCerts() {
 	}
 }
 
-void SignPanelClass::OnSignAsClick(wxCommandEvent& WXUNUSED(event)) {
+void SignPanelClass::OnPageChanged(wxBookCtrlEvent& WXUNUSED(event)) {
 	updateCerts();
 }
 
 void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 	int n;
 	wxArrayString filenames;
-
-	// Just a little hack
-	updateCerts();
 
 	// Show file dialog
 	file_dialog->ShowModal();

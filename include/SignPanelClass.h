@@ -1,6 +1,7 @@
 #pragma once
 #include "Common.h"
 #include "ConfigClass.h"
+#include <wx/notebook.h>
 
 class SignPanelClass {
 protected:
@@ -15,6 +16,6 @@ protected:
 public:
 	void Init(wxFrame *frame);
 	void OpenFileDialog(wxCommandEvent& event);
-	void OnSignAsClick(wxCommandEvent& event);
+	void OnPageChanged(wxBookCtrlEvent& WXUNUSED(event));
 	~SignPanelClass();
 };
