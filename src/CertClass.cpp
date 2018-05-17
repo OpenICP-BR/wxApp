@@ -45,7 +45,7 @@ CertClass::~CertClass() {
 }
 
 wxString CertClass::NiceName() {
-	return Subject.CommonName() + ":" + Subject.DocID() + " (" + Issuer.CommonName() + ")";
+	return Subject.CommonName() + "\n" + Subject.DocID() + " (" + Issuer.CommonName() + ")";
 }
 
 wxString CertClass::NotBeforeString() {

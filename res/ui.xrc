@@ -6,6 +6,7 @@
     <style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
     <object class="wxBoxSizer">
       <orient>wxVERTICAL</orient>
+      <minsize>700,300</minsize>
       <object class="sizeritem">
         <flag>wxALL|wxEXPAND</flag>
         <border>5</border>
@@ -211,26 +212,38 @@
                   <border>5</border>
                   <object class="wxPanel" name="panelCertsList">
                     <style>wxTAB_TRAVERSAL</style>
-                    <object class="wxFlexGridSizer">
-                      <cols>2</cols>
-                      <rows>0</rows>
-                      <vgap>0</vgap>
-                      <hgap>0</hgap>
-                      <growablecols/>
-                      <growablerows/>
-                      <object class="sizeritem">
-                        <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
+                    <object class="wxBoxSizer">
+                      <orient>wxHORIZONTAL</orient>
+                      <object class="sizeritem" name="boxSizer142">
+                        <flag>wxALL|wxEXPAND</flag>
                         <border>5</border>
-                        <option>3</option>
-                        <object class="wxListBox" name="listCerts">
-                          <style>wxLB_SORT|wxLB_NEEDED_SB|wxLB_EXTENDED|wxLB_SINGLE</style>
-                          <content>
-                            <item>a</item>
-                            <item>b</item>
-                            <item>c</item>
-                            <item>aa</item>
-                          </content>
-                          <selection>-1</selection>
+                        <object class="wxBoxSizer">
+                          <orient>wxVERTICAL</orient>
+                          <object class="sizeritem">
+                            <flag>wxALL|wxEXPAND</flag>
+                            <border>5</border>
+                            <option>1</option>
+                            <object class="wxListBox" name="listCerts">
+                              <style>wxLB_SINGLE</style>
+                              <content>
+                                <item>1</item>
+                                <item>b</item>
+                                <item>c</item>
+                                <item>d</item>
+                              </content>
+                              <selection>-1</selection>
+                            </object>
+                          </object>
+                          <object class="sizeritem">
+                            <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
+                            <border>5</border>
+                            <object class="wxButton" name="btnAddCert">
+                              <label>Adicionar Certificado</label>
+                              <style/>
+                              <bitmapposition>wxLEFT</bitmapposition>
+                              <default>0</default>
+                            </object>
+                          </object>
                         </object>
                       </object>
                       <object class="sizeritem" name="flexGridSizer481">
@@ -342,16 +355,6 @@
                           </object>
                         </object>
                       </object>
-                      <object class="sizeritem">
-                        <flag>wxALL|wxALIGN_CENTER</flag>
-                        <border>5</border>
-                        <object class="wxButton" name="btnAddCert">
-                          <label>Adicionar Certificado</label>
-                          <style/>
-                          <bitmapposition>wxLEFT</bitmapposition>
-                          <default>0</default>
-                        </object>
-                      </object>
                     </object>
                   </object>
                 </object>
@@ -415,19 +418,15 @@
     <style>wxDEFAULT_DIALOG_STYLE|wxCAPTION|wxRESIZE_BORDER|wxMINIMIZE_BOX</style>
     <object class="wxWizardPageSimple" name="wpAddCertLoc">
       <style/>
-      <object class="wxFlexGridSizer">
-        <cols>1</cols>
-        <rows>0</rows>
-        <vgap>0</vgap>
-        <hgap>0</hgap>
-        <growablecols>0</growablecols>
-        <growablerows/>
+      <object class="wxBoxSizer">
+        <orient>wxVERTICAL</orient>
         <object class="sizeritem">
-          <flag>wxALL|wxEXPAND</flag>
+          <flag>wxALL</flag>
           <border>5</border>
           <object class="wxStaticText" name="lblCertFile">
             <label>Arquivo com o certificado A1 (.p12 ou .pfx):</label>
             <style/>
+            <wrap>200</wrap>
           </object>
         </object>
         <object class="sizeritem">
@@ -444,17 +443,11 @@
     </object>
     <object class="wxWizardPageSimple" name="wpAddCertPass">
       <style/>
-      <object class="wxFlexGridSizer">
-        <cols>1</cols>
-        <rows>0</rows>
-        <vgap>0</vgap>
-        <hgap>0</hgap>
-        <growablecols>0</growablecols>
-        <growablerows/>
+      <object class="wxBoxSizer">
+        <orient>wxVERTICAL</orient>
         <object class="sizeritem">
-          <flag>wxALL|wxEXPAND</flag>
+          <flag>wxALL</flag>
           <border>5</border>
-          <option>1</option>
           <object class="wxStaticText" name="lblCertPass">
             <label>Senha do certificado:</label>
             <style/>
@@ -466,6 +459,19 @@
           <object class="wxTextCtrl" name="inpCertPass">
             <style>wxTE_PASSWORD</style>
           </object>
+        </object>
+        <object class="sizeritem">
+          <flag>wxALL</flag>
+          <border>5</border>
+          <object class="wxStaticText" name="m_staticText145">
+            <label>Sua senha não será armazenada.</label>
+            <style/>
+          </object>
+        </object>
+        <object class="spacer" name="Spacer154">
+          <flag>wxALL</flag>
+          <border>5</border>
+          <option>1</option>
         </object>
       </object>
     </object>
