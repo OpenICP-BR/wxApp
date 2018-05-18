@@ -11,7 +11,7 @@ protected:
 	wxButton *btnFileToSign;
 	wxTextCtrl *inpFileToSign;
 	wxChoice *choSignAs;
-	int last_n_certs=0;
+	unsigned int last_n_certs=0;
 	void updateCerts();
 public:
 	void Init(wxFrame *frame);
