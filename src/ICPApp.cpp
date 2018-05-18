@@ -63,6 +63,11 @@ ICPApp::ICPApp () {
 	#ifdef USE_FAKE_ICP_ROOT
 	cout << "WARNING: Using FAKE ICP root certificate. DO NOT USE IN PRODUCTION!!!" << endl;
 	#endif
+	printf("OpenICP version: %s\n", OpenICP_Version);
+	printf("OpenICP version major: %d\n", OpenICP_Version_Major);
+	printf("OpenICP version minor: %d\n", OpenICP_Version_Minor);
+	printf("OpenICP version patch: %d\n", OpenICP_Version_Patch);
+	printf("OpenICP version suffix: %s\n", OpenICP_Version_Suffix);
 }
 
 void ICPApp::PreExit () {
