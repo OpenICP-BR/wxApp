@@ -19,10 +19,10 @@ TEST(CertClassTest, LoadPEMString_1) {
     EXPECT_EQ(cert.Subject.Hash(), 0x0be9bcaa);
     EXPECT_EQ(cert.Subject.HashString(), wxString("0be9bcaa"));
 
-    EXPECT_EQ(cert.NotBeforeString(), wxString("2018-05-03 18:44:12+00:00"));
-    EXPECT_EQ(cert.NotAfterString(), wxString("2019-05-13 18:44:12+00:00"));
+    EXPECT_EQ(cert.NotBeforeString(), wxString("03/05/2018 18:44:12 UTC"));
+    EXPECT_EQ(cert.NotAfterString(), wxString("13/05/2019 18:44:12 UTC"));
 
-    EXPECT_EQ(cert.FingerPrintSHA256(), wxString("EC:E3:7D:A8:8B:2E:C7:69:06:DE:70:1D:38:08:AE:1E:37:B5:F5:E3:46:77:A5:82:56:D2:B0:99:BB:6A:79:C5"));
+    EXPECT_EQ(cert.FingerPrintSHA256_HumanReadable(), wxString("EC:E3:7D:A8:8B:2E:C7:69:06:DE:70:1D:38:08:AE:1E:37:B5:F5:E3:46:77:A5:82:56:D2:B0:99:BB:6A:79:C5"));
 
     EXPECT_EQ(cert.Issuer.Country(), wxString("BR"));
     EXPECT_EQ(cert.Issuer.State(), wxString("FN"));

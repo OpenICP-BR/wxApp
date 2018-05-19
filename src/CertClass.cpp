@@ -85,7 +85,7 @@ wxString time_t2iso8601(time_t the_time) {
 	char buf[999];
 	struct tm* tm_info;
 	tm_info = gmtime(&the_time);
-	strftime(buf, 26, "%d/%m/%Y %H:%M:%S", tm_info);
+	strftime(buf, 26, "%d/%m/%Y %H:%M:%S UTC", tm_info);
 	return wxString(buf);
 }
 
