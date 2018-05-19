@@ -19,6 +19,8 @@ bool ICPApp::OnInit() {
 	Config.Init();
 	CAStore.AddAllCAsFromDir("./res/CAs/");
 	CAStore.AddAllCAsFromDir(executable_dir+"/../Resources/CAs/");
+	CAStore.AddAllCAsFromDir("/usr/share/openicpbr/CAs/");
+	CAStore.AddAllCAsFromDir("/usr/local/openicpbr/CAs/");
 	CAStore.AddAllCAsFromDir(Config.CAsPath());
 	Config.ReloadCerts();
 
@@ -29,16 +31,10 @@ bool ICPApp::OnInit() {
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
-	ui_path = executable_dir + "../Resources/ui.xrc";
-	wxLogDebug("wxFileExists(\"%s\") = %d", ui_path, wxFileExists(ui_path));
-	if (wxFileExists(ui_path)) {
-		wxLogDebug("Loading %s", ui_path);
-		wxXmlResource::Get()->Load(ui_path);
-	} else {
-		ui_path = wxGetCwd()+"/res/ui.xrc";
-		wxLogDebug("Loading %s", ui_path);
-		wxXmlResource::Get()->Load(ui_path);
-	}
+	LoadUI(executable_dir + "../Resources/ui.xrc");
+	LoadUI("/usr/share/openicpbr/ui.xrc");
+	LoadUI("/usr/local/openicpbr/ui.xrc");
+	LoadUI(wxGetCwd()+"/res/ui.xrc");
 
 	// Get window and frame
 	theWindow = this->GetTopWindow();
@@ -58,6 +54,16 @@ bool ICPApp::OnInit() {
 
 	// return this->wxAppConsole->OnInit();
 	return wxAppConsole::OnInit();
+}
+
+bool ICPApp::LoadUI(wxString path) {
+	wxLogDebug("wxFileExists(\"%s\") = %d", path, wxFileExists(path));
+	if (wxFileExists(path)) {
+		wxLogDebug("Loading %s", path);
+		wxXmlResource::Get()->Load(path);
+		return true;
+	}
+	return false;
 }
 
 ICPApp::ICPApp () {

@@ -11,6 +11,7 @@ protected:
 	wxFrame *theFrame;
 	SignPanelClass *sign_panel;
 	CertsPanelClass *certs_panel;
+	bool LoadUI(wxString path);
 public:
 	bool OnInit();
 	void PreExit();

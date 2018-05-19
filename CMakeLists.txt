@@ -4,7 +4,7 @@ project(openicpbr CXX)
 # Set some basic variables
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/dist)
+set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
@@ -81,13 +81,17 @@ elseif(UNIX)
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 	)
-	add_custom_target(archpkg
-		# This below line ensures we always run with the most up to date res files
-		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
-		COMMAND ${TOOL_DIR}/make_arch_pkg.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
-		DEPENDS openicp
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-	)
+	install(TARGETS openicp RUNTIME DESTINATION bin/)
+	install(DIRECTORY "${CMAKE_BINARY_DIR}/res/CAs/" DESTINATION share/openicpbr/CAs)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/ui.xrc" DESTINATION share/openicpbr/)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/github.gjvnq.openicpbr.desktop" DESTINATION share/applications/)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo.svg" DESTINATION share/icons/hicolor/scalable/apps RENAME github.gjvnq.openicpbr.svg)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-16.png" DESTINATION share/icons/hicolor/16x16/apps RENAME github.gjvnq.openicpbr.png)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-32.png" DESTINATION share/icons/hicolor/32x32/apps RENAME github.gjvnq.openicpbr.png)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-48.png" DESTINATION share/icons/hicolor/48x48/apps RENAME github.gjvnq.openicpbr.png)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-64.png" DESTINATION share/icons/hicolor/64x64/apps RENAME github.gjvnq.openicpbr.png)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-128.png" DESTINATION share/icons/hicolor/128x128/apps RENAME github.gjvnq.openicpbr.png)
+	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-256.png" DESTINATION share/icons/hicolor/256x256/apps RENAME github.gjvnq.openicpbr.png)
 	# Add `make run`
 	add_custom_target(run
 		# This below line ensures we always run with the most up to date res files

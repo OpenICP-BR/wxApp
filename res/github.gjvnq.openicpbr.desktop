@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=OpenICP-BR
+Version=0.1.0
+Comment=A program for digitally singing and verifying documents according to Brazilian Law.
+Exec=openicp
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=github.gjvnq.openicpbr
+Categories=Utility;
