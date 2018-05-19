@@ -12,9 +12,11 @@ protected:
 	SignPanelClass *sign_panel;
 	CertsPanelClass *certs_panel;
 public:
-    virtual bool OnInit();
-    void PreExit();
-    void OnClose(wxCloseEvent& WXUNUSED(event));
-    ICPApp();
-    ~ICPApp();
+	bool OnInit();
+	void PreExit();
+	void OnClose(wxCloseEvent& WXUNUSED(event));
+	void OnInitCmdLine(wxCmdLineParser& parser);
+	bool OnCmdLineParsed(wxCmdLineParser& parser);
+	ICPApp();
+	~ICPApp();
 };

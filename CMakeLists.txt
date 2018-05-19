@@ -10,7 +10,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
 set(USE_STATIC_WXWIDGETS false)
-set(APP_VERSION "0.0.1")
 add_definitions(-DUSE_FAKE_ICP_ROOT)
 set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")
 if (APPLE)
@@ -82,11 +81,18 @@ elseif(UNIX)
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 	)
+	add_custom_target(archpkg
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND ${TOOL_DIR}/make_arch_pkg.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
 	# Add `make run`
 	add_custom_target(run
 		# This below line ensures we always run with the most up to date res files
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
-		COMMAND "${CMAKE_BINARY_DIR}/openicp"
+		COMMAND ${CMAKE_BINARY_DIR}/openicp
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)

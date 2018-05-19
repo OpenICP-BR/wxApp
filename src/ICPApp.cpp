@@ -5,6 +5,7 @@
 #include <openssl/evp.h>
 #include <openssl/err.h>
 #include <wx/filefn.h>
+#include <wx/cmdline.h>
 #include "CertClass.h"
 
 wxIMPLEMENT_APP(ICPApp);
@@ -54,7 +55,9 @@ bool ICPApp::OnInit() {
 		// Show it
 		theFrame->Show(true);
 	}
-	return true;
+
+	// return this->wxAppConsole->OnInit();
+	return wxAppConsole::OnInit();
 }
 
 ICPApp::ICPApp () {
@@ -78,6 +81,21 @@ void ICPApp::PreExit () {
 void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
 	PreExit();
 	theFrame->Destroy();
+}
+
+void ICPApp::OnInitCmdLine(wxCmdLineParser& parser) {
+	parser.AddSwitch("V", "version",  "Prints the OpenICP current version");
+	// must refuse '/' as parameter starter or cannot use "/path" style paths
+	parser.SetSwitchChars("-");
+}
+
+bool ICPApp::OnCmdLineParsed(wxCmdLineParser& parser) {
+	bool print_version = parser.Found("V");
+	if (print_version) {
+		printf("OpenICP version: %s\n", OpenICP_Version);
+		ExitMainLoop();
+	}
+	return true;
 }
 
 ICPApp::~ICPApp () {
