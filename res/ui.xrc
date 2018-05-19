@@ -8,13 +8,13 @@
       <orient>wxVERTICAL</orient>
       <minsize>700,300</minsize>
       <object class="sizeritem">
-        <flag>wxALL|wxEXPAND</flag>
+        <flag>wxALL|wxEXPAND|wxALIGN_CENTER</flag>
         <border>5</border>
         <object class="wxStaticText" name="lblTestVersion">
           <label>VERSÃO DE TESTES! - SEM VALIDADE LEGAL</label>
-          <style>wxALIGN_CENTRE</style>
-          <bg>wxSYS_COLOUR_INACTIVECAPTIONTEXT</bg>
-          <fg>wxSYS_COLOUR_HIGHLIGHT</fg>
+          <style/>
+          <bg>#000000</bg>
+          <fg>#B80021</fg>
         </object>
       </object>
       <object class="sizeritem">
@@ -94,37 +94,18 @@
                       </object>
                     </object>
                     <object class="sizeritem">
-                      <flag>wxALL</flag>
+                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
-                      <object class="wxStaticText" name="lblSignatureType">
-                        <label>Assinatura e conteúdo:</label>
+                      <object class="wxStaticText" name="lblCertPass">
+                        <label>Senha do certificado:</label>
                         <style/>
                       </object>
                     </object>
-                    <object class="sizeritem" name="bSizer10">
-                      <flag>wxEXPAND</flag>
+                    <object class="sizeritem">
+                      <flag>wxALL|wxEXPAND</flag>
                       <border>5</border>
-                      <option>10</option>
-                      <object class="wxBoxSizer">
-                        <orient>wxVERTICAL</orient>
-                        <object class="sizeritem">
-                          <flag>wxALL</flag>
-                          <border>5</border>
-                          <object class="wxRadioButton" name="m_radioBtn5">
-                            <style/>
-                            <label>Em arquivos diferentes (.p7s)</label>
-                            <value>0</value>
-                          </object>
-                        </object>
-                        <object class="sizeritem">
-                          <flag>wxALL</flag>
-                          <border>5</border>
-                          <object class="wxRadioButton" name="m_radioBtn6">
-                            <style/>
-                            <label>No mesmo arquivo (.p7m)</label>
-                            <value>0</value>
-                          </object>
-                        </object>
+                      <object class="wxTextCtrl" name="inpCertSignerPass">
+                        <style>wxTE_PASSWORD</style>
                       </object>
                     </object>
                   </object>
@@ -158,7 +139,7 @@
                   <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
                   <object class="wxStaticText" name="lblSignatureFile">
-                    <label>Arquivo de assinatura (.p7m ou .p7s):</label>
+                    <label>Arquivo de assinatura (.p7s):</label>
                     <style/>
                   </object>
                 </object>

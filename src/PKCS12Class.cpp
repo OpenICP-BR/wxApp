@@ -48,15 +48,15 @@ int PKCS12Class::Unlock(wxString pass) {
 
 	if (p12 == NULL) {
 		cout << "PKCS12Class::Unlock: .p12 file was not loaded" << endl;
-		return 1; // Wrong password
+		return PKCS12_UNLOCK_ERR_FILE_NOT_LOADED;
 	}
 	if (!PKCS12_verify_mac(p12, c_pass, len)) {
 		cout << "PKCS12Class::Unlock: Wrong password" << endl;
-		return 2; // Wrong password
+		return PKCS12_UNLOCK_ERR_WRONG_PASSWORD;
 	}
 	if (!PKCS12_parse(p12, c_pass, &key_pair, &x509_cert, &ca_stack)) {
 		cout << "PKCS12Class::Unlock: Failed to parse" << endl;
-		return 3; // Failed to parse
+		return PKCS12_UNLOCK_ERR_FAILED_TO_PARSE;
 	}
 
 	cert.LoadCert(x509_cert);
@@ -107,6 +107,17 @@ wxString PKCS12Class::FingerPrintSHA256_FileFriendly() {
 
 wxString PKCS12Class::FingerPrintSHA256_HumanReadable() {
 	return cert.FingerPrintSHA256_HumanReadable();
+}
+
+int PKCS12Class::SignFile(wxString path) {
+	wxString nothing;
+	return SignFile(path, nothing);
+}
+
+int PKCS12Class::SignFile(wxString path, wxString &err_msg) {
+	cout << "Attempting to sign file " << path << endl;
+	err_msg = wxT("Não implementado");
+	return ERR_NOT_IMPLEMENTED;
 }
 
 PKCS12Class::~PKCS12Class () {

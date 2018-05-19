@@ -111,8 +111,19 @@ map<wxString, CertClass> &ConfigClass::GetUserCerts() {
 	return user_certs;
 }
 
-PKCS12Class* ConfigClass::GetPKCS12(wxString WXUNUSED(subject_hash), wxString WXUNUSED(password)) {
-	return NULL;
+PKCS12Class* ConfigClass::GetPKCS12(wxString nice_name) {
+	if (user_certs.find(nice_name) == user_certs.end()) {
+		return NULL;
+	}
+	wxString fp = user_certs[nice_name].FingerPrintSHA256_FileFriendly();
+	wxFileName fname = certs_path.GetPathWithSep();
+	fname.SetFullName(fp+".p12");
+	PKCS12Class *p12 = new PKCS12Class();
+	if (p12->LoadFromFile(fname.GetFullPath()) == OK) {
+		return p12;
+	} else {
+		return NULL;
+	}
 }
 
 ConfigClass::~ConfigClass() {

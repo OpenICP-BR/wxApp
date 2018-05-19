@@ -19,7 +19,7 @@ public:
 	bool AddCert(PKCS12Class p12);
 	bool AddPKCS12(PKCS12Class p12);
 	map<wxString, CertClass> &GetUserCerts();
-	PKCS12Class* GetPKCS12(wxString subject_hash, wxString password);
+	PKCS12Class* GetPKCS12(wxString nice_name);
 	~ConfigClass();
 };
 

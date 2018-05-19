@@ -4,6 +4,10 @@
 #include "Common.h"
 #include "CertClass.h"
 
+#define PKCS12_UNLOCK_ERR_FILE_NOT_LOADED 1
+#define PKCS12_UNLOCK_ERR_WRONG_PASSWORD 2
+#define PKCS12_UNLOCK_ERR_FAILED_TO_PARSE 3
+
 class PKCS12Class {
 protected:
 	PKCS12 *p12;
@@ -19,6 +23,8 @@ public:
 	EntityInfoClass Issuer();
 	int LoadFromFile(wxString path);
 	int Unlock(wxString pass);
+	int SignFile(wxString path);
+	int SignFile(wxString path, wxString &err_msg);
 	void SetPassword(wxString pass);
 	bool SaveKeylessCert(wxString dir);
 	bool SaveEncryptedP12(wxString dir);

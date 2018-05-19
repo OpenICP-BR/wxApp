@@ -13,6 +13,9 @@
 
 #define SHA256_RAW_LEN 32
 
+#define ERR_NOT_IMPLEMENTED -1
+#define ERR_UNKOWN -2
+
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
     #include <wx/wx.h>

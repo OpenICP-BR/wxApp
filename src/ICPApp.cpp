@@ -32,9 +32,10 @@ bool ICPApp::OnInit() {
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
 	LoadUI(executable_dir + "../Resources/ui.xrc");
+	LoadUI(wxGetCwd()+"/res/ui.xrc");
 	LoadUI("/usr/share/openicpbr/ui.xrc");
 	LoadUI("/usr/local/openicpbr/ui.xrc");
-	LoadUI(wxGetCwd()+"/res/ui.xrc");
+	LoadUI("/usr/local/share/openicpbr/ui.xrc");
 
 	// Get window and frame
 	theWindow = this->GetTopWindow();
