@@ -94,11 +94,25 @@ bool CAStoreClass::Verify(CertClass cert) {
 	return Verify(cert._getX509());
 }
 
+bool CAStoreClass::Verify(X509 *cert, wxString &error_string, STACK_OF(X509) *chain) {
+	int error_int, error_depth;
+	CertClass error_cert;
+	return Verify(cert, error_int, error_string, error_depth, error_cert, chain);
+}
+
+bool CAStoreClass::Verify(CertClass cert, wxString &error_string, STACK_OF(X509) *chain) {
+	return Verify(cert._getX509(), error_string, chain);
+}
+
 bool CAStoreClass::Verify(CertClass cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert) {
-	return Verify(cert._getX509(), error_int, error_string, error_depth, error_cert);
+	return Verify(cert._getX509(), error_int, error_string, error_depth, error_cert, NULL);
 }
 
 bool CAStoreClass::Verify(X509 *cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert) {
+	return Verify(cert, error_int, error_string, error_depth, error_cert, NULL);
+}
+
+bool CAStoreClass::Verify(X509 *cert, int &error_int, wxString &error_string, int &error_depth, CertClass &error_cert, STACK_OF(X509) *chain) {
 	if (cert == NULL) {
 		return false;
 	}
@@ -113,6 +127,9 @@ bool CAStoreClass::Verify(X509 *cert, int &error_int, wxString &error_string, in
 		return false;
 	}
 	int rc = X509_verify_cert(ctx);
+	if (chain != NULL) {
+		chain = X509_STORE_CTX_get1_chain(ctx);
+	}
 	X509_STORE_CTX_free(ctx);
 	if (rc == 1) {
 		return true;

@@ -1,6 +1,8 @@
 #include "PKCS12Class.h"
+#include "CAStoreClass.h"
 #include <openssl/pem.h>
 #include <openssl/err.h>
+#include <openssl/cms.h>
 #include <openssl/x509.h>
 #include <openssl/pkcs12.h>
 
@@ -114,10 +116,51 @@ int PKCS12Class::SignFile(wxString path) {
 	return SignFile(path, nothing);
 }
 
-int PKCS12Class::SignFile(wxString path, wxString &err_msg) {
-	cout << "Attempting to sign file " << path << endl;
-	err_msg = wxT("Não implementado");
-	return ERR_NOT_IMPLEMENTED;
+int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
+	wxString verify_err_msg, output;
+	FILE *fp_in=NULL, *fp_out=NULL;
+	BIO *bio_in=NULL;
+
+	cout << "Attempting to sign file " << input << endl;
+	output = input + ".p7s";
+
+	// Verify certificate and get full chain
+	STACK_OF(X509) *full_chain = NULL;
+	if (!CAStore.Verify(cert, verify_err_msg, full_chain)) {
+		err_msg = wxT("Certificado inválido. Motivo: ");
+		err_msg += verify_err_msg;
+		return PKCS12_SIGN_ERR_INVALID_CERT;
+	}
+
+	// Open input
+	fp_in = fopen(input.mb_str(), "r");
+	if (fp_in == NULL) {
+		cout << "File not found: " << input << endl;
+		err_msg = wxT("Arquivo não encontrado");
+		return PKCS12_SIGN_ERR_INPUT_NOT_FOUND;
+	}
+	BIO_set_fp(bio_in, fp_in, BIO_CLOSE);
+
+	// Open output
+	fp_out = fopen(output, "w");
+	if (fp_out == NULL) {
+		cout << "File not writable: " << output << endl;
+		err_msg = wxT("Impossível criar arquivo de assinatura");
+		return PKCS12_SIGN_ERR_OUTPUT_NOT_WRITABLE;
+	}
+
+	CMS_ContentInfo *cms = CMS_sign(cert._getX509(), key_pair, full_chain, bio_in, CMS_BINARY|CMS_DETACHED|CMS_STREAM);
+	if (cms == NULL) {
+		err_msg = wxT("Erro desconhecido ao criar assiantura");
+		return ERR_UNKOWN;
+	}
+	int err = PEM_write_CMS(fp_out, cms);
+	if (err == 0) {
+		err_msg = wxT("Erro desconhecido ao escrever assiantura");
+		return ERR_UNKOWN;
+	}
+	err_msg = wxT("OK");
+	return OK;
 }
 
 PKCS12Class::~PKCS12Class () {
