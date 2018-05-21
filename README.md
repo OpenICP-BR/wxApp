@@ -36,9 +36,9 @@ Follow compilation instructions.
 
 Follow these instructions:
 
-  * [Linux 64bit](COMPILE - Linux 64bit.md)
-  * [macOS](COMPILE - macOS.md)
-  * [Windows](COMPILE - win64.md)
+  * [Linux 64bit](COMPILE.linux.arch.64bit.md)
+  * [macOS](COMPILE.macOS.md)
+  * [Windows](COMPILE.win.md)
 
 ## Features
 
