@@ -86,13 +86,18 @@ void SignPanelClass::SignFiles(wxCommandEvent& WXUNUSED(event)) {
 
 	wxString err_msg;
 	wxArrayString files_to_sign;
+	map<wxString, wxString> files_and_status;
 	// Get full paths
 	file_dialog->GetPaths(files_to_sign);
 	for (wxString &filename : files_to_sign) {
-		if (p12->SignFile(filename, err_msg) != OK) {
-			wxLogMessage(filename+": "+err_msg);
-		}
+		p12->SignFile(filename, err_msg);
+		files_and_status[filename] = err_msg;
 	}
+	wxString final_msg;
+	for (auto &pair : files_and_status) {
+		final_msg += pair.first+": "+pair.second+"\n";
+	}
+	wxLogMessage(final_msg);
 	free(p12);
 }
 
