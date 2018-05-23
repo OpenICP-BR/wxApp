@@ -43,7 +43,7 @@ Follow these instructions:
 ## Features
 
 - [x] Add certificates
-- [ ] Sign documents
+- [x] Sign documents
 - [ ] Verify signatures
 - [ ] Check CRL (Certificate Revocation List)
 - [ ] Support certificates in smart cards

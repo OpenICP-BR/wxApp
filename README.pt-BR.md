@@ -43,7 +43,7 @@ Siga essas instruções:
 ## Recursos
 
 - [x] Adicionar certificados
-- [ ] Assinar documentos
+- [x] Assinar documentos
 - [ ] Verificar assinaturas
 - [ ] Checar as CRLs (Listas de Certificados Revogados)
 - [ ] Suportar certificados em smartcards
