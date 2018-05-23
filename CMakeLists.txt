@@ -7,17 +7,22 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(USE_STATIC_WXWIDGETS false)
+set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
+
+# Should we include the FakePKI?
 if(NOT USE_FAKE_ICP)
 	add_definitions(-DUSE_FAKE_ICP_ROOT)
 	message(STATUS "Using FAKE PKI root")
 endif()
+
+# Should we use the "-dev" suffix
 if(NOT ${OPENICP_VERSION_DEV} MATCHES "false")
 	add_definitions(-DOPENICP_VERSION_DEV)
 	message(STATUS "Will compile a development version")
 endif()
+
+# Set some paths for our custom tools
 set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")
 if (APPLE)
 	set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/osx/")
@@ -27,11 +32,19 @@ elseif(UNIX)
 	set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/linux/")
 endif()
 
-# Get libraries
-set(OPENSSL_ROOT_DIR "${CMAKE_SOURCE_DIR}/openssl-1.1.0h/dist/")
-set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
-include_directories("${OPENSSL_ROOT_DIR}/include/")
+# Get OpenSSL
+find_package(OpenSSL 1.1)
+if(NOT OPENSSL_FOUND)
+	message(STATUS "Failed to get system's OpenSSL version 1.1. Using version on openssl-1.1.0h/")
+	message(STATUS "You may need to compile it first.")
+	set(OPENSSL_ROOT_DIR "${CMAKE_SOURCE_DIR}/openssl-1.1.0h/dist/")
+	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
+	include_directories("${OPENSSL_ROOT_DIR}/include/")
+endif()
 
+# Get wxWidgets
+set(wxWidgets_USE_UNICODE true)
+set(wxWidgets_USE_STATIC false)
 message(STATUS "Looking for wxWidgets...")
 find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
