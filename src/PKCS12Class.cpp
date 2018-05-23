@@ -118,8 +118,7 @@ int PKCS12Class::SignFile(wxString path) {
 
 int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 	wxString verify_err_msg, output;
-	FILE *fp_in=NULL, *fp_out=NULL;
-	BIO *bio_in=NULL;
+	BIO *bio_in=NULL, *bio_out=NULL;
 
 	cout << "Attempting to sign file " << input << endl;
 	output = input + ".p7s";
@@ -133,32 +132,38 @@ int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 	}
 
 	// Open input
-	fp_in = fopen(input.mb_str(), "r");
-	if (fp_in == NULL) {
+	bio_in = BIO_new_file(input.mb_str(), "r");
+	if (bio_in == NULL) {
 		cout << "File not found: " << input << endl;
 		err_msg = wxT("Arquivo não encontrado");
 		return PKCS12_SIGN_ERR_INPUT_NOT_FOUND;
 	}
-	BIO_set_fp(bio_in, fp_in, BIO_CLOSE);
 
 	// Open output
-	fp_out = fopen(output, "w");
-	if (fp_out == NULL) {
+	bio_out = BIO_new_file(output.mb_str(), "w");
+	if (bio_out == NULL) {
 		cout << "File not writable: " << output << endl;
 		err_msg = wxT("Impossível criar arquivo de assinatura");
 		return PKCS12_SIGN_ERR_OUTPUT_NOT_WRITABLE;
 	}
 
-	CMS_ContentInfo *cms = CMS_sign(cert._getX509(), key_pair, full_chain, bio_in, CMS_BINARY|CMS_DETACHED|CMS_STREAM);
+	// Start signature
+	CMS_ContentInfo *cms = CMS_sign(cert._getX509(), key_pair, full_chain, bio_in, CMS_BINARY);
 	if (cms == NULL) {
 		err_msg = wxT("Erro desconhecido ao criar assiantura");
 		return ERR_UNKOWN;
 	}
-	int err = PEM_write_CMS(fp_out, cms);
+	cout << "Signed message" << endl;
+	int err = i2d_CMS_bio(bio_out, cms);
+	BIO_flush(bio_out);
+	BIO_free(bio_out);
 	if (err == 0) {
+		print_openssl_err();
 		err_msg = wxT("Erro desconhecido ao escrever assiantura");
 		return ERR_UNKOWN;
 	}
+
+	cout << "Signature saved on " << output << endl;
 	err_msg = wxT("OK");
 	return OK;
 }

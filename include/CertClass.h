@@ -29,3 +29,4 @@ public:
 
 X509* PEM2X509(const char data[]);
 X509* FILE2X509(const char path[]);
+void print_openssl_err();

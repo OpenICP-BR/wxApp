@@ -1,5 +1,6 @@
 #include <time.h>
 #include "CertClass.h"
+#include <openssl/err.h>
 
 X509* PEM2X509(const char data[]) {
 	BIO *bmem;
@@ -166,4 +167,8 @@ bool CertClass::SaveCert(wxString dir) {
 
 X509* CertClass::_getX509() {
 	return cert;
+}
+
+void print_openssl_err() {
+	ERR_print_errors_fp(stdout);
 }
