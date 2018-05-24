@@ -1,4 +1,5 @@
 #pragma once
+#define UNICODE
 #include "Version.h"
 
 // See: https://stackoverflow.com/questions/24119388/openssl-fails-to-build-with-mingw-does-not-give-a-valid-preprocessing-token?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
