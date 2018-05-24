@@ -1,5 +1,6 @@
 #pragma once
 #define UNICODE
+#define _UNICODE
 #include "Version.h"
 
 // See: https://stackoverflow.com/questions/24119388/openssl-fails-to-build-with-mingw-does-not-give-a-valid-preprocessing-token?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -34,6 +35,11 @@
 #include "wx/xrc/xmlres.h"
 #include <vector>
 #include <map>
+
+#ifdef __WIN32__
+#include <openssl/bio.h>
+//extern BIO *BIO_new_file(const char *filename, const char *mode) asm("_BIO_new_file");
+#endif
 
 using std::vector;
 using std::map;

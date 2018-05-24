@@ -8,7 +8,7 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g")
+set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g -fPIC")
 
 # Should we include the FakePKI?
 if(NOT USE_FAKE_ICP)
@@ -38,8 +38,12 @@ if(NOT OPENSSL_FOUND)
 	message(STATUS "Failed to get system's OpenSSL version 1.1. Using version on openssl-1.1.0h/")
 	message(STATUS "You may need to compile it first.")
 	set(OPENSSL_ROOT_DIR "${CMAKE_SOURCE_DIR}/openssl-1.1.0h/dist/")
-	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
 	include_directories("${OPENSSL_ROOT_DIR}/include/")
+	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_ROOT_DIR}/lib/libcrypto.a")
+	#if(MINGW)
+	#	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_CRYPTO_LIBRARIES}" "${OPENSSL_ROOT_DIR}/lib/libcrypto_no_leading_char.a")
+	#	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_CRYPTO_LIBRARIES}")
+	#endif()
 endif()
 
 # Get wxWidgets
@@ -55,8 +59,8 @@ file(GLOB SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
 include_directories(${COMMON_INCLUDES})
 add_library(openicp_no_main_lib STATIC ${SOURCES})
-target_link_libraries(openicp_no_main_lib ${wxWidgets_LIBRARIES})
 target_link_libraries(openicp_no_main_lib ${OPENSSL_CRYPTO_LIBRARIES})
+target_link_libraries(openicp_no_main_lib ${wxWidgets_LIBRARIES})
 
 # Configure our desired binary
 if (APPLE)
