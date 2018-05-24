@@ -3,7 +3,7 @@ NOTE: Tested on Arch Linux.
   1. Install wxWidgets: `pacman -S extra/wxgtk3`.
   2. Clone repository: `git clone github.com/gjvnq/OpenICP-BR`.
   3. Enter directory: `cd OpenICP-BR`.
-  4. Compile OpenSSL.
+  4. Compile OpenSSL 1.1 (if not installed).
     1. Enter directory: `cd openssl-1.1.0h`.
     2. Make directory: `mkdir dist`.
     3. Configure: ``./Configure linux-x86_64 --prefix="`pwd`/dist" --openssldir="`pwd`/dist" no-dso``.
