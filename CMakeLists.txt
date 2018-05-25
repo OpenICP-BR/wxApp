@@ -33,7 +33,9 @@ elseif(UNIX)
 endif()
 
 # Get OpenSSL
-find_package(OpenSSL 1.1)
+if(TRY_SYSTEM_OPENSSL)
+	find_package(OpenSSL 1.1)
+endif()
 if(NOT OPENSSL_FOUND)
 	message(STATUS "Failed to get system's OpenSSL version 1.1. Using version on openssl-1.1.0h/")
 	message(STATUS "You may need to compile it first.")
@@ -44,6 +46,8 @@ if(NOT OPENSSL_FOUND)
 	#	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_CRYPTO_LIBRARIES}" "${OPENSSL_ROOT_DIR}/lib/libcrypto_no_leading_char.a")
 	#	set(OPENSSL_CRYPTO_LIBRARIES "${OPENSSL_CRYPTO_LIBRARIES}")
 	#endif()
+else()
+	include_directories("${OPENSSL_INCLUDE_DIR}")
 endif()
 
 # Get wxWidgets
