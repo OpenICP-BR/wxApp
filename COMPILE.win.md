@@ -15,16 +15,7 @@
 5. "Install": ```make install```.
 6. Hack: ```objcopy --remove-leading-char dist/lib/libcrypto.a dist/lib/libcrypto_no_leading_char.a```.
 
-# Stage 3: Install wxWidgets 3.0.4
-
-1. Download: ```wget https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.4/wxWidgets-3.0.4.zip```
-2. Create directory:```mkdir wxWidgets-3.0.4```.
-3. Extract it: ```cd wxWidgets-3.0.4 && unzip ../wxWidgets-3.0.4.zip```.
-4. Configure: ```./configure --enable-unicode --enable-xrc```.
-5. Compile: ```make```.
-6. Install: ```make install_sw```.
-
-# Stage 4: Compile OpenICP-BR
+# Stage 3: Compile OpenICP-BR
 
 1. Enter: ```cd OpenICP-BR```.
 2. Set compiler: ```export CCX=/c/msys64/mingw32/bin/gcc.exe```.
