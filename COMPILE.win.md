@@ -2,7 +2,7 @@
 
 1. Download and install MSYS2.
 2. Open MSYS MinGW as Administrator.
-3. Run: ```pacman -S unzip make perl cmake git mingw-w64-i686-gcc mingw-w64-i686-glib2 mingw-w64-i686-glibmm```.
+3. Run: ```pacman -S unzip make perl cmake git mingw-w64-i686-gcc mingw-w64-i686-glib2 mingw-w64-i686-glibmm mingw-w64-i686-nsis```.
 4. Clone repository: ```git clone github.com/gjvnq/OpenICP-BR```.
 5. Run: ```export PATH="/c/msys64/mingw32/bin:$PATH"```.
 
@@ -21,3 +21,5 @@
 2. Set compiler: ```export CCX=/c/msys64/mingw32/bin/gcc.exe```.
 3. Configure: ```cmake -G "MSYS Makefiles" .```
 4. Compile: ```make openicp```.
+
+Optional: Create an installer by running: ```make installer```.

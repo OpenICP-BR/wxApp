@@ -103,6 +103,13 @@ if(MINGW)
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
+	# Allow us to easily generate a .exe installer for distribution
+	add_custom_target(installer
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND ${TOOL_DIR}/copy_dll.sh "${CMAKE_BINARY_DIR}/"
+		COMMAND makensis "${CMAKE_CURRENT_SOURCE_DIR}/res/installer.nsi"
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 elseif(APPLE)
 	add_custom_command(
 		TARGET openicp
