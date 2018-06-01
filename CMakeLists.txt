@@ -150,6 +150,13 @@ elseif(UNIX)
 	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-64.png" DESTINATION share/icons/hicolor/64x64/apps RENAME github.gjvnq.openicpbr.png)
 	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-128.png" DESTINATION share/icons/hicolor/128x128/apps RENAME github.gjvnq.openicpbr.png)
 	install(FILES "${CMAKE_SOURCE_DIR}/res/logo-256.png" DESTINATION share/icons/hicolor/256x256/apps RENAME github.gjvnq.openicpbr.png)
+	# Generate .tar.gz distribution files easily
+	add_custom_target(tgz
+		COMMAND make install DESTDIR=${CMAKE_BINARY_DIR}/install/
+		COMMAND ${TOOL_DIR}/make_tgz.sh "${CMAKE_BINARY_DIR}/install/" "${CMAKE_BINARY_DIR}" 
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+	)
 	# Add `make run`
 	add_custom_target(run
 		# This below line ensures we always run with the most up to date res files
