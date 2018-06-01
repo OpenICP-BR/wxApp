@@ -8,7 +8,7 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O3 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g -fPIC")
+set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g -fPIC")
 
 # Should we include the FakePKI?
 if(NOT USE_FAKE_ICP)
@@ -50,13 +50,10 @@ endif()
 set(wxWidgets_USE_UNICODE true)
 set(wxWidgets_USE_STATIC false)
 message(STATUS "Looking for wxWidgets...")
-message(STATUS "${wxWidgets_ROOT_DIR}")
 find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
-message(STATUS "${wxWidgets_ROOT_DIR}")
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
 include(${wxWidgets_USE_FILE})
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_INCLUDE_DIRS}")
-message(STATUS "${wxWidgets_ROOT_DIR}")
 
 # Set sources and set our "library" (this is to avoid recompilation for testing)
 file(GLOB SOURCES "src/*.cpp")
@@ -77,13 +74,36 @@ if (APPLE)
 	set(MACOSX_BUNDLE_INFO_PLIST res/Info.plist)
 	set(MACOSX_PACKAGE_LOCATION "${CMAKE_BINARY_DIR}/openicp.app/Contents/")
 	add_executable(openicp MACOSX_BUNDLE ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
+elseif(MINGW)
+	set(CMAKE_RC_COMPILER_INIT windres)
+	ENABLE_LANGUAGE(RC)
+	SET(CMAKE_RC_COMPILE_OBJECT "<CMAKE_RC_COMPILER> --use-temp-file <FLAGS> -O coff <DEFINES> -I <INCLUDES> -i <SOURCE> -o <OBJECT>")
+	add_definitions(-DwxUSE_NO_MANIFEST=1)
+	add_executable(openicp "${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/res/win-res.rc")
 else()
-	add_executable(openicp ${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp)
+	add_executable(openicp "${CMAKE_CURRENT_SOURCE_DIR}/src/ICPApp.cpp")
 endif()
 target_link_libraries(openicp openicp_no_main_lib)
 
 # Add non-code install_files
-if (APPLE)
+if(MINGW)
+	add_custom_command(
+		TARGET openicp
+		POST_BUILD
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND ${TOOL_DIR}/copy_dll.sh "${CMAKE_BINARY_DIR}/"
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+	)
+	# Add `make run`
+	add_custom_target(run
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND ${TOOL_DIR}/copy_dll.sh "${CMAKE_BINARY_DIR}/"
+		COMMAND ${CMAKE_BINARY_DIR}/openicp.exe
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
+elseif(APPLE)
 	add_custom_command(
 		TARGET openicp
 		POST_BUILD

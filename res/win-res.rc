@@ -1,0 +1,5 @@
+#include <windows.h>
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "res/openicp.manifest"
+ApplicationIcon ICON "res/logo.ico"
+ICONPRG ICON "res/logo.ico"

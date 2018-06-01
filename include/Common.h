@@ -37,8 +37,7 @@
 #include <map>
 
 #ifdef __WIN32__
-#include <openssl/bio.h>
-//extern BIO *BIO_new_file(const char *filename, const char *mode) asm("_BIO_new_file");
+	#include <openssl/bio.h>
 #endif
 
 using std::vector;
