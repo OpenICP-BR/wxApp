@@ -9,7 +9,7 @@ DST_PATH=$2
 echo cd $SRC_DIR
 cd $SRC_DIR
 
-echo tar czvf "${DST_PATH}/openicp.tar.gz" .
-tar czvf "${DST_PATH}/openicp.tar.gz" .
+echo tar czvf "${DST_PATH}/OpenICP-BR.tar.gz" .
+tar czvf "${DST_PATH}/OpenICP-BR.tar.gz" .
 
-echo -e "${GREEN}[ OK ] Generated openicp.tar.gz on ${DST_PATH} ${NC}"
+echo -e "${GREEN}[ OK ] Generated OpenICP-BR.tar.gz on ${DST_PATH} ${NC}"

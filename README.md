@@ -10,27 +10,40 @@
 
 OpenICP-BR is a cross-platform (Linux, macOS, Windows) desktop app for signing documents as well as verifying the sigunatures acording to the <a href="http://www.iti.gov.br/icp-brasil" target="_blank">ICP-Brasil</a> (Brazilian Publick Key Infrastructure).
 
-## Installation
+## Instalação
 [RELEASES]: https://github.com/gjvnq/OpenICP-BR/releases
 
 ### OS X
 
-1. Download [OpenICP-BR.dmg][RELEASES].
-2. Open and drag the app into the `Applications` folder.
+1. Download the file [OpenICP-BR-v0.2.1.dmg][RELEASES].
+2. Open it and drag the app to the folder `Applications`.
 3. Done!
 
 ### Windows
-coming soon
+
+1. Download the file [Instalador-OpenICP-BR-v0.2.1.exe][RELEASES].
+2. Run it.
+3. Follow the installer instructions.
+4. Done!
+
+OBS: You don't need administrator privileges to install the Windows version, because it does *not* install to `C:\Program Files (x86)`, but rather to `C:\Users\My User\AppData\Local`.
 
 ### Linux
 
 *Arch Linux:*
 
-1. Install it from AUR: `pacaur -S openicp-br-git`.
+1. Install via AUR: `pacaur -S openicp-br-git`.
 
-*Other linux distributions:*
+OR
 
-Follow compilation instructions.
+1. Download the file [OpenICP-BR-v0.2.1.pkg.tar.gz][RELEASES].
+2. Install it: `sudo pacman -U OpenICP-BR-v0.2.1.pkg.tar.gz`.
+
+*Outras distribuições Linux:*
+
+1. Download the file [OpenICP-BR-v0.2.1.tar.gz][RELEASES].
+2. Make sure you have [wxWidgets](https://wxwidgets.org) installed.
+3. Extract it on the root directory: `sudo tar xvf OpenICP-BR-v0.2.1.tar.gz -C /`.
 
 ## Compilation (for developers)
 

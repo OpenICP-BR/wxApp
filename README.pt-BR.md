@@ -15,12 +15,18 @@ O OpenICP-BR é um aplicativo multiplataforma (Linux, macOS, Windows) para a ár
 
 ### OS X
 
-1. Baixe o arquivo [OpenICP-BR.dmg][RELEASES].
+1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg][RELEASES].
 2. Abra-o e arraste o app para a pasta `Aplicativos`.
 3. Pronto!
 
 ### Windows
-em breve
+
+1. Baixe o arquivo [Instalador-OpenICP-BR-v0.2.1.exe][RELEASES].
+2. Execute-o.
+3. Siga as instruções do instalador.
+4. Pronto!
+
+OBS: Não é necessária permissão de administrador para instalar a versão para Windows, já que esta *não* instala em `C:\Arquivos de Programas (x86)`, mas sim em `C:\Usuários\Meu Usuário\AppData\Local`.
 
 ### Linux
 
@@ -28,9 +34,16 @@ em breve
 
 1. Instale pelo AUR: `pacaur -S openicp-br-git`.
 
+OU
+
+1. Baixe o arquivo [OpenICP-BR-v0.2.1.pkg.tar.gz][RELEASES].
+2. Instale-o: `sudo pacman -U OpenICP-BR-v0.2.1.pkg.tar.gz`.
+
 *Outras distribuições Linux:*
 
-Siga as instruções de compilação.
+1. Baixe o arquivo [OpenICP-BR-v0.2.1.tar.gz][RELEASES].
+2. Verifique se o [wxWidgets](https://wxwidgets.org) está instalado.
+3. Extaria-o no diretório raíz: `sudo tar xvf OpenICP-BR-v0.2.1.tar.gz -C /`.
 
 ## Compilação (para desenvolvedores)
 
