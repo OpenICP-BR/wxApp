@@ -41,16 +41,7 @@ bool ICPApp::OnInit() {
 	// Get window and frame
 	theWindow = this->GetTopWindow();
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
-	#if defined(__WXMSW__)
-		wxLogDebug("A\n");
-		fflush(stdout);
-		wxIcon icon(xpm_icon_32);
-		wxLogDebug("B\n");
-		fflush(stdout);
-		theFrame->SetIcon(icon);
-		wxLogDebug("C\n");
-		fflush(stdout);
-	#endif
+	theFrame->SetIcon(wxIcon(xpm_icon_32));
 	if (theFrame != NULL) {
 		#ifndef USE_FAKE_ICP_ROOT
 			XRCCTRL(*theFrame, "lblTestVersion", wxStaticText)->Hide();
