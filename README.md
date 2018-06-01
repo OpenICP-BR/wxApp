@@ -16,7 +16,7 @@ OpenICP-BR is a cross-platform (Linux, macOS, Windows) desktop app for signing d
 
 ### OS X
 
-1. Download the file [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.1.0/OpenICP-BR-v0.2.1.dmg).
+1. Download the file [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1.dmg).
 2. Open it and drag the app to the folder `Applications`.
 3. Done!
 

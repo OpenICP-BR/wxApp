@@ -16,7 +16,7 @@ O OpenICP-BR é um aplicativo multiplataforma (Linux, macOS, Windows) para a ár
 
 ### OS X
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.1.0/OpenICP-BR-v0.2.1.dmg).
+1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1.dmg).
 2. Abra-o e arraste o app para a pasta `Aplicativos`.
 3. Pronto!
 
