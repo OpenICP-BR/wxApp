@@ -46,6 +46,7 @@ CertClass::~CertClass() {
 }
 
 wxString CertClass::NiceName() {
+	// The space on " \n" is a hack to make visualisation better on Windows, as it ignores the new line even with \r
 	return Subject.CommonName() + " \n" + Subject.DocID() + " (" + Issuer.CommonName() + ")";
 }
 

@@ -7,6 +7,7 @@
 #include <wx/filefn.h>
 #include <wx/cmdline.h>
 #include "CertClass.h"
+#include "icon-32.xpm"
 
 wxIMPLEMENT_APP(ICPApp);
 
@@ -40,6 +41,16 @@ bool ICPApp::OnInit() {
 	// Get window and frame
 	theWindow = this->GetTopWindow();
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
+	#if defined(__WXMSW__)
+		wxLogDebug("A\n");
+		fflush(stdout);
+		wxIcon icon(xpm_icon_32);
+		wxLogDebug("B\n");
+		fflush(stdout);
+		theFrame->SetIcon(icon);
+		wxLogDebug("C\n");
+		fflush(stdout);
+	#endif
 	if (theFrame != NULL) {
 		#ifndef USE_FAKE_ICP_ROOT
 			XRCCTRL(*theFrame, "lblTestVersion", wxStaticText)->Hide();
