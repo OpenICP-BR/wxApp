@@ -40,7 +40,7 @@ OR
 1. Download the file [openicp-br-0.2.1-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/openicp-br-0.2.1-1-x86_64.pkg.tar.xz).
 2. Install it: `sudo pacman -U openicp-br-0.2.1-1-x86_64.pkg.tar.xz`.
 
-*Outras distribuições Linux:*
+*Other Linuz distributions*
 
 1. Download the file [OpenICP-BR-v0.2.1-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1-x86_64.tar.gz).
 2. Make sure you have [wxWidgets](https://wxwidgets.org) installed.
