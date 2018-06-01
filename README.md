@@ -10,18 +10,19 @@
 
 OpenICP-BR is a cross-platform (Linux, macOS, Windows) desktop app for signing documents as well as verifying the sigunatures acording to the <a href="http://www.iti.gov.br/icp-brasil" target="_blank">ICP-Brasil</a> (Brazilian Publick Key Infrastructure).
 
-## Instalação
-[RELEASES]: https://github.com/gjvnq/OpenICP-BR/releases
+## Install
+
+[See all released versions](https://github.com/gjvnq/OpenICP-BR/releases).
 
 ### OS X
 
-1. Download the file [OpenICP-BR-v0.2.1.dmg][RELEASES].
+1. Download the file [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.1.0/OpenICP-BR-v0.2.1.dmg).
 2. Open it and drag the app to the folder `Applications`.
 3. Done!
 
 ### Windows
 
-1. Download the file [Instalador-OpenICP-BR-v0.2.1.exe][RELEASES].
+1. Download the file [Instalador-OpenICP-BR-v0.2.1-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/Instalador-OpenICP-BR-v0.2.1-i686.exe).
 2. Run it.
 3. Follow the installer instructions.
 4. Done!
@@ -32,18 +33,18 @@ OBS: You don't need administrator privileges to install the Windows version, bec
 
 *Arch Linux:*
 
-1. Install via AUR: `pacaur -S openicp-br-git`.
+1. Install via AUR: `pacaur -S openicp-br`.
 
 OR
 
-1. Download the file [OpenICP-BR-v0.2.1.pkg.tar.gz][RELEASES].
-2. Install it: `sudo pacman -U OpenICP-BR-v0.2.1.pkg.tar.gz`.
+1. Download the file [openicp-br-0.2.1-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/openicp-br-0.2.1-1-x86_64.pkg.tar.xz).
+2. Install it: `sudo pacman -U openicp-br-0.2.1-1-x86_64.pkg.tar.xz`.
 
 *Outras distribuições Linux:*
 
-1. Download the file [OpenICP-BR-v0.2.1.tar.gz][RELEASES].
+1. Download the file [OpenICP-BR-v0.2.1-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1-x86_64.tar.gz).
 2. Make sure you have [wxWidgets](https://wxwidgets.org) installed.
-3. Extract it on the root directory: `sudo tar xvf OpenICP-BR-v0.2.1.tar.gz -C /`.
+3. Extract it on the root directory: `sudo tar xvf OpenICP-BR-v0.2.1-x86_64.tar.gz -C /`.
 
 ## Compilation (for developers)
 

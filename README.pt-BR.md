@@ -11,17 +11,18 @@
 O OpenICP-BR é um aplicativo multiplataforma (Linux, macOS, Windows) para a área/mesa de trabalho para assinar e verificar assinaturas digitais de arcordo com o <a href="http://www.iti.gov.br/icp-brasil" target="_blank">ICP-Brasil</a> (Infraestrutura de Chaves Públicas Brasileira).
 
 ## Instalação
-[RELEASES]: https://github.com/gjvnq/OpenICP-BR/releases
+
+[Veja todas as versões publicadas](https://github.com/gjvnq/OpenICP-BR/releases).
 
 ### OS X
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg][RELEASES].
+1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.1.0/OpenICP-BR-v0.2.1.dmg).
 2. Abra-o e arraste o app para a pasta `Aplicativos`.
 3. Pronto!
 
 ### Windows
 
-1. Baixe o arquivo [Instalador-OpenICP-BR-v0.2.1.exe][RELEASES].
+1. Baixe o arquivo [Instalador-OpenICP-BR-v0.2.1-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/Instalador-OpenICP-BR-v0.2.1-i686.exe).
 2. Execute-o.
 3. Siga as instruções do instalador.
 4. Pronto!
@@ -32,18 +33,18 @@ OBS: Não é necessária permissão de administrador para instalar a versão par
 
 *Arch Linux:*
 
-1. Instale pelo AUR: `pacaur -S openicp-br-git`.
+1. Instale pelo AUR: `pacaur -S openicp-br`.
 
 OU
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1.pkg.tar.gz][RELEASES].
-2. Instale-o: `sudo pacman -U OpenICP-BR-v0.2.1.pkg.tar.gz`.
+1. Baixe o arquivo [openicp-br-0.2.1-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/openicp-br-0.2.1-1-x86_64.pkg.tar.xz).
+2. Instale-o: `sudo pacman -U openicp-br-0.2.1-1-x86_64.pkg.tar.xz`.
 
 *Outras distribuições Linux:*
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1.tar.gz][RELEASES].
+1. Baixe o arquivo [OpenICP-BR-v0.2.1-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1-x86_64.tar.gz).
 2. Verifique se o [wxWidgets](https://wxwidgets.org) está instalado.
-3. Extaria-o no diretório raíz: `sudo tar xvf OpenICP-BR-v0.2.1.tar.gz -C /`.
+3. Extaria-o no diretório raíz: `sudo tar xvf OpenICP-BR-v0.2.1-x86_64.tar.gz -C /`.
 
 ## Compilação (para desenvolvedores)
 
