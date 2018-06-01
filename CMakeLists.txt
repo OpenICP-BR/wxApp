@@ -18,8 +18,11 @@ endif()
 
 # Should we use the "-dev" suffix
 if(NOT ${OPENICP_VERSION_DEV} MATCHES "false")
-	add_definitions(-DOPENICP_VERSION_DEV)
+	add_definitions(-DOPENICP_VERSION_DEV=true)
 	message(STATUS "Will compile a development version")
+else()
+	add_definitions(-DOPENICP_VERSION_DEV=false)
+	message(STATUS "Will compile a release version")
 endif()
 
 # Set some paths for our custom tools
