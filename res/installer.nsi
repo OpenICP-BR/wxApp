@@ -9,9 +9,9 @@
 
 !insertmacro MUI_LANGUAGE "Portuguese"
 
-Name "OpenICP" # Name of the installer (usually the name of the application to install).
-OutFile "..\bin\Instalador OpenICP.exe" # Name of the installer's file.
-InstallDir "$LOCALAPPDATA\OpenICP" # Default installing folder ($PROGRAMFILES is Program Files folder).
+Name "OpenICP-BR" # Name of the installer (usually the name of the application to install).
+OutFile "..\bin\Instalador-OpenICP-BR.exe" # Name of the installer's file.
+InstallDir "$LOCALAPPDATA\OpenICP-BR" # Default installing folder ($PROGRAMFILES is Program Files folder).
 ShowInstDetails show # This will always show the installation details.
 RequestExecutionLevel user
 
@@ -25,15 +25,15 @@ Section "OpenICP" # In this section add your files or your folders.
   File "..\bin\OpenICP.exe"
   File "..\bin\*.dll"
   File /r "..\bin\res"
-  CreateDirectory "$SMPROGRAMS\OpenICP"
-  CreateShortCut "$SMPROGRAMS\OpenICP\Remover OpenICP-BR.lnk" "$INSTDIR\uninstaller.exe"
-  CreateShortCut "$SMPROGRAMS\OpenICP\OpenICP-BR.lnk" "$INSTDIR\OpenICP.exe"
+  CreateDirectory "$SMPROGRAMS\OpenICP-BR"
+  CreateShortCut "$SMPROGRAMS\OpenICP-BR\Remover OpenICP-BR.lnk" "$INSTDIR\uninstaller.exe"
+  CreateShortCut "$SMPROGRAMS\OpenICP-BR\OpenICP-BR.lnk" "$INSTDIR\OpenICP.exe"
 SectionEnd
 
 Section "Uninstall"
 	# Always delete uninstaller first
-	Delete $INSTDIR\desinstalar.exe
+	Delete $INSTDIR\uninstaller.exe
 	# now delete installed files
 	RMDir /r /REBOOTOK $INSTDIR
-	RMDir /r /REBOOTOK "$SMPROGRAMS\OpenICP"
+	RMDir /r /REBOOTOK "$SMPROGRAMS\OpenICP-BR"
 SectionEnd
