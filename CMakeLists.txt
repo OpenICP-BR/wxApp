@@ -16,14 +16,17 @@ if(NOT USE_FAKE_ICP)
 	message(STATUS "Using FAKE PKI root")
 endif()
 
-# Should we use the "-dev" suffix
-if(NOT ${OPENICP_VERSION_DEV} MATCHES "false")
-	add_definitions(-DOPENICP_VERSION_DEV=true)
-	message(STATUS "Will compile a development version")
-else()
-	add_definitions(-DOPENICP_VERSION_DEV=false)
-	message(STATUS "Will compile a release version")
+# Should we use the "-dev" suffix?
+if(NOT DEFINED(OPENICP_VERSION_SUFFIX))
+	set(OPENICP_VERSION_SUFFIX "dev")
 endif()
+if(OPENICP_VERSION_SUFFIX_EMPTY)
+	set(OPENICP_VERSION_SUFFIX "")
+	add_definitions(-DOPENICP_VERSION_SUFFIX_EMPTY)
+endif()
+
+add_definitions(-DOPENICP_VERSION_SUFFIX="${OPENICP_VERSION_SUFFIX}")
+message(STATUS "Using version suffix: ${OPENICP_VERSION_SUFFIX}")
 
 # Set some paths for our custom tools
 set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")

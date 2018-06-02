@@ -1,4 +1,5 @@
 #include "ICPApp.h"
+#include <openssl/crypto.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <openssl/conf.h>
@@ -6,6 +7,7 @@
 #include <openssl/err.h>
 #include <wx/filefn.h>
 #include <wx/cmdline.h>
+#include <wx/colour.h>
 #include "CertClass.h"
 #include "icon-32.xpm"
 
@@ -55,7 +57,19 @@ bool ICPApp::OnInit() {
 		theFrame->Show(true);
 	}
 
-	// return this->wxAppConsole->OnInit();
+	// Set version strings
+	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
+	XRCCTRL(*theFrame, "outOpenSSLVer", wxStaticText)->SetLabel(SSLeay_version(SSLEAY_VERSION));
+	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
+
+	// Some UI tweeks
+	#ifdef __WXMSW__
+		wxColour bg = XRCCTRL(*theFrame, "panelSign", wxPanel)->GetBackgroundColour();
+		theFrame->SetBackgroundColour(bg);
+		theFrame->Refresh();
+		XRCCTRL(*theFrame, "panelCerts", wxPanel)->Fit();
+	#endif
+
 	return wxAppConsole::OnInit();
 }
 

@@ -4,7 +4,6 @@
     <title>OpenICPBr</title>
     <centered>1</centered>
     <style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
-    <bg>wxSYS_COLOUR_WINDOW</bg>
     <object class="wxBoxSizer">
       <orient>wxVERTICAL</orient>
       <minsize>700,300</minsize>
@@ -117,7 +116,7 @@
                   </object>
                 </object>
                 <object class="sizeritem">
-                  <flag>wxALL|wxALIGN_CENTER</flag>
+                  <flag>wxALL|wxALIGN_CENTER|wxALIGN_TOP</flag>
                   <border>5</border>
                   <object class="wxButton" name="btnSign">
                     <label>Assinar</label>
@@ -125,6 +124,11 @@
                     <bitmapposition>wxLEFT</bitmapposition>
                     <default>1</default>
                   </object>
+                </object>
+                <object class="spacer" name="Spacer209">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <option>1</option>
                 </object>
               </object>
             </object>
@@ -395,6 +399,84 @@
             <selected>0</selected>
             <object class="wxPanel" name="panelHelp">
               <style>wxTAB_TRAVERSAL</style>
+              <object class="wxFlexGridSizer">
+                <cols>2</cols>
+                <rows>0</rows>
+                <vgap>0</vgap>
+                <hgap>0</hgap>
+                <growablecols>1</growablecols>
+                <growablerows/>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="m_staticText211">
+                    <label>Site:</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxHyperlinkCtrl" name="m_hyperLink213">
+                    <style>wxHL_DEFAULT_STYLE</style>
+                    <label>github.com/gjvnq/OpenICP-BR</label>
+                    <url>https://github.com/gjvnq/OpenICP-BR</url>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="m_staticText194">
+                    <label>Versão do OpenICP-BR:</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="outOpenICPVer">
+                    <label>Static Text Label</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="m_staticText198">
+                    <label>Versão do OpenSSL:</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="outOpenSSLVer">
+                    <label>Static Text Label</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="m_staticText202">
+                    <label>Versão do wxWidgets:</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="outWxVer">
+                    <label>Static Text Label</label>
+                    <style/>
+                  </object>
+                </object>
+                <object class="spacer" name="Spacer207">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                </object>
+              </object>
             </object>
           </object>
         </object>
@@ -579,88 +661,6 @@
                 <label>01/01/2001</label>
                 <style/>
               </object>
-            </object>
-          </object>
-        </object>
-      </object>
-    </object>
-  </object>
-  <object class="wxPanel" name="popupSignConfirm">
-    <style/>
-    <size>500,300</size>
-    <object class="wxBoxSizer">
-      <orient>wxVERTICAL</orient>
-      <object class="sizeritem">
-        <flag>wxALL</flag>
-        <border>5</border>
-        <object class="wxStaticText" name="m_staticText168">
-          <label>Arquivos a serem assinados:</label>
-          <style/>
-        </object>
-      </object>
-      <object class="sizeritem">
-        <flag>wxALL|wxEXPAND</flag>
-        <border>5</border>
-        <object class="wxTextCtrl" name="txtFilesToBeSigned">
-          <style>wxTE_WORDWRAP|wxTE_READONLY|wxTE_MULTILINE</style>
-          <value>rgfefegfdg
-dadsa</value>
-        </object>
-      </object>
-      <object class="sizeritem">
-        <flag>wxALL</flag>
-        <border>5</border>
-        <object class="wxStaticText" name="m_staticText174">
-          <label>Com o seguinte certificado:</label>
-          <style/>
-        </object>
-      </object>
-      <object class="sizeritem">
-        <flag>wxALL|wxEXPAND</flag>
-        <border>5</border>
-        <object class="wxTextCtrl" name="txtCertToBeSigner">
-          <style>wxTE_READONLY|wxTE_PROCESS_TAB|wxTE_MULTILINE</style>
-          <value>Nome Sobrenome : 432432</value>
-        </object>
-      </object>
-      <object class="sizeritem">
-        <flag>wxALL</flag>
-        <border>5</border>
-        <object class="wxStaticText" name="m_staticText170">
-          <label>Senha do certificado:</label>
-          <style/>
-        </object>
-      </object>
-      <object class="sizeritem">
-        <flag>wxALL|wxEXPAND</flag>
-        <border>5</border>
-        <object class="wxTextCtrl" name="inpCertPass">
-          <style>wxTE_PASSWORD</style>
-        </object>
-      </object>
-      <object class="sizeritem" name="boxSizer186">
-        <flag>wxALL|wxALIGN_CENTER</flag>
-        <border>5</border>
-        <object class="wxBoxSizer">
-          <orient>wxHORIZONTAL</orient>
-          <object class="sizeritem">
-            <flag>wxALL</flag>
-            <border>5</border>
-            <object class="wxButton" name="btnCancel">
-              <label>Cancelar</label>
-              <style/>
-              <bitmapposition>wxLEFT</bitmapposition>
-              <default>0</default>
-            </object>
-          </object>
-          <object class="sizeritem">
-            <flag>wxALL|wxALIGN_CENTER</flag>
-            <border>5</border>
-            <object class="wxButton" name="btnSign">
-              <label>Assinar</label>
-              <style/>
-              <bitmapposition>wxLEFT</bitmapposition>
-              <default>0</default>
             </object>
           </object>
         </object>

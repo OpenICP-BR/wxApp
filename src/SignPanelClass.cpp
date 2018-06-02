@@ -21,7 +21,7 @@ void SignPanelClass::Init(wxFrame *the_frame) {
 		&SignPanelClass::OpenFileDialog, this);
 	btnSign->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
 		&SignPanelClass::SignFiles, this);
-	XRCCTRL(*frame, "nbMain", wxNotebook)->Bind(wxEVT_NOTEBOOK_PAGE_CHANGED,
+	XRCCTRL(*frame, "nbMain", wxNotebook)->Bind(wxEVT_NOTEBOOK_PAGE_CHANGING,
 		&SignPanelClass::OnPageChanged, this);
 
 	updateCerts();
