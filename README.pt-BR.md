@@ -16,13 +16,13 @@ O OpenICP-BR é um aplicativo multiplataforma (Linux, macOS, Windows) para a ár
 
 ### OS X
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1.dmg).
+1. Baixe o arquivo [OpenICP-BR-v0.2.2.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/OpenICP-BR-v0.2.2.dmg).
 2. Abra-o e arraste o app para a pasta `Aplicativos`.
 3. Pronto!
 
 ### Windows
 
-1. Baixe o arquivo [Instalador-OpenICP-BR-v0.2.1-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/Instalador-OpenICP-BR-v0.2.1-i686.exe).
+1. Baixe o arquivo [Instalador-OpenICP-BR-v0.2.2-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/Instalador-OpenICP-BR-v0.2.2-i686.exe).
 2. Execute-o.
 3. Siga as instruções do instalador.
 4. Pronto!
@@ -37,14 +37,14 @@ OBS: Não é necessária permissão de administrador para instalar a versão par
 
 OU
 
-1. Baixe o arquivo [openicp-br-0.2.1-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/openicp-br-0.2.1-1-x86_64.pkg.tar.xz).
-2. Instale-o: `sudo pacman -U openicp-br-0.2.1-1-x86_64.pkg.tar.xz`.
+1. Baixe o arquivo [openicp-br-0.2.2-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/openicp-br-0.2.2-1-x86_64.pkg.tar.xz).
+2. Instale-o: `sudo pacman -U openicp-br-0.2.2-1-x86_64.pkg.tar.xz`.
 
 *Outras distribuições Linux:*
 
-1. Baixe o arquivo [OpenICP-BR-v0.2.1-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1-x86_64.tar.gz).
+1. Baixe o arquivo [OpenICP-BR-v0.2.2-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/OpenICP-BR-v0.2.2-x86_64.tar.gz).
 2. Verifique se o [wxWidgets](https://wxwidgets.org) está instalado.
-3. Extaria-o no diretório raíz: `sudo tar xvf OpenICP-BR-v0.2.1-x86_64.tar.gz -C /`.
+3. Extaria-o no diretório raíz: `sudo tar xvf OpenICP-BR-v0.2.2-x86_64.tar.gz -C /`.
 
 ## Compilação (para desenvolvedores)
 

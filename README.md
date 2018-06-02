@@ -16,13 +16,13 @@ OpenICP-BR is a cross-platform (Linux, macOS, Windows) desktop app for signing d
 
 ### OS X
 
-1. Download the file [OpenICP-BR-v0.2.1.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1.dmg).
+1. Download the file [OpenICP-BR-v0.2.2.dmg](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/OpenICP-BR-v0.2.2.dmg).
 2. Open it and drag the app to the folder `Applications`.
 3. Done!
 
 ### Windows
 
-1. Download the file [Instalador-OpenICP-BR-v0.2.1-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/Instalador-OpenICP-BR-v0.2.1-i686.exe).
+1. Download the file [Instalador-OpenICP-BR-v0.2.2-i686.exe](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/Instalador-OpenICP-BR-v0.2.2-i686.exe).
 2. Run it.
 3. Follow the installer instructions.
 4. Done!
@@ -37,14 +37,14 @@ OBS: You don't need administrator privileges to install the Windows version, bec
 
 OR
 
-1. Download the file [openicp-br-0.2.1-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/openicp-br-0.2.1-1-x86_64.pkg.tar.xz).
-2. Install it: `sudo pacman -U openicp-br-0.2.1-1-x86_64.pkg.tar.xz`.
+1. Download the file [openicp-br-0.2.2-1-x86_64.pkg.tar.xz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/openicp-br-0.2.2-1-x86_64.pkg.tar.xz).
+2. Install it: `sudo pacman -U openicp-br-0.2.2-1-x86_64.pkg.tar.xz`.
 
 *Other Linuz distributions*
 
-1. Download the file [OpenICP-BR-v0.2.1-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.1/OpenICP-BR-v0.2.1-x86_64.tar.gz).
+1. Download the file [OpenICP-BR-v0.2.2-x86_64.tar.gz](https://github.com/gjvnq/OpenICP-BR/releases/download/v0.2.2/OpenICP-BR-v0.2.2-x86_64.tar.gz).
 2. Make sure you have [wxWidgets](https://wxwidgets.org) installed.
-3. Extract it on the root directory: `sudo tar xvf OpenICP-BR-v0.2.1-x86_64.tar.gz -C /`.
+3. Extract it on the root directory: `sudo tar xvf OpenICP-BR-v0.2.2-x86_64.tar.gz -C /`.
 
 ## Compilation (for developers)
 
