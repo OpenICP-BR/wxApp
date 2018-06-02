@@ -7,6 +7,7 @@
 #include <openssl/err.h>
 #include <wx/filefn.h>
 #include <wx/cmdline.h>
+#include <wx/colour.h>
 #include "CertClass.h"
 #include "icon-32.xpm"
 
@@ -62,8 +63,11 @@ bool ICPApp::OnInit() {
 	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 
 	// Some UI tweeks
-	#ifdef __WIN32__
-		theFrame->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
+	#ifdef __WXMSW__
+		wxColour bg = XRCCTRL(*theFrame, "panelSign", wxPanel)->GetBackgroundColour();
+		theFrame->SetBackgroundColour(bg);
+		theFrame->Refresh();
+		XRCCTRL(*theFrame, "panelCerts", wxPanel)->Fit();
 	#endif
 
 	return wxAppConsole::OnInit();
