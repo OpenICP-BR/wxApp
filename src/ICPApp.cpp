@@ -1,4 +1,5 @@
 #include "ICPApp.h"
+#include <openssl/crypto.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <openssl/conf.h>
@@ -54,6 +55,11 @@ bool ICPApp::OnInit() {
 		// Show it
 		theFrame->Show(true);
 	}
+
+	// Set version strings
+	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
+	XRCCTRL(*theFrame, "outOpenSSLVer", wxStaticText)->SetLabel(SSLeay_version(SSLEAY_VERSION));
+	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 
 	// Some UI tweeks
 	#ifdef __WIN32__
