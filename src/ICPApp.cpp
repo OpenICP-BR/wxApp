@@ -55,7 +55,11 @@ bool ICPApp::OnInit() {
 		theFrame->Show(true);
 	}
 
-	// return this->wxAppConsole->OnInit();
+	// Some UI tweeks
+	#ifdef __WIN32__
+		theFrame->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
+	#endif
+
 	return wxAppConsole::OnInit();
 }
 
