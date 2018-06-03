@@ -149,6 +149,7 @@ int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 		// Configure CMS
 		CMS_set_detached(cms, true);
 	} else {
+		cms_flags |= CMS_REUSE_DIGEST;
 		// Open input (previous signature)
 		bio_in = BIO_new_file(output.mb_str(), "r");
 		if (bio_in == NULL) {
@@ -211,12 +212,7 @@ int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 	}
 
 	// Finalize
-	// if (!CMS_dataFinal(cms, bio_in)) {
-	// 	err_msg = wxT("Falha ao finalizar assinatura");
-	// 	print_openssl_err();
-	// 	RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
-	// }
-	if (!CMS_final(cms, bio_in, NULL, cms_flags)) {
+	if (first_signature && !CMS_final(cms, bio_in, NULL, cms_flags)) {
 		err_msg = wxT("Falha ao finalizar assinatura");
 		print_openssl_err();
 		RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
