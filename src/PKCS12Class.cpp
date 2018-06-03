@@ -119,6 +119,9 @@ int PKCS12Class::SignFile(wxString path) {
 int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 	wxString verify_err_msg, output;
 	BIO *bio_in=NULL, *bio_out=NULL;
+	CMS_ContentInfo *cms=NULL;
+	bool first_signature=false;
+	unsigned int cms_flags = CMS_PARTIAL | CMS_DETACHED;
 
 	cout << "Attempting to sign file " << input << endl;
 	output = input + ".p7s";
@@ -128,44 +131,117 @@ int PKCS12Class::SignFile(wxString input, wxString &err_msg) {
 	if (!CAStore.Verify(cert, verify_err_msg, full_chain)) {
 		err_msg = wxT("Certificado inválido. Motivo: ");
 		err_msg += verify_err_msg;
-		return PKCS12_SIGN_ERR_INVALID_CERT;
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_INVALID_CERT);
 	}
 
-	// Open input
+	// Does output exist?
+	first_signature = (access(output.mb_str(), F_OK) == -1);		
+
+	// Generate CMS
+	if (first_signature) {
+		// Create new CMS structure
+		cms = CMS_ContentInfo_new();
+		if (cms == NULL || !CMS_SignedData_init(cms)) {
+			print_openssl_err();
+			err_msg = wxT("Erro desconhecido ao preparar assiantura");
+			RETURN_AND_PRINT(ERR_UNKOWN);
+		}
+		// Configure CMS
+		CMS_set_detached(cms, true);
+	} else {
+		// Open input (previous signature)
+		bio_in = BIO_new_file(output.mb_str(), "r");
+		if (bio_in == NULL) {
+			cout << "File not writable: " << output << endl;
+			print_openssl_err();
+			err_msg = wxT("Impossível abrir arquivo de assinatura");
+			RETURN_AND_PRINT(PKCS12_SIGN_ERR_INPUT_NOT_ALLOWED);
+		}
+		// Parse previous signature
+		if (!d2i_CMS_bio(bio_in, &cms)) {
+			cout << "File not parsable: " << output << endl;
+			print_openssl_err();
+			err_msg = wxT("Impossível entender arquivo de assinatura");
+			RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_LOAD_SIGNATURE);
+		}
+		CMS_SignedData_init(cms);
+		BIO_free(bio_in);
+	}
+
+	// Open input (content file)
 	bio_in = BIO_new_file(input.mb_str(), "r");
 	if (bio_in == NULL) {
 		cout << "File not found: " << input << endl;
 		err_msg = wxT("Arquivo não encontrado");
-		return PKCS12_SIGN_ERR_INPUT_NOT_FOUND;
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_INPUT_NOT_ALLOWED);
+	}
+
+	// Sign!
+	CMS_SignerInfo *sig;
+	sig = CMS_add1_signer(cms, cert._getX509(), key_pair, EVP_sha512(), cms_flags);
+	if (sig == NULL) {
+		err_msg = wxT("Falha ao adicionar assinatura (1)");
+		print_openssl_err();
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
+	}
+	if (!CMS_SignerInfo_sign(sig)) {
+		err_msg = wxT("Falha ao adicionar assinatura (2)");
+		print_openssl_err();
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
+	}
+
+	// Add certificates
+	for (int i = 0; i < sk_X509_num(full_chain); i++) {
+		X509 *x = sk_X509_value(full_chain, i);
+		if (!CMS_add1_cert(cms, x)) {
+			print_openssl_err();
+			cout << "Got error when appending certificate. Level: " << i << endl;
+			err_msg = wxT("Erro desconhecido");
+			RETURN_AND_PRINT(ERR_UNKOWN);
+		}
 	}
 
 	// Open output
 	bio_out = BIO_new_file(output.mb_str(), "w");
 	if (bio_out == NULL) {
 		cout << "File not writable: " << output << endl;
+		print_openssl_err();
 		err_msg = wxT("Impossível criar arquivo de assinatura");
-		return PKCS12_SIGN_ERR_OUTPUT_NOT_WRITABLE;
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_OUTPUT_NOT_ALLOWED);
 	}
 
-	// Start signature
-	CMS_ContentInfo *cms = CMS_sign(cert._getX509(), key_pair, full_chain, bio_in, CMS_BINARY);
-	if (cms == NULL) {
-		err_msg = wxT("Erro desconhecido ao criar assiantura");
-		return ERR_UNKOWN;
+	// Finalize
+	// if (!CMS_dataFinal(cms, bio_in)) {
+	// 	err_msg = wxT("Falha ao finalizar assinatura");
+	// 	print_openssl_err();
+	// 	RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
+	// }
+	if (!CMS_final(cms, bio_in, NULL, cms_flags)) {
+		err_msg = wxT("Falha ao finalizar assinatura");
+		print_openssl_err();
+		RETURN_AND_PRINT(PKCS12_SIGN_ERR_FAILED_TO_APPEND_SIGNATURE);
 	}
-	cout << "Signed message" << endl;
+
+	// Write output
 	int err = i2d_CMS_bio(bio_out, cms);
-	BIO_flush(bio_out);
-	BIO_free(bio_out);
 	if (err == 0) {
 		print_openssl_err();
+		cout << "Got error when writing CMS: " << err << endl;
 		err_msg = wxT("Erro desconhecido ao escrever assiantura");
-		return ERR_UNKOWN;
+		RETURN_AND_PRINT(ERR_UNKOWN);
 	}
+	if (BIO_flush(bio_out) != 1) {
+		print_openssl_err();
+		cout << "Got error when flushing CMS" << endl;
+		err_msg = wxT("Erro desconhecido ao escrever assiantura");
+		RETURN_AND_PRINT(ERR_UNKOWN);
+	}
+	BIO_free(bio_out);
+	CMS_ContentInfo_free(cms);
 
 	cout << "Signature saved on " << output << endl;
 	err_msg = wxT("OK");
-	return OK;
+	RETURN_AND_PRINT(OK);
 }
 
 PKCS12Class::~PKCS12Class () {

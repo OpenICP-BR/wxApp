@@ -51,6 +51,7 @@ bool ICPApp::OnInit() {
 
 		// Process some things
 		sign_panel->Init(theFrame);
+		verify_panel->Init(theFrame);
 		certs_panel->Init(theFrame);
 		theFrame->Bind(wxEVT_CLOSE_WINDOW, &ICPApp::OnClose, this);
 		// Show it
@@ -85,6 +86,7 @@ bool ICPApp::LoadUI(wxString path) {
 
 ICPApp::ICPApp () {
 	sign_panel = new SignPanelClass();
+	verify_panel = new VerifyPanelClass();
 	certs_panel = new CertsPanelClass();
 	#ifdef USE_FAKE_ICP_ROOT
 	cout << "WARNING: Using FAKE ICP root certificate. DO NOT USE IN PRODUCTION!!!" << endl;
@@ -124,5 +126,6 @@ bool ICPApp::OnCmdLineParsed(wxCmdLineParser& parser) {
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
 	free(sign_panel);
+	free(verify_panel);
 	free(certs_panel);
 }

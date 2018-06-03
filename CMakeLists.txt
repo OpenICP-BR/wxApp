@@ -8,7 +8,7 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g -fPIC")
+set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -Wall -Wextra -pedantic -Wshadow -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
 
 # Should we include the FakePKI?
 if(NOT USE_FAKE_ICP)

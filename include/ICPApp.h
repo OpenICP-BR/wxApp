@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "SignPanelClass.h"
 #include "CertsPanelClass.h"
+#include "VerifyPanelClass.h"
 #include "CAStoreClass.h"
 #include "ConfigClass.h"
 
@@ -11,6 +12,7 @@ protected:
 	wxFrame *theFrame;
 	SignPanelClass *sign_panel;
 	CertsPanelClass *certs_panel;
+	VerifyPanelClass *verify_panel;
 	bool LoadUI(wxString path);
 public:
 	bool OnInit();

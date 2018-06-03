@@ -5,14 +5,19 @@
 
 // See: https://stackoverflow.com/questions/24119388/openssl-fails-to-build-with-mingw-does-not-give-a-valid-preprocessing-token?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 #if defined(OPENSSL_SYS_WINDOWS)
-#include <windows.h>
-#undef X509_NAME
-#undef X509_EXTENSIONS
-#undef X509_CERT_PAIR
-#undef PKCS7_ISSUER_AND_SERIAL
-#undef OCSP_REQUEST
-#undef OCSP_RESPONSE
+	#include <windows.h>
+	#undef X509_NAME
+	#undef X509_EXTENSIONS
+	#undef X509_CERT_PAIR
+	#undef PKCS7_ISSUER_AND_SERIAL
+	#undef OCSP_REQUEST
+	#undef OCSP_RESPONSE
 #endif
+
+#ifndef __FILENAME__
+	#define __FILENAME__ __FILE__
+#endif
+#define RETURN_AND_PRINT(x) cout << __FILENAME__ << ":" << __LINE__ << " " << __PRETTY_FUNCTION__ << " -> " << #x << endl; return x
 
 #define MAX(a, b) (a > b) ? a : b
 #define MIN(a, b) (a < b) ? a : b
