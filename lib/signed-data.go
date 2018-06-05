@@ -10,11 +10,11 @@ func IdSignedData() asn1.ObjectIdentifier {
 type SignedDataT struct {
 	RawContent       asn1.RawContent
 	Version          CMSVersionT
-	DigestAlgorithms []DigestAlgorithmIdentifiersT `asn1:set`
-	EncapContentInfo EncapsulatedContentInfoT      `asn1:`
-	Certificates     []CertificateSetT             `asn1:"tag:0, optional"`
-	Crls             []RevocationInfoChoicesT      `asn1:"tag:1, optional"`
-	SignerInfos      []SignerInfoT                 `asn1:set`
+	DigestAlgorithms []DigestAlgorithmIdentifierT `asn1:set`
+	EncapContentInfo EncapsulatedContentInfoT     `asn1:`
+	Certificates     []CertificateChoicesT        `asn1:"tag:0,optional,set"`
+	Crls             []RevocationInfoChoiceT      `asn1:"tag:1,optional"`
+	SignerInfos      []SignerInfoT                `asn1:set`
 }
 
 func (sd *SignerInfosT) SetAppropriateVersion() {
