@@ -50,9 +50,9 @@ OR
 
 Follow these instructions:
 
-  * [Linux 64bit](gui/COMPILE.linux.arch.64bit.md)
-  * [macOS](gui/COMPILE.macOS.md)
-  * [Windows](gui/COMPILE.win.md)
+  * [Linux 64bit](COMPILE.linux.arch.64bit.md)
+  * [macOS](COMPILE.macOS.md)
+  * [Windows](COMPILE.win.md)
 
 ## Features
 
