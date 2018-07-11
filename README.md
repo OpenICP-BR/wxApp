@@ -10,6 +10,12 @@
 
 OpenICP-BR is a cross-platform (Linux, macOS, Windows) desktop app for signing documents as well as verifying the sigunatures acording to the <a href="http://www.iti.gov.br/icp-brasil" target="_blank">ICP-Brasil</a> (Brazilian Publick Key Infrastructure).
 
+## Screenshots
+
+![Certificates Panel](https://github.com/gjvnq/OpenICP-BR/raw/master/docs/screenshots/CertsPanel.png)
+
+![Sign Panel](https://github.com/gjvnq/OpenICP-BR/raw/master/docs/screenshots/SignPanel.png)
+
 ## Install
 
 [See all released versions](https://github.com/gjvnq/OpenICP-BR/releases).

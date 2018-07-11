@@ -10,6 +10,13 @@
 
 O OpenICP-BR é um aplicativo multiplataforma (Linux, macOS, Windows) para a área/mesa de trabalho para assinar e verificar assinaturas digitais de arcordo com o <a href="http://www.iti.gov.br/icp-brasil" target="_blank">ICP-Brasil</a> (Infraestrutura de Chaves Públicas Brasileira).
 
+## Capturas de Tela (Screenshots)
+
+![Painel de Certificados](https://github.com/gjvnq/OpenICP-BR/raw/master/docs/screenshots/CertsPanel.png)
+
+![Painel de Assinar](https://github.com/gjvnq/OpenICP-BR/raw/master/docs/screenshots/SignPanel.png)
+
+
 ## Instalação
 
 [Veja todas as versões publicadas](https://github.com/gjvnq/OpenICP-BR/releases).
