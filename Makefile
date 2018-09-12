@@ -9,9 +9,9 @@ else
 	ECHO="/bin/echo"
 endif
 ifeq ($(NO_CACHE), "true")
-	GOFLAGS=-v -i
-else
 	GOFLAGS=-v
+else
+	GOFLAGS=-v -i
 endif
 
 .PHONY: all run

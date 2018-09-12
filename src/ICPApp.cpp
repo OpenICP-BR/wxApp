@@ -36,6 +36,13 @@ bool ICPApp::OnInit() {
 		theFrame->Show(true);
 	}
 
+	// Prepare macOS menu
+	#ifdef __WXOSX_COCOA__
+	wxMenuBar* menubar = new wxMenuBar();
+	theFrame->SetMenuBar(menubar);
+	theFrame->Show();
+	#endif
+
 	return wxAppConsole::OnInit();
 }
 
