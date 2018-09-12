@@ -1,8 +1,6 @@
 dist/
 bin/
 openicp
-openssl-1.1.0h/dist
-wxWidgets-3.0.4/dist
 
 # Created by https://www.gitignore.io/api/c++,macos,linux,cmake,windows,sublimetext
 
@@ -39,18 +37,6 @@ wxWidgets-3.0.4/dist
 *.exe
 *.out
 *.app
-
-### CMake ###
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-build
 
 ### Linux ###
 *~
