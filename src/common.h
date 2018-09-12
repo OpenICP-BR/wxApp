@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cgo.h"
+#include "setup_cgo.h"
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
     #include <wx/wx.h>

@@ -1,4 +1,4 @@
-#include "main-ui.h"
+#include "ICPApp.h"
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <wx/filefn.h>
@@ -26,6 +26,8 @@ bool ICPApp::OnInit() {
 	theWindow = this->GetTopWindow();
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
 	theFrame->SetIcon(wxIcon(xpm_icon_32));
+	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
+	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 	if (theFrame != NULL) {
 		// Process some things
 		theFrame->Bind(wxEVT_CLOSE_WINDOW, &ICPApp::OnClose, this);
@@ -37,16 +39,21 @@ bool ICPApp::OnInit() {
 }
 
 bool ICPApp::LoadUI(wxString path) {
+	if (uiLoaded) {
+		return true;
+	}
 	wxLogDebug("wxFileExists(\"%s\") = %d", path, wxFileExists(path));
 	if (wxFileExists(path)) {
 		wxLogDebug("Loading %s", path);
 		wxXmlResource::Get()->Load(path);
+		uiLoaded = true;
 		return true;
 	}
 	return false;
 }
 
 ICPApp::ICPApp () {
+	uiLoaded = false;
 }
 
 void ICPApp::PreExit () {
@@ -69,35 +76,14 @@ bool ICPApp::OnCmdLineParsed(wxCmdLineParser& parser) {
 	if (print_version) {
 		printf("OpenICP version: ?\n");
 		ExitMainLoop();
+		PreExit();
+		theFrame->Destroy();
 	}
 	return true;
 }
 
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
-}
-
-char** str_array_new(int n) {
-	return (char**) malloc(n * sizeof(char *));
-}
-
-void str_array_set(char **v, int i, char *s) {
-	v[i] = s;
-}
-
-void str_array_free(int n, char **v) {
-	for (int i=0; i < n; i++) {
-		free(v[i]);
-	}
-	free(v);
-}
-
-int start_app(int argc, char **argv) {
-	printf("%d\n", argc);
-	printf("%p\n", argv);
-	printf("%s\n", argv[0]);
-	printf("wxEntry(argc, argv)\n");
-	return wxEntry(argc, argv);
 }
 
 ICPApp& wxGetApp() {
@@ -109,4 +95,3 @@ wxAppConsole *wxCreateApp() {
 }
 
 wxAppInitializer wxTheAppInitializer((wxAppInitializerFunction) wxCreateApp);
-
