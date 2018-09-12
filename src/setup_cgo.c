@@ -9,6 +9,7 @@ const char OpenICP_Version_Suffix[] = OPENICP_VERSION_SUFFIX;
 #else
 const char OpenICP_Version_Suffix[] = "";
 #endif
+char *LibICP_Version = "?";
 
 int get_openicp_version_major() {
 	return OpenICP_Version_Major;
@@ -24,4 +25,8 @@ int get_openicp_version_patch() {
 
 const char* get_openicp_version_suffix() {
 	return OpenICP_Version_Suffix;
+}
+
+void set_libICP_version(char *ver) {
+	LibICP_Version = ver;
 }

@@ -27,6 +27,7 @@ bool ICPApp::OnInit() {
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
 	theFrame->SetIcon(wxIcon(xpm_icon_32));
 	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
+	XRCCTRL(*theFrame, "outLibICPVer", wxStaticText)->SetLabel(LibICP_Version);
 	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 	if (theFrame != NULL) {
 		// Process some things

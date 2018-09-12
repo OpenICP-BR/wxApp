@@ -20,6 +20,7 @@ extern const int OpenICP_Version_Major;
 extern const int OpenICP_Version_Minor;
 extern const int OpenICP_Version_Patch;
 extern const char OpenICP_Version_Suffix[];
+extern char *LibICP_Version;
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,6 +32,7 @@ extern "C" {
 	int    get_openicp_version_major();
 	int    get_openicp_version_minor();
 	int    get_openicp_version_patch();
+	void   set_libICP_version(char *ver);
 	const char* get_openicp_version_suffix();
 #ifdef __cplusplus
 }

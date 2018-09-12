@@ -3441,7 +3441,7 @@
 													"gbSpan":	"1,1",
 													"gbPosition":	"0,0",
 													"m_styles":	["wxHL_DEFAULT_STYLE"],
-													"m_sizerFlags":	[],
+													"m_sizerFlags":	["wxALL", "wxLEFT", "wxRIGHT", "wxTOP", "wxBOTTOM"],
 													"m_properties":	[{
 															"type":	"winid",
 															"m_label":	"ID:",
@@ -3501,11 +3501,11 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Label:",
-															"m_value":	"github.com/gjvnq/OpenICP-BR"
+															"m_value":	"OpenICP-BR.github.io"
 														}, {
 															"type":	"string",
 															"m_label":	"URL:",
-															"m_value":	"https://github.com/gjvnq/OpenICP-BR"
+															"m_value":	"https://OpenICP-BR.github.io"
 														}, {
 															"type":	"colour",
 															"m_label":	"Normal Colour:",
@@ -3738,7 +3738,7 @@
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Label:",
-															"m_value":	"Versão do OpenSSL:"
+															"m_value":	"Versão da libICP:"
 														}, {
 															"type":	"string",
 															"m_label":	"Wrap:",
@@ -3769,7 +3769,7 @@
 														}, {
 															"type":	"string",
 															"m_label":	"Name:",
-															"m_value":	"outOpenSSLVer"
+															"m_value":	"outLibICPVer"
 														}, {
 															"type":	"multi-string",
 															"m_label":	"Tooltip:",
