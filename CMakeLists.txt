@@ -68,8 +68,12 @@ include_directories(${COMMON_INCLUDES})
 add_library(openicp_no_main_lib STATIC ${SOURCES})
 target_link_libraries(openicp_no_main_lib ${OPENSSL_CRYPTO_LIBRARIES})
 target_link_libraries(openicp_no_main_lib ${wxWidgets_LIBRARIES})
-if(MINGW)
+target_link_libraries(openicp_no_main_lib ICP)
+if (MINGW)
 	target_link_libraries(openicp_no_main_lib "ws2_32")
+endif()
+if (APPLE)
+	target_link_libraries(openicp_no_main_lib "-framework CoreFoundation -framework Security")
 endif()
 
 # Configure our desired binary

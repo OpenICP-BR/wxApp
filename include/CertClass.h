@@ -1,32 +1,25 @@
 #pragma once
+#include <time.h>
 #include "Common.h"
-#include "EntityInfoClass.h"
-#include <openssl/x509.h>
-#include <openssl/pem.h>
 
 class CertClass {
 protected:
-	X509 *cert;
-	time_t not_before, not_after;
-	wxString not_before_str, not_after_str;
+	icp_cert cert;
 	wxString fp_sha_256_human, fp_sha_256_fs;
 public:
 	CertClass();
-	CertClass(X509 *new_cert);
-	X509* _getX509();
-	bool LoadPEMString(const char buf[]);
-	bool LoadPEMFile(const char path[]);
-	bool LoadCert(X509 *new_cert);
-	bool SaveCert(wxString dir);
-	wxString NiceName();
+	CertClass(icp_cert new_cert);
+	bool LoadPEMString(char buf[]);
+	bool LoadPEMFile(char path[]);
+	bool LoadCert(icp_cert new_cert);
 	wxString NotBeforeString();
 	wxString NotAfterString();
+	wxString NiceName();
 	wxString FingerPrintSHA256_HumanReadable();
 	wxString FingerPrintSHA256_FileFriendly();
-	EntityInfoClass Subject, Issuer;
+	wxString Subject, Issuer;
+	map<wxString, wxString> SubjectMap, IssuerMap;
+	wxDateTime NotBefore, NotAfter;
+	icp_cert _get_raw();
 	~CertClass();
 };
-
-X509* PEM2X509(const char data[]);
-X509* FILE2X509(const char path[]);
-void print_openssl_err();

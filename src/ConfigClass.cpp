@@ -5,6 +5,7 @@
 ConfigClass Config;
 
 ConfigClass::ConfigClass() {
+	ca_store = icp_new_store(false);
 }
 
 void ConfigClass::Init() {

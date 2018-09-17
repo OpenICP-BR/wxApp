@@ -9,6 +9,7 @@ class ConfigClass {
 protected:
 	wxFileName config_dir, certs_path, cas_path;
 	map<wxString, CertClass> user_certs;
+	icp_store ca_store;
 public:
 	ConfigClass();
 	void Init();
