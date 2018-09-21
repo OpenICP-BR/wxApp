@@ -38,8 +38,9 @@
     #include <wx/wx.h>
 #endif
 #include "wx/xrc/xmlres.h"
-#include <libICP.h>
+#include <libICP++.h>
 #include <vector>
+#include <string>
 #include <map>
 
 #ifdef __WIN32__

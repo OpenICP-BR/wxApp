@@ -3,7 +3,6 @@
 #include "SignPanelClass.h"
 #include "CertsPanelClass.h"
 #include "VerifyPanelClass.h"
-#include "CAStoreClass.h"
 #include "ConfigClass.h"
 
 class ICPApp: public wxApp {

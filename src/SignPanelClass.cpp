@@ -29,13 +29,13 @@ void SignPanelClass::Init(wxFrame *the_frame) {
 
 void SignPanelClass::updateCerts() {
 	// Fix certs list
-	if (last_n_certs != Config.GetUserCerts().size()) {
-		last_n_certs = Config.GetUserCerts().size();
-		choSignAs->Clear();
-		for (auto &pair : Config.GetUserCerts()) {
-			choSignAs->Append(pair.first);
-		}
-	}
+	// if (last_n_certs != Config.GetUserCerts().size()) {
+	// 	last_n_certs = Config.GetUserCerts().size();
+	// 	choSignAs->Clear();
+	// 	for (auto &pair : Config.GetUserCerts()) {
+	// 		choSignAs->Append(pair.first);
+	// 	}
+	// }
 }
 
 void SignPanelClass::OnPageChanged(wxBookCtrlEvent& WXUNUSED(event)) {
@@ -68,37 +68,37 @@ void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 
 void SignPanelClass::SignFiles(wxCommandEvent& WXUNUSED(event)) {
 	// Try to get and unlock certificate
-	PKCS12Class *p12 = Config.GetPKCS12(choSignAs->GetStringSelection());
-	if (p12 == NULL) {
-		wxLogMessage(wxT("Certificado não encontrado :(\nTente readiconá-lo"));
-		inpCertSignerPass->Clear();
-		return;
-	}
-	int err_unlock = p12->Unlock(inpCertSignerPass->GetLineText(0));
-	inpCertSignerPass->Clear();
-	if (err_unlock == PKCS12_UNLOCK_ERR_WRONG_PASSWORD) {
-		wxLogMessage(wxT("Senha incorreta"));
-		return;
-	} else if (err_unlock != OK) {
-		wxLogMessage(wxT("Falha ao abrir o certificado digital"));
-		return;
-	}
+	// PKCS12Class *p12 = Config.GetPKCS12(choSignAs->GetStringSelection());
+	// if (p12 == NULL) {
+	// 	wxLogMessage(wxT("Certificado não encontrado :(\nTente readiconá-lo"));
+	// 	inpCertSignerPass->Clear();
+	// 	return;
+	// }
+	// int err_unlock = p12->Unlock(inpCertSignerPass->GetLineText(0));
+	// inpCertSignerPass->Clear();
+	// if (err_unlock == PKCS12_UNLOCK_ERR_WRONG_PASSWORD) {
+	// 	wxLogMessage(wxT("Senha incorreta"));
+	// 	return;
+	// } else if (err_unlock != OK) {
+	// 	wxLogMessage(wxT("Falha ao abrir o certificado digital"));
+	// 	return;
+	// }
 
-	wxString err_msg;
-	wxArrayString files_to_sign;
-	map<wxString, wxString> files_and_status;
-	// Get full paths
-	file_dialog->GetPaths(files_to_sign);
-	for (wxString &filename : files_to_sign) {
-		p12->SignFile(filename, err_msg);
-		files_and_status[filename] = err_msg;
-	}
-	wxString final_msg;
-	for (auto &pair : files_and_status) {
-		final_msg += pair.first+": "+pair.second+"\n";
-	}
-	wxLogMessage(final_msg);
-	free(p12);
+	// wxString err_msg;
+	// wxArrayString files_to_sign;
+	// map<wxString, wxString> files_and_status;
+	// // Get full paths
+	// file_dialog->GetPaths(files_to_sign);
+	// for (wxString &filename : files_to_sign) {
+	// 	p12->SignFile(filename, err_msg);
+	// 	files_and_status[filename] = err_msg;
+	// }
+	// wxString final_msg;
+	// for (auto &pair : files_and_status) {
+	// 	final_msg += pair.first+": "+pair.second+"\n";
+	// }
+	// wxLogMessage(final_msg);
+	// free(p12);
 }
 
 SignPanelClass::~SignPanelClass() {

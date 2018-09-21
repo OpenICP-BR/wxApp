@@ -4,8 +4,7 @@
 
 ConfigClass Config;
 
-ConfigClass::ConfigClass() {
-	ca_store = icp_new_store(false);
+ConfigClass::ConfigClass() : Store(true) { // the true parameter tells the ICP::Store to automatically download CAs when needed
 }
 
 void ConfigClass::Init() {
@@ -43,6 +42,11 @@ void ConfigClass::Init() {
 	wxLogDebug("Config Path: %s", config_dir.GetPathWithSep());
 	wxLogDebug("Certs Path: %s", certs_path.GetPathWithSep());
 	wxLogDebug("CAs Path: %s", cas_path.GetPathWithSep());
+
+	// Load CAs
+	Store.SetCachePath(cas_path.GetPathWithSep().ToStdString());
+	// Download all CAs just in case
+	Store.DownloadAll();
 }
 
 void ConfigClass::ReloadCerts() {
@@ -52,79 +56,58 @@ void ConfigClass::ReloadCerts() {
 	// Open dir
 	dir_path = certs_path.GetPathWithSep();
 	wxLogDebug("Loading all certs from %s", dir_path);
-	wxDir dir(dir_path);
-	user_certs.clear();
 	
-	// For each file...
-	bool cont = dir.GetFirst(&filename);
-	while (cont) {
-		CertClass cert;
-		wxString full_path = dir.GetNameWithSep()+filename;
-		// ... check the file extension
-		if (full_path.Right(4) != ".pem") {
-			wxLogDebug("Skiping %s", full_path);
-			cont = dir.GetNext(&filename);
-			continue;
-		}
-		// ... try to read it
-		if (!cert.LoadPEMFile(full_path)) {
-			wxLogDebug("Invalid cert on %s", full_path);
-		}
-		// ... and verify if it is a valid certificate
-		if (CAStore.Verify(cert)) {
-			total_counter++;
-			wxLogDebug("Added cert for %s on %s", cert.Subject.CommonName(), full_path);
-			user_certs[cert.NiceName()] = cert;
-		} else {
-			wxLogDebug("Invalid cert for %s on %s", cert.Subject.CommonName(), full_path);
-		}
-		cont = dir.GetNext(&filename);
-	}
-	wxLogDebug("Finished loading %d certs from: %s", total_counter, dir.GetName());
+	// wxDir dir(dir_path);
+	// user_certs.clear();
+	
+	// // For each file...
+	// bool cont = dir.GetFirst(&filename);
+	// while (cont) {
+	// 	CertClass cert;
+	// 	wxString full_path = dir.GetNameWithSep()+filename;
+	// 	// ... check the file extension
+	// 	if (full_path.Right(4) != ".pem") {
+	// 		wxLogDebug("Skiping %s", full_path);
+	// 		cont = dir.GetNext(&filename);
+	// 		continue;
+	// 	}
+	// 	// ... try to read it
+	// 	if (!cert.LoadPEMFile(full_path)) {
+	// 		wxLogDebug("Invalid cert on %s", full_path);
+	// 	}
+	// 	// ... and verify if it is a valid certificate
+	// 	if (CAStore.Verify(cert)) {
+	// 		total_counter++;
+	// 		wxLogDebug("Added cert for %s on %s", cert.Subject.CommonName(), full_path);
+	// 		user_certs[cert.NiceName()] = cert;
+	// 	} else {
+	// 		wxLogDebug("Invalid cert for %s on %s", cert.Subject.CommonName(), full_path);
+	// 	}
+	// 	cont = dir.GetNext(&filename);
+	// }
+	// wxLogDebug("Finished loading %d certs from: %s", total_counter, dir.GetName());
 }
 
-wxString ConfigClass::CAsPath() {
-	return cas_path.GetPathWithSep();
-}
-
-bool ConfigClass::Save() {
+bool ConfigClass::AddPFX(ICP::PFX pfx) {
+	// save the pfx and cert as two files to the certs dir
+	ReloadCerts();
 	return false;
 }
 
-bool ConfigClass::AddCert(CertClass cert) {
-	bool b = cert.SaveCert(certs_path.GetPathWithSep());
-	if (b) {
-		wxLogDebug("Adding cert for %s to the current certs list.", cert.NiceName());
-		user_certs[cert.NiceName()] = cert;
-	}
-	return b;
-}
-
-bool ConfigClass::AddCert(PKCS12Class p12) {
-	return AddCert(p12.Cert());
-}
-
-bool ConfigClass::AddPKCS12(PKCS12Class p12) {
-	return p12.SaveEncryptedP12(certs_path.GetPathWithSep());
-}
-
-map<wxString, CertClass> &ConfigClass::GetUserCerts() {
-	return user_certs;
-}
-
-PKCS12Class* ConfigClass::GetPKCS12(wxString nice_name) {
-	if (user_certs.find(nice_name) == user_certs.end()) {
-		return NULL;
-	}
-	wxString fp = user_certs[nice_name].FingerPrintSHA256_FileFriendly();
-	wxFileName fname = certs_path.GetPathWithSep();
-	fname.SetFullName(fp+".p12");
-	PKCS12Class *p12 = new PKCS12Class();
-	if (p12->LoadFromFile(fname.GetFullPath()) == OK) {
-		return p12;
-	} else {
-		return NULL;
-	}
+ICP::PFX* ConfigClass::GetPFX(wxString nice_name) {
+	// if (user_certs.find(nice_name) == user_certs.end()) {
+	// 	return NULL;
+	// }
+	// wxString fp = user_certs[nice_name].FingerPrintSHA256_FileFriendly();
+	// wxFileName fname = certs_path.GetPathWithSep();
+	// fname.SetFullName(fp+".p12");
+	// PKCS12Class *p12 = new PKCS12Class();
+	// if (p12->LoadFromFile(fname.GetFullPath()) == OK) {
+	// 	return p12;
+	// } else {
+	// 	return NULL;
+	// }
+	return NULL;
 }
 
 ConfigClass::~ConfigClass() {

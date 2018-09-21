@@ -1,8 +1,6 @@
 #pragma once
 #include "Common.h"
 #include "ConfigClass.h"
-#include "CAStoreClass.h"
-#include "PKCS12Class.h"
 #include <wx/wizard.h>
 #include <wx/filepicker.h>
 
@@ -16,7 +14,6 @@ protected:
 	wxTextCtrl *inpCertPass;
 	wxPanel *panelCertsFirst, *panelCertsList;
 	wxListBox *listCerts;
-	PKCS12Class new_cert;
 	bool hack_disable_wiz_evt;
 public:
 	void Init(wxFrame *frame);

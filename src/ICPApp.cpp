@@ -1,14 +1,9 @@
 #include "ICPApp.h"
-#include <openssl/crypto.h>
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
-#include <openssl/conf.h>
-#include <openssl/evp.h>
-#include <openssl/err.h>
 #include <wx/filefn.h>
 #include <wx/cmdline.h>
 #include <wx/colour.h>
-#include "CertClass.h"
 #include "icon-32.xpm"
 
 wxIMPLEMENT_APP(ICPApp);
@@ -20,17 +15,7 @@ bool ICPApp::OnInit() {
 
 	// Load basic config
 	Config.Init();
-	CAStore.AddAllCAsFromDir("./res/CAs/");
-	CAStore.AddAllCAsFromDir(executable_dir+"/../Resources/CAs/");
-	CAStore.AddAllCAsFromDir("/usr/share/openicpbr/CAs/");
-	CAStore.AddAllCAsFromDir("/usr/local/openicpbr/CAs/");
-	CAStore.AddAllCAsFromDir(Config.CAsPath());
 	Config.ReloadCerts();
-
-	// Load OpenSSL
-	OPENSSL_add_all_algorithms_noconf();
-	ERR_load_crypto_strings();
-	OpenSSL_add_all_ciphers();
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
@@ -60,7 +45,7 @@ bool ICPApp::OnInit() {
 
 	// Set version strings
 	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
-	XRCCTRL(*theFrame, "outOpenSSLVer", wxStaticText)->SetLabel(SSLeay_version(SSLEAY_VERSION));
+	// XRCCTRL(*theFrame, "outOpenSSLVer", wxStaticText)->SetLabel(SSLeay_version(SSLEAY_VERSION));
 	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 
 	// Some UI tweeks
