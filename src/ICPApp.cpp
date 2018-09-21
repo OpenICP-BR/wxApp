@@ -13,8 +13,9 @@ bool ICPApp::OnInit() {
 	wxLogDebug("executable_dir = %s", executable_dir);
 
 	// Load basic config
-	// Config.Init();
-	// Config.ReloadCerts();
+	// Config = new ConfigClass();
+	// Config->Init();
+	// Config->ReloadCerts();
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
@@ -93,6 +94,7 @@ void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
 
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
+	free(Config);
 	// free(sign_panel);
 	// free(verify_panel);
 	// free(certs_panel);

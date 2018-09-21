@@ -17,4 +17,4 @@ public:
 	~ConfigClass();
 };
 
-extern ConfigClass Config;
+extern ConfigClass *Config;

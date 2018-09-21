@@ -2,9 +2,11 @@
 #include <wx/stdpaths.h>
 #include <wx/dir.h>
 
-ConfigClass Config;
+ConfigClass *Config=NULL;
 
-ConfigClass::ConfigClass() : Store(true) { // the true parameter tells the ICP::Store to automatically download CAs when needed
+ConfigClass::ConfigClass() {
+	Store.SetDebug(true);
+	Store.SetAutoDownload(true);
 }
 
 void ConfigClass::Init() {
@@ -44,9 +46,9 @@ void ConfigClass::Init() {
 	wxLogDebug("CAs Path: %s", cas_path.GetPathWithSep());
 
 	// Load CAs
-	Store.SetCachePath(cas_path.GetPathWithSep().ToStdString());
-	// Download all CAs just in case
-	Store.DownloadAll();
+	auto cas_path_std = cas_path.GetPathWithSep().ToStdString();
+	// Store.AddAllCAsFromDir(cas_path_std);
+	Store.SetCachePath(cas_path_std);
 }
 
 void ConfigClass::ReloadCerts() {
