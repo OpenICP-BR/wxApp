@@ -2,7 +2,6 @@
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
 #include <wx/filefn.h>
-#include <wx/cmdline.h>
 #include <wx/colour.h>
 #include "icon-32.xpm"
 
@@ -14,8 +13,8 @@ bool ICPApp::OnInit() {
 	wxLogDebug("executable_dir = %s", executable_dir);
 
 	// Load basic config
-	Config.Init();
-	Config.ReloadCerts();
+	// Config.Init();
+	// Config.ReloadCerts();
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
@@ -35,12 +34,14 @@ bool ICPApp::OnInit() {
 		#endif
 
 		// Process some things
-		sign_panel->Init(theFrame);
-		verify_panel->Init(theFrame);
-		certs_panel->Init(theFrame);
+		// sign_panel->Init(theFrame);
+		// verify_panel->Init(theFrame);
+		// certs_panel->Init(theFrame);
 		theFrame->Bind(wxEVT_CLOSE_WINDOW, &ICPApp::OnClose, this);
 		// Show it
 		theFrame->Show(true);
+	} else {
+		return false;
 	}
 
 	// Set version strings
@@ -56,7 +57,7 @@ bool ICPApp::OnInit() {
 		XRCCTRL(*theFrame, "panelCerts", wxPanel)->Fit();
 	#endif
 
-	return wxAppConsole::OnInit();
+	return true;
 }
 
 bool ICPApp::LoadUI(wxString path) {
@@ -70,12 +71,9 @@ bool ICPApp::LoadUI(wxString path) {
 }
 
 ICPApp::ICPApp () {
-	sign_panel = new SignPanelClass();
-	verify_panel = new VerifyPanelClass();
-	certs_panel = new CertsPanelClass();
-	#ifdef USE_FAKE_ICP_ROOT
-	cout << "WARNING: Using FAKE ICP root certificate. DO NOT USE IN PRODUCTION!!!" << endl;
-	#endif
+	// sign_panel = new SignPanelClass();
+	// verify_panel = new VerifyPanelClass();
+	// certs_panel = new CertsPanelClass();
 	printf("OpenICP version: %s\n", OpenICP_Version);
 	printf("OpenICP version major: %d\n", OpenICP_Version_Major);
 	printf("OpenICP version minor: %d\n", OpenICP_Version_Minor);
@@ -85,7 +83,7 @@ ICPApp::ICPApp () {
 
 void ICPApp::PreExit () {
 	printf("ICPApp::PreExit\n");
-	certs_panel->PreExit();
+	// certs_panel->PreExit();
 }
 
 void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
@@ -93,24 +91,9 @@ void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
 	theFrame->Destroy();
 }
 
-void ICPApp::OnInitCmdLine(wxCmdLineParser& parser) {
-	parser.AddSwitch("V", "version",  "Prints the OpenICP current version");
-	// must refuse '/' as parameter starter or cannot use "/path" style paths
-	parser.SetSwitchChars("-");
-}
-
-bool ICPApp::OnCmdLineParsed(wxCmdLineParser& parser) {
-	bool print_version = parser.Found("V");
-	if (print_version) {
-		printf("OpenICP version: %s\n", OpenICP_Version);
-		ExitMainLoop();
-	}
-	return true;
-}
-
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
-	free(sign_panel);
-	free(verify_panel);
-	free(certs_panel);
+	// free(sign_panel);
+	// free(verify_panel);
+	// free(certs_panel);
 }
