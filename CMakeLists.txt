@@ -8,8 +8,13 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O2 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror -Wno-unused-command-line-argument -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
+set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror -Wno-unused-command-line-argument -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
 
+# Should we include the FakePKI?
+if(NOT USE_FAKE_ICP)
+	add_definitions(-DUSE_FAKE_ICP_ROOT)
+	message(STATUS "Using FAKE PKI root")
+endif()
 
 # Set some paths for our custom tools
 set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")
@@ -107,6 +112,14 @@ elseif(APPLE)
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)
+	# Add `make run-valgrind`
+	add_custom_target(run-valgrind
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${MACOSX_PACKAGE_LOCATION}/Resources"
+		COMMAND valgrind -v --leak-check=full "${MACOSX_PACKAGE_LOCATION}/MacOS/openicp"
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
 elseif(UNIX)
 	add_custom_command(
 		TARGET openicp
@@ -137,6 +150,14 @@ elseif(UNIX)
 		# This below line ensures we always run with the most up to date res files
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		COMMAND ${CMAKE_BINARY_DIR}/openicp
+		DEPENDS openicp
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	)
+	# Add `make run-valgrind`
+	add_custom_target(run-valgrind
+		# This below line ensures we always run with the most up to date res files
+		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
+		COMMAND valgrind -v --leak-check=full ${CMAKE_BINARY_DIR}/openicp
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 	)

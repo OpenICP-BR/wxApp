@@ -51,9 +51,30 @@ void ConfigClass::Init() {
 	Store.SetCachePath(cas_path_std.ToStdString());
 }
 
+void ConfigClass::AddTestingRootCA(wxString path) {
+	vector<Cert*> certs;
+	vector<CodedError*> errs;
+
+	wxLogDebug("AddTestingRootCA(%s)\n", path);
+	LoadCertsFromFile(path.ToStdString(), certs, errs);
+	if (certs.size() == 0) {
+		return;
+	}
+	errs = Store.AddTestingRootCA(certs[0]);
+	for(auto const& err: errs) {
+		wxLogDebug("-> %s", err->CodeStr);
+	}
+	if (errs.size() == 0) {
+		wxLogDebug("AddTestingRootCA (finished): %s", path);
+	}
+}
+
 void ConfigClass::ReloadCerts() {
 	int total_counter=0;
 	wxString filename, dir_path;
+
+	vector<Cert*> certs, certs_chain;
+	vector<CodedError*> errs, warns;
 
 	// Open dir
 	dir_path = certs_path.GetPathWithSep();
@@ -80,16 +101,27 @@ void ConfigClass::ReloadCerts() {
 		}
 
 		// Load certificate
-		vector<Cert> certs;
-		vector<CodedError> errs;
 		LoadCertsFromFile(cert_full_path.ToStdString(), certs, errs);
 		if (certs.size() == 0) {
 			cont = dir.GetNext(&filename);
 			continue;
 		}
-		wxLogDebug("%s", certs[0].Subject);
 
 		// Check validity
+		if (Store.Verify(certs[0], certs_chain, errs, warns) > 0) {
+			cont = dir.GetNext(&filename);
+			wxLogDebug("Skiping %s (invalid)", cert_full_path);
+			for(auto const& err: errs) {
+				wxLogDebug("-> %s", err->CodeStr);
+			}
+			continue;
+		}
+
+		// Add it
+		PFXs[certs[0]->SubjectMap["CN"]] = full_path;
+		Certs[certs[0]->SubjectMap["CN"]] = certs[0];
+		wxLogDebug("Added %s", certs[0]->SubjectMap["CN"]);
+
 
 
 		// // ... try to read it
@@ -104,6 +136,7 @@ void ConfigClass::ReloadCerts() {
 		// } else {
 		// 	wxLogDebug("Invalid cert for %s on %s", cert.Subject.CommonName(), full_path);
 		// }
+
 		cont = dir.GetNext(&filename);
 	}
 	wxLogDebug("Finished loading %d certs from: %s", total_counter, dir.GetName());

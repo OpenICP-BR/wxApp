@@ -1,5 +1,0 @@
-V	190509224854Z		1000	unknown	/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=Fulano da S\xC3\x83\xC2\xADlva:14894277409/emailAddress=fulano@exemple.com
-V	190509224936Z		1001	unknown	/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=Beltrano Freitas:41951116844/emailAddress=beltrano@exemple.com
-V	190509224944Z		1002	unknown	/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=Ciclano Ciclan\xC3\x83\xC2\xB3ide:15268212222/emailAddress=ciclano@exemple.com
-V	190511210840Z		1003	unknown	/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=AlonsCorp Ltda.:98483136000102/emailAddress=contato@alonscopr.br
-V	190513184412Z		1004	unknown	/C=BR/ST=FN/L=Ilha/O=FakePKI/CN=Ciclano Ciclan\xC3\xB3ide/emailAddress=ciclano@example.com

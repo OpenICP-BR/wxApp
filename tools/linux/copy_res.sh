@@ -21,7 +21,7 @@ mkdir -p "${RES_DIR}/CAs"
 echo cp "${SRC_DIR}/res/icp-chain/*.crt" "${RES_DIR}/CAs"
 cp "${SRC_DIR}/res/icp-chain/"*.crt "${RES_DIR}/CAs"
 
-echo cp "${SRC_DIR}/res/test-chain/intermediate-ca.crt" "${RES_DIR}/CAs"
-cp "${SRC_DIR}/res/test-chain/intermediate-ca.crt" "${RES_DIR}/CAs"
+echo cp "${SRC_DIR}/res/test-chain/root.crt" "${RES_DIR}/CAs"
+cp "${SRC_DIR}/res/test-chain/root.crt" "${RES_DIR}/CAs"
 
 echo -e "${GREEN}[ OK ] Copied resource files${NC}"

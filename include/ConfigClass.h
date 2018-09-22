@@ -9,11 +9,13 @@ public:
 	CAStore Store;
 	// Associate each "nice name" with the path to the PFX file.
 	map<wxString, wxString> PFXs;
+	map<wxString, Cert*> Certs;
 	ConfigClass();
 	void Init();
 	void ReloadCerts();
 	bool AddPFX(PFX pfx);
 	PFX* GetPFX(wxString nice_name);
+	void AddTestingRootCA(wxString path);
 	~ConfigClass();
 };
 

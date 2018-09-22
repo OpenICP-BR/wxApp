@@ -14,6 +14,13 @@ bool ICPApp::OnInit() {
 
 	// Load basic config
 	Config = new ConfigClass();
+
+	// Add testing root CA
+	#ifdef USE_FAKE_ICP_ROOT
+	Config->AddTestingRootCA(executable_dir + "../Resources/CAs/root.crt");
+	#endif
+	
+	// Load basic config (step 2)
 	Config->Init();
 	Config->ReloadCerts();
 
