@@ -10,12 +10,13 @@ protected:
 	wxButton *btnSign, *btnFileToSign;
 	wxTextCtrl *inpFileToSign, *inpCertSignerPass;
 	wxChoice *choSignAs;
-	unsigned int last_n_certs=0;
+	unsigned int last_n_certs;
 	void updateCerts();
 public:
 	void Init(wxFrame *frame);
 	void OpenFileDialog(wxCommandEvent& event);
 	void OnPageChanged(wxBookCtrlEvent& event);
 	void SignFiles(wxCommandEvent& event);
+	SignPanelClass();
 	~SignPanelClass();
 };

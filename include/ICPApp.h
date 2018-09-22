@@ -9,7 +9,7 @@ class ICPApp: public wxApp {
 protected:
 	wxWindow *theWindow;
 	wxFrame *theFrame;
-	// SignPanelClass *sign_panel;
+	SignPanelClass *sign_panel;
 	// CertsPanelClass *certs_panel;
 	// VerifyPanelClass *verify_panel;
 	bool LoadUI(wxString path);

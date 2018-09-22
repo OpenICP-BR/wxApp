@@ -2,6 +2,10 @@
 #include <sstream>
 #include <wx/stdpaths.h>
 
+SignPanelClass::SignPanelClass() {
+	last_n_certs = 0;
+}
+
 void SignPanelClass::Init(wxFrame *the_frame) {
 	frame = the_frame;
 
@@ -67,6 +71,7 @@ void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 }
 
 void SignPanelClass::SignFiles(wxCommandEvent& WXUNUSED(event)) {
+	wxLogMessage(wxT("Não implementado"));
 	// Try to get and unlock certificate
 	// PKCS12Class *p12 = Config.GetPKCS12(choSignAs->GetStringSelection());
 	// if (p12 == NULL) {

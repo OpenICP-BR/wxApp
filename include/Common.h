@@ -51,5 +51,4 @@ using std::vector;
 using std::map;
 using std::cout;
 using std::endl;
-
-typedef unsigned long x509_hash;
+using namespace ICP;

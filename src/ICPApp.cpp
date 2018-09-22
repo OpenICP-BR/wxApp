@@ -13,9 +13,9 @@ bool ICPApp::OnInit() {
 	wxLogDebug("executable_dir = %s", executable_dir);
 
 	// Load basic config
-	// Config = new ConfigClass();
-	// Config->Init();
-	// Config->ReloadCerts();
+	Config = new ConfigClass();
+	Config->Init();
+	Config->ReloadCerts();
 
 	// Load UI
 	wxXmlResource::Get()->InitAllHandlers();
@@ -35,7 +35,7 @@ bool ICPApp::OnInit() {
 		#endif
 
 		// Process some things
-		// sign_panel->Init(theFrame);
+		sign_panel->Init(theFrame);
 		// verify_panel->Init(theFrame);
 		// certs_panel->Init(theFrame);
 		theFrame->Bind(wxEVT_CLOSE_WINDOW, &ICPApp::OnClose, this);
@@ -47,7 +47,7 @@ bool ICPApp::OnInit() {
 
 	// Set version strings
 	XRCCTRL(*theFrame, "outOpenICPVer", wxStaticText)->SetLabel(OpenICP_Version);
-	// XRCCTRL(*theFrame, "outOpenSSLVer", wxStaticText)->SetLabel(SSLeay_version(SSLEAY_VERSION));
+	XRCCTRL(*theFrame, "outLibICPVer", wxStaticText)->SetLabel(icp_version());
 	XRCCTRL(*theFrame, "outWxVer", wxStaticText)->SetLabel(wxGetLibraryVersionInfo().GetVersionString());
 
 	// Some UI tweeks
@@ -57,6 +57,8 @@ bool ICPApp::OnInit() {
 		theFrame->Refresh();
 		XRCCTRL(*theFrame, "panelCerts", wxPanel)->Fit();
 	#endif
+
+	Config->ReloadCerts();
 
 	return true;
 }
@@ -72,7 +74,8 @@ bool ICPApp::LoadUI(wxString path) {
 }
 
 ICPApp::ICPApp () {
-	// sign_panel = new SignPanelClass();
+	printf("new SignPanelClass\n");
+	sign_panel = new SignPanelClass();
 	// verify_panel = new VerifyPanelClass();
 	// certs_panel = new CertsPanelClass();
 	printf("OpenICP version: %s\n", OpenICP_Version);
@@ -95,7 +98,7 @@ void ICPApp::OnClose(wxCloseEvent& WXUNUSED(event)) {
 ICPApp::~ICPApp () {
 	printf("~ICPApp\n");
 	free(Config);
-	// free(sign_panel);
+	free(sign_panel);
 	// free(verify_panel);
 	// free(certs_panel);
 }

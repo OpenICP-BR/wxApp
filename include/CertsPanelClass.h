@@ -27,4 +27,3 @@ public:
 	bool ShowCertInfo();
 	~CertsPanelClass();
 };
-

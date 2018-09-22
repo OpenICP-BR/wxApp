@@ -235,7 +235,7 @@
                         </object>
                       </object>
                       <object class="sizeritem" name="flexGridSizer481">
-                        <flag>wxEXPAND</flag>
+                        <flag>wxALL|wxEXPAND</flag>
                         <border>5</border>
                         <option>2</option>
                         <object class="wxFlexGridSizer">
@@ -411,12 +411,12 @@
                   </object>
                 </object>
                 <object class="sizeritem">
-                  <flag/>
+                  <flag>wxALL</flag>
                   <border>5</border>
                   <object class="wxHyperlinkCtrl" name="m_hyperLink213">
                     <style>wxHL_DEFAULT_STYLE</style>
-                    <label>github.com/gjvnq/OpenICP-BR</label>
-                    <url>https://github.com/gjvnq/OpenICP-BR</url>
+                    <label>openicp-br.github.io</label>
+                    <url>https://openicp-br.github.io</url>
                   </object>
                 </object>
                 <object class="sizeritem">
@@ -439,14 +439,14 @@
                   <flag>wxALL</flag>
                   <border>5</border>
                   <object class="wxStaticText" name="m_staticText198">
-                    <label>Versão do OpenSSL:</label>
+                    <label>Versão da libICP:</label>
                     <style/>
                   </object>
                 </object>
                 <object class="sizeritem">
                   <flag>wxALL</flag>
                   <border>5</border>
-                  <object class="wxStaticText" name="outOpenSSLVer">
+                  <object class="wxStaticText" name="outLibICPVer">
                     <label>Static Text Label</label>
                     <style/>
                   </object>
