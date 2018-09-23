@@ -391,9 +391,219 @@
             </object>
           </object>
           <object class="notebookpage">
-            <label>Ajuda</label>
+            <label>Avançado</label>
             <selected>0</selected>
-            <object class="wxPanel" name="panelHelp">
+            <object class="wxPanel" name="panelAdvanced">
+              <style>wxTAB_TRAVERSAL</style>
+              <object class="wxBoxSizer">
+                <orient>wxVERTICAL</orient>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND</flag>
+                  <border>5</border>
+                  <object class="wxStaticText" name="m_staticText300">
+                    <label>Gerar Certificado de Teste</label>
+                    <style>wxALIGN_CENTRE</style>
+                  </object>
+                </object>
+                <object class="sizeritem" name="flexGridSizer327">
+                  <flag>wxALL|wxEXPAND</flag>
+                  <border>5</border>
+                  <object class="wxFlexGridSizer">
+                    <cols>2</cols>
+                    <rows>0</rows>
+                    <vgap>0</vgap>
+                    <hgap>0</hgap>
+                    <growablecols>1</growablecols>
+                    <growablerows/>
+                    <object class="sizeritem">
+                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText306">
+                        <label>Nome</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem" name="boxSizer320">
+                      <flag>wxEXPAND</flag>
+                      <border>5</border>
+                      <option>4</option>
+                      <object class="wxBoxSizer">
+                        <orient>wxHORIZONTAL</orient>
+                        <object class="sizeritem">
+                          <flag>wxALL</flag>
+                          <border>5</border>
+                          <option>1</option>
+                          <object class="wxTextCtrl" name="m_textCtrl308">
+                            <style/>
+                          </object>
+                        </object>
+                        <object class="sizeritem">
+                          <flag>wxALL</flag>
+                          <border>5</border>
+                          <object class="wxCheckBox" name="m_checkBox304">
+                            <style/>
+                            <label>AC Raíz</label>
+                            <checked>0</checked>
+                          </object>
+                        </object>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText312">
+                        <label>Validade</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem" name="boxSizer322">
+                      <flag>wxEXPAND</flag>
+                      <border>5</border>
+                      <option>4</option>
+                      <object class="wxBoxSizer">
+                        <orient>wxHORIZONTAL</orient>
+                        <object class="sizeritem">
+                          <flag>wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                          <border>5</border>
+                          <option>1</option>
+                          <object class="wxDatePickerCtrl" name="m_datePicker316">
+                            <style>wxDP_DEFAULT</style>
+                          </object>
+                        </object>
+                        <object class="sizeritem">
+                          <flag>wxALL</flag>
+                          <border>5</border>
+                          <object class="wxStaticText" name="m_staticText324">
+                            <label>à</label>
+                            <style/>
+                          </object>
+                        </object>
+                        <object class="sizeritem">
+                          <flag>wxLEFT|wxRIGHT|wxBOTTOM</flag>
+                          <border>5</border>
+                          <option>1</option>
+                          <object class="wxDatePickerCtrl" name="m_datePicker314">
+                            <style>wxDP_DEFAULT</style>
+                          </object>
+                        </object>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText329">
+                        <label>Senha</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL|wxEXPAND</flag>
+                      <border>5</border>
+                      <option>1</option>
+                      <object class="wxTextCtrl" name="m_textCtrl331">
+                        <style>wxTE_PASSWORD</style>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText333">
+                        <label>Emissor (.pfx)</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL|wxEXPAND</flag>
+                      <border>5</border>
+                      <object class="wxFilePickerCtrl" name="m_filePicker335">
+                        <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
+                        <message>Select a file</message>
+                        <wildcard>*</wildcard>
+                        <value/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText337">
+                        <label>Senha do Emissor</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL|wxEXPAND</flag>
+                      <border>5</border>
+                      <object class="wxTextCtrl" name="m_textCtrl339">
+                        <style>wxTE_PASSWORD</style>
+                      </object>
+                    </object>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxALIGN_CENTER</flag>
+                  <border>5</border>
+                  <object class="wxButton" name="m_button341">
+                    <label>Gerar e Salvar</label>
+                    <style/>
+                    <bitmapposition>wxLEFT</bitmapposition>
+                    <default>0</default>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND</flag>
+                  <border>5</border>
+                  <object class="wxStaticLine" name="m_staticLine343">
+                    <style>wxLI_HORIZONTAL</style>
+                  </object>
+                </object>
+                <object class="sizeritem" name="boxSizer345">
+                  <flag>wxALL|wxEXPAND</flag>
+                  <border>5</border>
+                  <object class="wxBoxSizer">
+                    <orient>wxHORIZONTAL</orient>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxStaticText" name="m_staticText347">
+                        <label>AC Raíz de Teste (.crt)</label>
+                        <style/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <option>1</option>
+                      <object class="wxFilePickerCtrl" name="m_filePicker349">
+                        <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
+                        <message>Select a file</message>
+                        <wildcard>*</wildcard>
+                        <value/>
+                      </object>
+                    </object>
+                    <object class="sizeritem">
+                      <flag>wxALL</flag>
+                      <border>5</border>
+                      <object class="wxButton" name="m_button353">
+                        <label>Abrir e Adicionar</label>
+                        <style/>
+                        <bitmapposition>wxLEFT</bitmapposition>
+                        <default>0</default>
+                      </object>
+                    </object>
+                  </object>
+                </object>
+                <object class="spacer" name="Spacer351">
+                  <flag>wxALL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                </object>
+              </object>
+            </object>
+          </object>
+          <object class="notebookpage">
+            <label>Sobre</label>
+            <selected>0</selected>
+            <object class="wxPanel" name="panelAbout">
               <style>wxTAB_TRAVERSAL</style>
               <object class="wxFlexGridSizer">
                 <cols>2</cols>
