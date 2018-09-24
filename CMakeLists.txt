@@ -8,7 +8,7 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror -Wno-unused-command-line-argument -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
+set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror  -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
 
 # Should we include the FakePKI?
 if(NOT USE_FAKE_ICP)
@@ -56,8 +56,8 @@ else()
 endif()
 add_library(ICP++ STATIC IMPORTED)
 set_target_properties(ICP++ PROPERTIES
-	IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/libICP++.a"
-	INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/"
+	IMPORTED_LOCATION "$ENV{GOPATH}/src/github.com/OpenICP-BR/libICP/c-wrapper/libICP++.a"
+	INTERFACE_INCLUDE_DIRECTORIES "$ENV{GOPATH}/src/github.com/OpenICP-BR/libICP/c-wrapper/"
 )
 target_link_libraries(openicp ICP++)
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})

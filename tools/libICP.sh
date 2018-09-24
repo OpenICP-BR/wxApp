@@ -1,7 +1,8 @@
 #!/bin/bash
 
-git clone https://github.com/OpenICP-BR/libICP
-cd libICP
+mkdir -pv $GOPATH/src/github.com/OpenICP-BR
+go get github.com/OpenICP-BR/libICP
+cd $GOPATH/src/github.com/OpenICP-BR/libICP
 make install-deps
 make all
 cd c-wrapper
