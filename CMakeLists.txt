@@ -54,9 +54,13 @@ elseif(MINGW)
 else()
 	add_executable(openicp "${SOURCES}")
 endif()
+add_library(ICP++ STATIC IMPORTED)
+set_target_properties(ICP++ PROPERTIES
+	IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/libICP++.a"
+	INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/"
+)
 target_link_libraries(openicp ICP++)
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})
-target_link_libraries(openicp ICP)
 if (MINGW)
 	target_link_libraries(openicp "ws2_32")
 endif()
@@ -141,7 +145,7 @@ elseif(UNIX)
 	# Generate .tar.gz distribution files easily
 	add_custom_target(tgz
 		COMMAND make install DESTDIR=${CMAKE_BINARY_DIR}/install/
-		COMMAND ${TOOL_DIR}/make_tgz.sh "${CMAKE_BINARY_DIR}/install/" "${CMAKE_BINARY_DIR}" 
+		COMMAND ${TOOL_DIR}/make_tgz.sh "${CMAKE_BINARY_DIR}/install/" "${CMAKE_BINARY_DIR}"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 	)
