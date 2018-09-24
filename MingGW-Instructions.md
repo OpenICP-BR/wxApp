@@ -64,6 +64,7 @@
 	1. Run: cd /c/goroot/src/github.com/OpenICP-BR/wxApp
 	2. Set the correct branch: git checkout golang-libICP
 	3. Download and compile libICP: ./tools/libICP.sh
-	4. Configure: cmake . -G "Unix Makefiles"
+	4. Clear: rm CMakeCache.txt CMakeFiles/ -rf
+	4. Configure: CXX=/c/mingw/bin/g++.exe cmake -D CXX_FLAGS="-O2 --std=gnu++11 -Wno-deprecated-declarations" -G "Unix Makefiles" .
 	5. Compile: make
 	6. Run: make run
