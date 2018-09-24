@@ -38,6 +38,8 @@
 	3.
 3. Install CMake from: https://cmake.org/download/
 	1. Install it to: C:\CMake
+3. Install makensis from: http://nsis.sourceforge.net/Download
+	1. Install it to: C:\NSIS
 4. Open git bash.
 	1. Run: cp /c/MinGW/bin/mingw32-make.exe /c/MinGW/mingw32/bin/make.exe
 	2. Run: echo "export PATH=/c/Go/bin:/c/MinGW/bin/:/c/MinGW/mingw32/bin/:/c/CMake/bin:\$PATH" >> ~/.bashrc
@@ -68,3 +70,4 @@
 	4. Configure: CXX=/c/mingw/bin/g++.exe cmake -D CXX_FLAGS="-O2 --std=gnu++11 -Wno-deprecated-declarations" -G "Unix Makefiles" .
 	5. Compile: make
 	6. Run: make run
+	7. Generate installer: /c/NSIS/Bin/makensis.exe C:/goroot/src/github.com/OpenICP-BR/wxApp/res/installer.nsi

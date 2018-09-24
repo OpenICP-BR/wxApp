@@ -106,7 +106,7 @@ if(MINGW)
 	add_custom_target(installer
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		COMMAND ${TOOL_DIR}/copy_dll.sh "${CMAKE_BINARY_DIR}/"
-		COMMAND makensis "${CMAKE_CURRENT_SOURCE_DIR}/res/installer.nsi"
+		COMMAND /c/NSIS/Bin/makensis.exe "${CMAKE_CURRENT_SOURCE_DIR}/res/installer.nsi"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 elseif(APPLE)
