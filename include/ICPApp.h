@@ -1,17 +1,19 @@
 #pragma once
 #include "Common.h"
-#include "SignPanelClass.h"
-#include "CertsPanelClass.h"
-#include "VerifyPanelClass.h"
+#include "SignPanelView.h"
+#include "NewCertPanelView.h"
+// #include "CertsPanelView.h"
+// #include "VerifyPanelView.h"
 #include "ConfigClass.h"
 
 class ICPApp: public wxApp {
 protected:
 	wxWindow *theWindow;
 	wxFrame *theFrame;
-	SignPanelClass *sign_panel;
-	// CertsPanelClass *certs_panel;
-	// VerifyPanelClass *verify_panel;
+	SignPanelView *sign_panel;
+	NewCertPanelView *new_cert_panel;
+	// CertsPanelView *certs_panel;
+	// VerifyPanelView *verify_panel;
 	bool LoadUI(wxString path);
 public:
 	bool OnInit();

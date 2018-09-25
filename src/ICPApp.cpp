@@ -37,12 +37,11 @@ bool ICPApp::OnInit() {
 	theFrame = wxXmlResource::Get()->LoadFrame(theWindow, "MainFrame");
 	theFrame->SetIcon(wxIcon(xpm_icon_32));
 	if (theFrame != NULL) {
-		#ifndef USE_FAKE_ICP_ROOT
-			XRCCTRL(*theFrame, "lblTestVersion", wxStaticText)->Hide();
-		#endif
+		XRCCTRL(*theFrame, "lblTestVersion", wxStaticText)->Hide();
 
 		// Process some things
 		sign_panel->Init(theFrame);
+		new_cert_panel->Init(theFrame);
 		// verify_panel->Init(theFrame);
 		// certs_panel->Init(theFrame);
 		theFrame->Bind(wxEVT_CLOSE_WINDOW, &ICPApp::OnClose, this);
@@ -81,15 +80,10 @@ bool ICPApp::LoadUI(wxString path) {
 }
 
 ICPApp::ICPApp () {
-	printf("new SignPanelClass\n");
-	sign_panel = new SignPanelClass();
+	sign_panel = new SignPanelView();
+	new_cert_panel = new NewCertPanelView();
 	// verify_panel = new VerifyPanelClass();
 	// certs_panel = new CertsPanelClass();
-	printf("OpenICP version: %s\n", OpenICP_Version);
-	printf("OpenICP version major: %d\n", OpenICP_Version_Major);
-	printf("OpenICP version minor: %d\n", OpenICP_Version_Minor);
-	printf("OpenICP version patch: %d\n", OpenICP_Version_Patch);
-	printf("OpenICP version suffix: %s\n", OpenICP_Version_Suffix);
 }
 
 void ICPApp::PreExit () {

@@ -3,7 +3,7 @@
 #include "ConfigClass.h"
 #include <wx/notebook.h>
 
-class VerifyPanelClass {
+class VerifyPanelView {
 protected:
 	wxFrame *frame;
 	wxFileDialog *file_dialog;
@@ -13,5 +13,6 @@ public:
 	void Init(wxFrame *frame);
 	void OpenFileDialog(wxCommandEvent& event);
 	void VerifyFiles();
-	~VerifyPanelClass();
+	VerifyPanelView();
+	~VerifyPanelView();
 };

@@ -1,12 +1,12 @@
-#include "SignPanelClass.h"
+#include "SignPanelView.h"
 #include <sstream>
 #include <wx/stdpaths.h>
 
-SignPanelClass::SignPanelClass() {
+SignPanelView::SignPanelView() {
 	last_n_certs = 0;
 }
 
-void SignPanelClass::Init(wxFrame *the_frame) {
+void SignPanelView::Init(wxFrame *the_frame) {
 	frame = the_frame;
 
 	// Add some stuff
@@ -22,16 +22,16 @@ void SignPanelClass::Init(wxFrame *the_frame) {
 
 	// Bind events
 	btnFileToSign->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
-		&SignPanelClass::OpenFileDialog, this);
+		&SignPanelView::OpenFileDialog, this);
 	btnSign->Bind(wxEVT_COMMAND_BUTTON_CLICKED,
-		&SignPanelClass::SignFiles, this);
+		&SignPanelView::SignFiles, this);
 	XRCCTRL(*frame, "nbMain", wxNotebook)->Bind(wxEVT_NOTEBOOK_PAGE_CHANGING,
-		&SignPanelClass::OnPageChanged, this);
+		&SignPanelView::OnPageChanged, this);
 
 	updateCerts();
 }
 
-void SignPanelClass::updateCerts() {
+void SignPanelView::updateCerts() {
 	// Fix certs list
 	// if (last_n_certs != Config.GetUserCerts().size()) {
 	// 	last_n_certs = Config.GetUserCerts().size();
@@ -42,11 +42,11 @@ void SignPanelClass::updateCerts() {
 	// }
 }
 
-void SignPanelClass::OnPageChanged(wxBookCtrlEvent& WXUNUSED(event)) {
+void SignPanelView::OnPageChanged(wxBookCtrlEvent& WXUNUSED(event)) {
 	updateCerts();
 }
 
-void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
+void SignPanelView::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 	int n;
 	wxArrayString filenames;
 
@@ -70,7 +70,15 @@ void SignPanelClass::OpenFileDialog(wxCommandEvent& WXUNUSED(event)) {
 	}
 }
 
-void SignPanelClass::SignFiles(wxCommandEvent& WXUNUSED(event)) {
+wxArrayString& SignPanelView::FilesToSign() {
+	static wxArrayString filenames;
+	file_dialog->GetFilenames(filenames);
+	return filenames;
+}
+
+void SignPanelView::SignFiles(wxCommandEvent& WXUNUSED(event)) {
+	// Ensure at least one file was selected
+
 	wxLogMessage(wxT("Não implementado"));
 	// Try to get and unlock certificate
 	// PKCS12Class *p12 = Config.GetPKCS12(choSignAs->GetStringSelection());
@@ -106,6 +114,6 @@ void SignPanelClass::SignFiles(wxCommandEvent& WXUNUSED(event)) {
 	// free(p12);
 }
 
-SignPanelClass::~SignPanelClass() {
+SignPanelView::~SignPanelView() {
 	free(file_dialog);
 }

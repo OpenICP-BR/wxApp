@@ -3,7 +3,7 @@
 #include "ConfigClass.h"
 #include <wx/notebook.h>
 
-class SignPanelClass {
+class SignPanelView {
 protected:
 	wxFrame *frame;
 	wxFileDialog *file_dialog;
@@ -17,6 +17,7 @@ public:
 	void OpenFileDialog(wxCommandEvent& event);
 	void OnPageChanged(wxBookCtrlEvent& event);
 	void SignFiles(wxCommandEvent& event);
-	SignPanelClass();
-	~SignPanelClass();
+	wxArrayString& FilesToSign();
+	SignPanelView();
+	~SignPanelView();
 };
