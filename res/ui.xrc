@@ -47,11 +47,11 @@
                     <growablecols>1</growablecols>
                     <growablerows/>
                     <object class="sizeritem">
-                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
                       <object class="wxStaticText" name="lblFileToSign">
                         <label>Arquivo(s) para assinar:</label>
-                        <style/>
+                        <style>wxALIGN_RIGHT</style>
                       </object>
                     </object>
                     <object class="sizeritem" name="bSizer8">
@@ -81,11 +81,11 @@
                       </object>
                     </object>
                     <object class="sizeritem">
-                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
                       <object class="wxStaticText" name="lblSignAs">
                         <label>Assinar como:</label>
-                        <style/>
+                        <style>wxALIGN_RIGHT</style>
                       </object>
                     </object>
                     <object class="sizeritem">
@@ -99,15 +99,15 @@
                       </object>
                     </object>
                     <object class="sizeritem">
-                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
                       <object class="wxStaticText" name="lblCertPass">
                         <label>Senha do certificado:</label>
-                        <style/>
+                        <style>wxALIGN_RIGHT</style>
                       </object>
                     </object>
                     <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
+                      <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                       <border>5</border>
                       <object class="wxTextCtrl" name="inpCertSignerPass">
                         <style>wxTE_PASSWORD</style>
@@ -395,154 +395,76 @@
             <selected>0</selected>
             <object class="wxPanel" name="panelAdvanced">
               <style>wxTAB_TRAVERSAL</style>
-              <object class="wxBoxSizer">
-                <orient>wxVERTICAL</orient>
+              <object class="wxGridBagSizer">
+                <vgap>0</vgap>
+                <hgap>5</hgap>
+                <growablecols>1,2,3,4</growablecols>
+                <growablerows/>
                 <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
+                  <cellpos>0,0</cellpos>
+                  <cellspan>1,6</cellspan>
                   <object class="wxStaticText" name="m_staticText300">
                     <label>Gerar Certificado de Teste</label>
                     <style>wxALIGN_CENTRE</style>
                   </object>
                 </object>
-                <object class="sizeritem" name="flexGridSizer327">
+                <object class="sizeritem">
                   <flag>wxALL|wxEXPAND</flag>
                   <border>5</border>
-                  <object class="wxFlexGridSizer">
-                    <cols>2</cols>
-                    <rows>0</rows>
-                    <vgap>0</vgap>
-                    <hgap>0</hgap>
-                    <growablecols>1,3</growablecols>
-                    <growablerows/>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText306">
-                        <label>Nome</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem" name="boxSizer320">
-                      <flag>wxEXPAND</flag>
-                      <border>5</border>
-                      <option>4</option>
-                      <object class="wxBoxSizer">
-                        <orient>wxHORIZONTAL</orient>
-                        <object class="sizeritem">
-                          <flag>wxALL</flag>
-                          <border>5</border>
-                          <option>1</option>
-                          <object class="wxTextCtrl" name="m_textCtrl308">
-                            <style/>
-                          </object>
-                        </object>
-                        <object class="sizeritem">
-                          <flag>wxALL</flag>
-                          <border>5</border>
-                          <object class="wxCheckBox" name="m_checkBox304">
-                            <style/>
-                            <label>AC Raíz</label>
-                            <checked>0</checked>
-                          </object>
-                        </object>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText312">
-                        <label>Validade</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem" name="boxSizer322">
-                      <flag>wxEXPAND</flag>
-                      <border>5</border>
-                      <option>4</option>
-                      <object class="wxBoxSizer">
-                        <orient>wxHORIZONTAL</orient>
-                        <object class="sizeritem">
-                          <flag>wxLEFT|wxRIGHT|wxBOTTOM</flag>
-                          <border>5</border>
-                          <option>1</option>
-                          <object class="wxDatePickerCtrl" name="m_datePicker316">
-                            <style>wxDP_DEFAULT</style>
-                          </object>
-                        </object>
-                        <object class="sizeritem">
-                          <flag>wxALL</flag>
-                          <border>5</border>
-                          <object class="wxStaticText" name="m_staticText324">
-                            <label>à</label>
-                            <style/>
-                          </object>
-                        </object>
-                        <object class="sizeritem">
-                          <flag>wxLEFT|wxRIGHT|wxBOTTOM</flag>
-                          <border>5</border>
-                          <option>1</option>
-                          <object class="wxDatePickerCtrl" name="m_datePicker314">
-                            <style>wxDP_DEFAULT</style>
-                          </object>
-                        </object>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText329">
-                        <label>Senha</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <option>1</option>
-                      <object class="wxTextCtrl" name="m_textCtrl331">
-                        <style>wxTE_PASSWORD</style>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText333">
-                        <label>Emissor (.pfx)</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <object class="wxFilePickerCtrl" name="m_filePicker335">
-                        <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
-                        <message>Select a file</message>
-                        <wildcard>*</wildcard>
-                        <value/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText337">
-                        <label>Senha do Emissor</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <object class="wxTextCtrl" name="m_textCtrl339">
-                        <style>wxTE_PASSWORD</style>
-                      </object>
-                    </object>
+                  <cellpos>7,0</cellpos>
+                  <cellspan>1,6</cellspan>
+                  <object class="wxStaticLine" name="m_staticLine343">
+                    <style>wxLI_HORIZONTAL</style>
                   </object>
                 </object>
                 <object class="sizeritem">
-                  <flag>wxALL|wxALIGN_CENTER</flag>
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxButton" name="m_button341">
+                  <cellpos>1,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText306">
+                    <label>Nome</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                  <cellpos>1,1</cellpos>
+                  <cellspan>1,4</cellspan>
+                  <object class="wxTextCtrl" name="inNewCertName">
+                    <style/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>2,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText312">
+                    <label>Validade</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                  <cellpos>5,1</cellpos>
+                  <cellspan>1,4</cellspan>
+                  <object class="wxTextCtrl" name="inNewCertIssuerPassword">
+                    <style>wxTE_PASSWORD</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>6,0</cellpos>
+                  <cellspan>1,5</cellspan>
+                  <object class="wxButton" name="btnGenCert">
                     <label>Gerar e Salvar</label>
                     <style/>
                     <bitmapposition>wxLEFT</bitmapposition>
@@ -550,52 +472,131 @@
                   </object>
                 </object>
                 <object class="sizeritem">
-                  <flag>wxALL|wxEXPAND</flag>
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
-                  <object class="wxStaticLine" name="m_staticLine343">
-                    <style>wxLI_HORIZONTAL</style>
+                  <cellpos>3,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText329">
+                    <label>Senha</label>
+                    <style>wxALIGN_RIGHT</style>
                   </object>
                 </object>
-                <object class="sizeritem" name="boxSizer345">
-                  <flag>wxALL|wxEXPAND</flag>
-                  <border>5</border>
-                  <object class="wxBoxSizer">
-                    <orient>wxHORIZONTAL</orient>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <object class="wxStaticText" name="m_staticText347">
-                        <label>AC Raíz de Teste (.crt)</label>
-                        <style/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <option>1</option>
-                      <object class="wxFilePickerCtrl" name="m_filePicker349">
-                        <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
-                        <message>Select a file</message>
-                        <wildcard>*</wildcard>
-                        <value/>
-                      </object>
-                    </object>
-                    <object class="sizeritem">
-                      <flag>wxALL|wxEXPAND</flag>
-                      <border>5</border>
-                      <object class="wxButton" name="m_button353">
-                        <label>Abrir e Adicionar</label>
-                        <style/>
-                        <bitmapposition>wxLEFT</bitmapposition>
-                        <default>0</default>
-                      </object>
-                    </object>
-                  </object>
-                </object>
-                <object class="spacer" name="Spacer351">
-                  <flag>wxALL</flag>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
                   <border>5</border>
                   <option>1</option>
+                  <cellpos>2,3</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxDatePickerCtrl" name="inNewCertNotAfter">
+                    <style>wxDP_DEFAULT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                  <cellpos>2,1</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxDatePickerCtrl" name="inNewCertNotBefore">
+                    <style>wxDP_DEFAULT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>2,2</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText324">
+                    <label>à</label>
+                    <style>wxALIGN_CENTRE</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>4,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText333">
+                    <label>Emissor (.pfx)</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>8,1</cellpos>
+                  <cellspan>1,3</cellspan>
+                  <object class="wxFilePickerCtrl" name="inAddRootCA">
+                    <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
+                    <message>Select a file</message>
+                    <wildcard>*</wildcard>
+                    <value/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>5,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText337">
+                    <label>Senha do Emissor</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>3,1</cellpos>
+                  <cellspan>1,4</cellspan>
+                  <object class="wxTextCtrl" name="inNewCertPassword">
+                    <style>wxTE_PASSWORD</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>2,4</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxCheckBox" name="inNewCertRootCA">
+                    <style/>
+                    <label>AC Raíz</label>
+                    <checked>0</checked>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>8,0</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxStaticText" name="m_staticText347">
+                    <label>AC Raíz de Teste (.crt)</label>
+                    <style>wxALIGN_RIGHT</style>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <option>1</option>
+                  <cellpos>4,1</cellpos>
+                  <cellspan>1,4</cellspan>
+                  <object class="wxFilePickerCtrl" name="inNewCertIssuer">
+                    <style>wxFLP_DEFAULT_STYLE|wxFLP_SMALL</style>
+                    <message>Select a file</message>
+                    <wildcard>*</wildcard>
+                    <value/>
+                  </object>
+                </object>
+                <object class="sizeritem">
+                  <flag>wxALL|wxALIGN_CENTER|wxALIGN_CENTER_VERTICAL</flag>
+                  <border>5</border>
+                  <cellpos>8,4</cellpos>
+                  <cellspan>1,1</cellspan>
+                  <object class="wxButton" name="btnAddRootCA">
+                    <label>Abrir e Adicionar</label>
+                    <style/>
+                    <bitmapposition>wxLEFT</bitmapposition>
+                    <default>0</default>
+                  </object>
                 </object>
               </object>
             </object>
