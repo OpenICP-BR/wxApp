@@ -8,13 +8,16 @@ set(CMAKE_INSTALL_PREFIX /usr)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/include)
-set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror -Wno-unused-command-line-argument -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
 
-# Should we include the FakePKI?
-if(NOT USE_FAKE_ICP)
-	add_definitions(-DUSE_FAKE_ICP_ROOT)
-	message(STATUS "Using FAKE PKI root")
+message(STATUS "CXX_FLAGS=${CXX_FLAGS}")
+if (CXX_FLAGS)
+	set(CMAKE_CXX_FLAGS "${CXX_FLAGS} -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
+	message(STATUS "Using user CXX_FLAGS...")
+else()
+	set(CMAKE_CXX_FLAGS "-O2 -std=c++11 -pedantic -Wall -Wextra -Wundef -Wshadow -Wunreachable-code -Wfloat-equal -Werror  -g -fPIC -D__FILENAME__='\"$(subst ${CMAKE_SOURCE_DIR}/src/,,$(abspath $<))\"'")
+	message(STATUS "Using default CXX_FLAGS...")
 endif()
+message(STATUS "CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
 
 # Set some paths for our custom tools
 set(TOOL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tools/")
@@ -29,11 +32,17 @@ endif()
 # Get wxWidgets
 set(wxWidgets_USE_UNICODE true)
 set(wxWidgets_USE_STATIC false)
+set(wxWidgets_USE_DEBUG false)
+if (MINGW)
+	set(wxWidgets_CONFIGURATION mswu)
+endif()
 message(STATUS "Looking for wxWidgets...")
-find_package(wxWidgets REQUIRED COMPONENTS net core base adv xrc)
+SET(wxWidgets_USE_LIBS base core adv xrc)
+find_package(wxWidgets REQUIRED net core base adv xrc)
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_USE_FILE}")
 include(${wxWidgets_USE_FILE})
 message(STATUS "Using wxWidgets ${wxWidgets_VERSION} on ${wxWidgets_INCLUDE_DIRS}")
+message(STATUS "Using wxWidgets libraries ${wxWidgets_LIBRARIES}")
 
 file(GLOB SOURCES "src/*.cpp")
 include_directories(${COMMON_INCLUDES})
@@ -56,13 +65,19 @@ else()
 endif()
 add_library(ICP++ STATIC IMPORTED)
 set_target_properties(ICP++ PROPERTIES
-	IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/libICP++.a"
-	INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/libICP/c-wrapper/"
+	IMPORTED_LOCATION "$ENV{GOPATH}/src/github.com/OpenICP-BR/libICP/c-wrapper/libICP++.a"
+	INTERFACE_INCLUDE_DIRECTORIES "$ENV{GOPATH}/src/github.com/OpenICP-BR/libICP/c-wrapper/"
 )
 target_link_libraries(openicp ICP++)
 target_link_libraries(openicp ${wxWidgets_LIBRARIES})
 if (MINGW)
+	#link_directories("/c/wxWidgets-3.0.4/lib/gcc_dll/")
 	target_link_libraries(openicp "ws2_32")
+	add_library(wxmsw30u_xrc STATIC IMPORTED)
+	set_target_properties(wxmsw30u_xrc PROPERTIES
+		IMPORTED_LOCATION "/c/wxWidgets-3.0.4/lib/gcc_dll/libwxmsw30u_xrc.a"
+	)
+	target_link_libraries(openicp "-LC:/wxWidgets-3.0.4/lib/gcc_dll/ -lwxmsw30u_xrc -lwxmsw30u_adv -lwxmsw30u_core -lwxbase30u")
 endif()
 if (APPLE)
 	target_link_libraries(openicp "-framework CoreFoundation -framework Security")
@@ -91,7 +106,7 @@ if(MINGW)
 	add_custom_target(installer
 		COMMAND ${TOOL_DIR}/copy_res.sh "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/res/"
 		COMMAND ${TOOL_DIR}/copy_dll.sh "${CMAKE_BINARY_DIR}/"
-		COMMAND makensis "${CMAKE_CURRENT_SOURCE_DIR}/res/installer.nsi"
+		COMMAND /c/NSIS/Bin/makensis.exe "${CMAKE_CURRENT_SOURCE_DIR}/res/installer.nsi"
 		DEPENDS openicp
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 elseif(APPLE)

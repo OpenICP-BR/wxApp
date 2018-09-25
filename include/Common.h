@@ -1,18 +1,5 @@
 #pragma once
-#define UNICODE
-#define _UNICODE
 #include "Version.h"
-
-// See: https://stackoverflow.com/questions/24119388/openssl-fails-to-build-with-mingw-does-not-give-a-valid-preprocessing-token?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-#if defined(OPENSSL_SYS_WINDOWS)
-	#include <windows.h>
-	#undef X509_NAME
-	#undef X509_EXTENSIONS
-	#undef X509_CERT_PAIR
-	#undef PKCS7_ISSUER_AND_SERIAL
-	#undef OCSP_REQUEST
-	#undef OCSP_RESPONSE
-#endif
 
 #ifndef __FILENAME__
 	#define __FILENAME__ __FILE__
@@ -42,10 +29,6 @@
 #include <vector>
 #include <string>
 #include <map>
-
-#ifdef __WIN32__
-	#include <openssl/bio.h>
-#endif
 
 using std::vector;
 using std::map;
